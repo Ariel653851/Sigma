@@ -202,19 +202,50 @@ function renderFormulaList() {
 }
 
 function renderSearchResults() {
-    viewTitle.textContent = "Recherche";
+    viewTitle.textContent = "Résultats pour \"" + currentSearch + "\"";
     gridContainer.innerHTML = '';
     
-    const results = formulas.filter(f => 
-        f.title.toLowerCase().includes(currentSearch.toLowerCase())
+    const lowerSearch = currentSearch.toLowerCase();
+
+    // 1. CHERCHER LES CHAPITRES
+    const matchingChapters = chapters.filter(c => 
+        c.title.toLowerCase().includes(lowerSearch)
     );
 
-    if (results.length === 0) {
+    // 2. CHERCHER LES FORMULES
+    const matchingFormulas = formulas.filter(f => 
+        f.title.toLowerCase().includes(lowerSearch) ||
+        f.definition.toLowerCase().includes(lowerSearch)
+    );
+
+    if (matchingChapters.length === 0 && matchingFormulas.length === 0) {
         noResults.classList.remove('hidden');
         return;
     }
 
-    results.forEach(f => {
+    // AFFICHER LES CHAPITRES TROUVÉS
+    matchingChapters.forEach(c => {
+        const formulaCount = formulas.filter(f => f.chapterId === c.id).length;
+        const card = document.createElement('div');
+        card.className = 'chapter-card search-result';
+        card.innerHTML = `
+            <div class="subj-dot ${c.subject}"></div>
+            <div class="card-info">${c.subject.toUpperCase()} • CHAPITRE</div>
+            <h3>${c.title}</h3>
+            <div class="card-info">${formulaCount} formule(s)</div>
+        `;
+        card.onclick = () => {
+            currentSearch = '';
+            mainSearch.value = '';
+            currentChapterId = c.id;
+            currentView = 'formulas';
+            render();
+        };
+        gridContainer.appendChild(card);
+    });
+
+    // AFFICHER LES FORMULES TROUVÉES
+    matchingFormulas.forEach(f => {
         gridContainer.appendChild(generateFormulaCard(f));
     });
 }
