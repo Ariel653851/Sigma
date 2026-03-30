@@ -37,6 +37,13 @@ const formulas = [
         units: "n [Qté matière] (mol), C [Conc. molaire] (mol/L), V [Volume] (L)"
     },
     { 
+        id: "cm-m-v", chapterId: "c-mol-1", title: "Concentration en masse", 
+        formula: "C_m = \\frac{m}{V}", 
+        definition: "Rapport de la masse du soluté par le volume total de la solution.",
+        properties: "Attention : Cm = C x M (relation avec la concentration molaire).",
+        units: "Cm [Conc. masse] (g/L), m [Masse soluté] (g), V [Volume sol.] (L)"
+    },
+    { 
         id: "redox-gen", chapterId: "c-redox-1", title: "Équation d'oxydoréduction", 
         formula: "Ox_1 + Red_2 \\rightarrow Red_1 + Ox_2", 
         definition: "Transfert d'électrons entre deux couples redox.",
