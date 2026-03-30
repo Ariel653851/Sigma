@@ -203,10 +203,27 @@ function createCard(f) {
     const isProto = chapter.subject === 'protocoles';
     const div = document.createElement('div');
     div.className = `formula-card ${chapter.subject}`;
+    
+    // Recovery of pills logic
+    const pillsHtml = f.units && !isProto ? f.units.split(',').map(u => {
+        const parts = u.trim().split('[');
+        const desc = parts[0].trim();
+        const unit = parts[1] ? parts[1].split(']')[0] : '';
+        const realUnit = parts[1] ? parts[1].split('(')[1]?.replace(')', '') : '';
+        return `
+            <div class="unit-pill">
+                <span class="pill-sym">${desc}</span>
+                <span class="pill-arrow">↑</span>
+                <span class="pill-unit">${realUnit || unit}</span>
+            </div>
+        `;
+    }).join('') : "";
+
     div.innerHTML = `
         <span class="card-tag ${chapter.subject}">${chapter.subject.toUpperCase()}</span>
         <h3>${f.title}</h3>
         <div class="card-eqn">${isProto ? '<i data-lucide="test-tube-2" style="width:40px;opacity:0.3"></i>' : `\\[ ${f.formula} \\]`}</div>
+        <div class="bottom-legend-area">${isProto ? "" : pillsHtml}</div>
         <div class="card-footer"><span>${isProto ? 'Voir le protocole' : 'Voir définitions'}</span><i data-lucide="arrow-right"></i></div>
     `;
     div.onclick = () => openModal(f);
