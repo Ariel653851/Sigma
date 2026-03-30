@@ -204,17 +204,17 @@ function createCard(f) {
     const div = document.createElement('div');
     div.className = `formula-card ${chapter.subject}`;
     
-    // Recovery of pills logic
+    // Recovery of pills logic (V1.5 Robust Parser)
     const pillsHtml = f.units && !isProto ? f.units.split(',').map(u => {
-        const parts = u.trim().split('[');
-        const desc = parts[0].trim();
-        const unit = parts[1] ? parts[1].split(']')[0] : '';
-        const realUnit = parts[1] ? parts[1].split('(')[1]?.replace(')', '') : '';
+        const txt = u.trim();
+        const sym = txt.includes('[') ? txt.split('[')[0].trim() : (txt.includes('(') ? txt.split('(')[0].trim() : txt);
+        const unit = txt.includes('(') ? txt.split('(')[1].split(')')[0] : '';
+        if (!sym && !unit) return '';
         return `
             <div class="unit-pill">
-                <span class="pill-sym">${desc}</span>
+                <span class="pill-sym">${sym}</span>
                 <span class="pill-arrow">↑</span>
-                <span class="pill-unit">${realUnit || unit}</span>
+                <span class="pill-unit">${unit}</span>
             </div>
         `;
     }).join('') : "";
