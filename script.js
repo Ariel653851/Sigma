@@ -293,6 +293,8 @@ function generateFormulaCard(f) {
 // --- MODAL ---
 function openModal(f) {
     const chapter = chapters.find(c => c.id === f.chapterId);
+    
+    // Update contents
     document.getElementById('modal-title').textContent = f.title;
     document.getElementById('modal-tag').textContent = `${chapter.subject.toUpperCase()} • ${chapter.level}`;
     document.getElementById('modal-tag').className = `modal-badge ${chapter.subject}`;
@@ -300,13 +302,32 @@ function openModal(f) {
     document.getElementById('modal-def').textContent = f.definition;
     document.getElementById('modal-prop').textContent = f.properties;
     document.getElementById('math-box').innerHTML = `\\[ ${f.formula} \\]`;
+    
+    // Reset to first tab
+    switchTab('eqn');
+    
+    // Show modal
     modalOverlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
     if (window.MathJax) window.MathJax.typesetPromise();
+}
+
+function switchTab(tabId) {
+    // Buttons
+    document.querySelectorAll('.tab-trigger').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
+    });
+    // Panels
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === `tab-${tabId}`);
+    });
 }
 
 // --- EVENTS ---
 backBtn.onclick = goBack;
 
+// Subject tabs
 subTabs.forEach(tab => {
     tab.onclick = () => {
         subTabs.forEach(t => t.classList.remove('active'));
@@ -316,8 +337,19 @@ subTabs.forEach(tab => {
     };
 });
 
+// Modal tabs
+document.querySelectorAll('.tab-trigger').forEach(btn => {
+    btn.onclick = () => {
+        const target = btn.getAttribute('data-tab');
+        switchTab(target);
+    };
+});
+
 mainSearch.oninput = (e) => {
     currentSearch = e.target.value;
+    if (currentSearch.length > 0) {
+        currentView = 'chapters'; // Search works globally
+    }
     render();
 };
 
@@ -331,6 +363,15 @@ document.querySelector('.brand').onclick = () => {
 
 document.querySelector('.modal-close').onclick = () => {
     modalOverlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+};
+
+// Close modal when clicking outside
+window.onclick = (event) => {
+    if (event.target == modalOverlay) {
+        modalOverlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 };
 
 // Start
