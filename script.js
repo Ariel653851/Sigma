@@ -17,7 +17,10 @@ const chapters = [
     { id: "p-energie-1", title: "Énergie Mécanique", subject: "physique", level: "1ere" },
     { id: "p-fluide-1", title: "Fluides", subject: "physique", level: "1ere" },
     { id: "p-inter-1", title: "Interactions Fondamentales", subject: "physique", level: "1ere" },
-    { id: "p-ondes-1", title: "Ondes Mécaniques", subject: "physique", level: "1ere" }
+    { id: "p-ondes-1", title: "Ondes Mécaniques", subject: "physique", level: "1ere" },
+    
+    // --- PROTOCOLES ---
+    { id: "proto-chimie-1", title: "Protocoles de Chimie", subject: "protocoles", level: "1ere" }
 ];
 
 // --- DATA: FORMULAS (ONLY 1ERE) ---
@@ -91,6 +94,13 @@ const formulas = [
         definition: "À l'équivalence d'un titrage, les réactifs ont été introduits dans les proportions stoechiométriques.",
         properties: "Permet de déterminer la concentration inconnue.",
         units: "n [Moles] (mol), a/b [Coef. stoechio]"
+    },
+    { 
+        id: "pe-etalon-1", chapterId: "proto-chimie-1", title: "Dosage par étalonnage (Spectrophotométrie)", 
+        formula: "A = f(C)", 
+        definition: "• PRÉLIMINAIRE : Réglage du spectrophotomètre (Le Blanc).\n• ÉTAPE 0 : Déterminer le spectre d'absorption (λmax).\n• ÉTAPE 1 : Préparer une solution mère de concentration connue.\n• ÉTAPE 2 : Préparer la gamme étalon par dilutions successives.\n• ÉTAPE 3 : Refaire le blanc à λmax.\n• ÉTAPE 4 : Mesurer l'absorbance de chaque solution étalon.\n• ÉTAPE 5 : Tracer la courbe d'étalonnage A=f(c).\n• ÉTAPE 6 : Mesurer l'absorbance de la solution inconnue et déduire sa concentration.",
+        properties: "La loi de Beer-Lambert doit être respectée (droite passant par l'origine).",
+        units: "A [Absorbance], C [Conc.] (mol/L)"
     },
     { 
         id: "ec-1-v3", chapterId: "p-energie-1", title: "Énergie Cinétique", 

@@ -463,6 +463,11 @@ header {
     height: 2px; background: var(--primary);
 }
 
+#modal-def {
+    white-space: pre-line; /* Permet d'afficher les étapes ligne par ligne */
+    line-height: 1.6;
+}
+
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
