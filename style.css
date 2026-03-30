@@ -20,6 +20,7 @@
     
     --physique: #0ea5e9;
     --chimie: #059669;
+    --protocoles: #f59e0b; /* Nouvel Ambre pour les protocoles */
 }
 
 * {
@@ -306,6 +307,7 @@ header {
 }
 .chapter-card .subj-dot.physique { background: var(--physique); }
 .chapter-card .subj-dot.chimie { background: var(--chimie); }
+.chapter-card .subj-dot.protocoles { background: var(--protocoles); }
 
 .chapter-card h3 {
     font-size: 1.1rem;
@@ -348,6 +350,7 @@ header {
 
 .card-tag.physique { background: #e0f2fe; color: #0369a1; }
 .card-tag.chimie { background: #d1fae5; color: #065f46; }
+.card-tag.protocoles { background: #fef3c7; color: #92400e; }
 
 .card-eqn {
     flex: 1;
@@ -433,6 +436,7 @@ header {
 
 .modal-badge.physique { background: #e0f2fe; color: #0369a1; }
 .modal-badge.chimie { background: #d1fae5; color: #065f46; }
+.modal-badge.protocoles { background: #fef3c7; color: #92400e; }
 
 .modal-header h2 { margin-top: 0.5rem; font-size: 1.5rem; }
 
