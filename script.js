@@ -87,6 +87,45 @@ const formulas = [
         units: "Ca, Cb [Conc.] (mol/L), Va, Veq [Volume] (L)"
     },
 
+    // --- OXYDORÉDUCTION ---
+    { 
+        id: "redox-gen", chapterId: "c-redox-1", title: "Équation d'oxydoréduction", 
+        formula: "Ox_1 + Red_2 \\rightarrow Red_1 + Ox_2", 
+        definition: "Transfert d'électrons entre deux couples redox.",
+        properties: "Ox capte e-, Red cède e-.",
+        units: "Ox [Oxydant], Red [Réducteur]"
+    },
+    { 
+        id: "tab-av-model", chapterId: "c-redox-1", title: "Modèle : Tableau d'avancement", 
+        formula: "\\text{Voir le modèle de tableau}", 
+        definition: "Structure type pour suivre l'évolution des quantités de matière :\n\n- État initial (x=0) : n1, n2...\n- État intermédiaire (x) : n1-ax, n2-bx...\n- État final (xmax) : n1-axmax, n2-bxmax...",
+        properties: "Le réactif limitant est celui qui s'annule en premier.",
+        units: "n [mol], x [mol]"
+    },
+
+    // --- ÉNERGIE MÉCANIQUE ---
+    { 
+        id: "ec-1-v3", chapterId: "p-energie-1", title: "Énergie Cinétique", 
+        formula: "E_c = \\frac{1}{2} m v^2", 
+        definition: "Énergie liée au mouvement d'un système de masse m et de vitesse v.",
+        properties: "Toujours positive ou nulle. m en kg, v en m/s.",
+        units: "Ec [Joules] (J)"
+    },
+    { 
+        id: "ep-1-v3", chapterId: "p-energie-1", title: "Énergie Potentielle (Pesanteur)", 
+        formula: "E_p = m \\cdot g \\cdot z", 
+        definition: "Énergie liée à l'altitude z d'un système de masse m.",
+        properties: "g = 9.81 N/kg sur Terre.",
+        units: "Ep [Joules] (J), z [Altitude] (m)"
+    },
+    { 
+        id: "em-1-v3", chapterId: "p-energie-1", title: "Énergie Mécanique", 
+        formula: "E_m = E_c + E_p", 
+        definition: "Somme de l'énergie cinétique et de l'énergie potentielle.",
+        properties: "Se conserve si les frottements sont négligés.",
+        units: "Em [Joules] (J)"
+    },
+
     // --- PROTOCOLES ---
     { 
         id: "pe-etalon-1", chapterId: "proto-chimie-1", title: "Protocole : Dosage par étalonnage", 
