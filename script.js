@@ -156,6 +156,15 @@ const formulas = [
         units: "Em [Joules] (J)"
     },
 
+    // --- ONDES MÉCANIQUES ---
+    { 
+        id: "onde-freq-per", chapterId: "p-ondes-1", title: "Fréquence et Période", 
+        formula: "f = \\frac{1}{T} \\quad \\text{et} \\quad T = \\frac{1}{f}", 
+        definition: "La fréquence représente le nombre de répétitions du phénomène périodique par seconde. La période est la durée d'un motif élémentaire.",
+        properties: "La fréquence est l'inverse de la période.",
+        units: "f [Fréquence] (Hz), T [Période] (s)"
+    },
+
     // --- PROTOCOLES ---
     { 
         id: "pe-etalon-1", chapterId: "proto-chimie-1", title: "Protocole : Dosage par étalonnage", 
