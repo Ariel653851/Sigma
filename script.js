@@ -269,8 +269,14 @@ function createCard(f) {
 function openModal(f) {
     const chapter = chapters.find(c => c.id === f.chapterId);
     const isProto = chapter.subject === 'protocoles';
+    const isSimpleOptics = f.id === 'opt-gamma' || f.id === 'opt-caract';
+
     document.querySelector('.modal-tabs').style.display = isProto ? 'none' : 'flex';
     document.getElementById('tab-eqn').style.display = isProto ? 'none' : 'block';
+    
+    // Hide Definition tab for Gamma and Characteristics
+    document.querySelector('.tab-trigger[data-tab="def"]').style.display = (isProto || isSimpleOptics) ? 'none' : 'block';
+
     document.getElementById('modal-title').textContent = f.title;
     document.getElementById('modal-tag').textContent = `${chapter.subject.toUpperCase()} • ${chapter.level}`;
     document.getElementById('modal-tag').className = `modal-badge ${chapter.subject}`;
