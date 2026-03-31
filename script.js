@@ -172,11 +172,18 @@ const formulas = [
         units: "T [Période] (s), f [Fréquence] (Hz)"
     },
     { 
-        id: "onde-lambda", chapterId: "p-ondes-1", title: "Longueur d'onde (λ)", 
-        formula: "\\lambda = v \\cdot T = \\frac{v}{f}", 
+        id: "onde-lambda-t", chapterId: "p-ondes-1", title: "Longueur d'onde avec Période (λ)", 
+        formula: "\\lambda = v \\cdot T", 
         definition: "La longueur d'onde est la distance parcourue par l'onde pendant une période temporelle T.",
-        properties: "C'est la double périodicité temporelle et spatiale de l'onde. v (ou c) est la célérité de l'onde.",
-        units: "λ [Longueur d'onde] (m), v [Célérité] (m/s), T [Période] (s), f [Fréquence] (Hz)"
+        properties: "Relation utilisant la période T. v (ou c) est la célérité de l'onde.",
+        units: "λ [Longueur d'onde] (m), v [Célérité] (m/s), T [Période] (s)"
+    },
+    { 
+        id: "onde-lambda-f", chapterId: "p-ondes-1", title: "Longueur d'onde avec Fréquence (λ)", 
+        formula: "\\lambda = \\frac{v}{f}", 
+        definition: "La longueur d'onde spatiale est proportionnelle à la célérité et inversement proportionnelle à la fréquence temporelle.",
+        properties: "Relation utilisant la fréquence f. v (ou c) est la célérité de l'onde.",
+        units: "λ [Longueur d'onde] (m), v [Célérité] (m/s), f [Fréquence] (Hz)"
     },
 
     // --- PROTOCOLES ---
