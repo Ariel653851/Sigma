@@ -171,6 +171,13 @@ const formulas = [
         properties: "C'est la durée d'un motif élémentaire. Elle s'exprime en secondes dans le système international.",
         units: "T [Période] (s), f [Fréquence] (Hz)"
     },
+    { 
+        id: "onde-lambda", chapterId: "p-ondes-1", title: "Longueur d'onde (λ)", 
+        formula: "\\lambda = v \\cdot T = \\frac{v}{f}", 
+        definition: "La longueur d'onde est la distance parcourue par l'onde pendant une période temporelle T.",
+        properties: "C'est la double périodicité temporelle et spatiale de l'onde. v (ou c) est la célérité de l'onde.",
+        units: "λ [Longueur d'onde] (m), v [Célérité] (m/s), T [Période] (s), f [Fréquence] (Hz)"
+    },
 
     // --- PROTOCOLES ---
     { 
