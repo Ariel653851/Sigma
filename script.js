@@ -93,6 +93,13 @@ const formulas = [
         properties: "OF' doit être en mètres obligatoirement.",
         units: "δ [Vergence] (δ/dioptries), OF' [Distance focale] (m)"
     },
+    { 
+        id: "opt-grandiss", chapterId: "p-optique-1", title: "Caractéristiques de l'image", 
+        formula: "\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = \\frac{\\overline{OA'}}{\\overline{OA}}", 
+        definition: "- Si γ < 0 : l'image est renversée.\n- Si γ > 0 : l'image est droite.\n- Si |γ| > 1 : l'image est agrandie (plus grande).\n- Si |γ| < 1 : l'image est rétrécie (plus petite).",
+        properties: "γ (gamma) est le grandissement, sans unité.",
+        units: "A'B' [Taille image], AB [Taille objet], OA' [Pos. image], OA [Pos. objet]"
+    },
 
     // --- DOSAGES & TITRAGES ---
     { 
