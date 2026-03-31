@@ -366,10 +366,17 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    padding: 1.5rem 0;
-    overflow-x: auto; /* Permet de glisser si c'est trop large */
+    font-size: 1.25rem; /* Réduit légèrement par défaut pour plus de flexibilité */
+    padding: 1.5rem 0.5rem;
+    overflow: hidden; /* Empêche le débordement sale */
     width: 100%;
+    text-align: center;
+}
+
+/* Cas spécial pour la carte "Caractéristiques de l'image" */
+.formula-card[data-id="opt-caract"] .card-eqn {
+    font-size: 0.85rem; 
+    line-height: 1.4;
 }
 
 .bottom-legend-area {

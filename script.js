@@ -239,6 +239,7 @@ function createCard(f) {
     const isProto = chapter.subject === 'protocoles';
     const div = document.createElement('div');
     div.className = `formula-card ${chapter.subject}`;
+    div.dataset.id = f.id;
     
     // Recovery of pills logic (V1.5 Robust Parser)
     const pillsHtml = f.units && !isProto ? f.units.split(',').map(u => {
