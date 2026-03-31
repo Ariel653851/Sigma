@@ -96,14 +96,14 @@ const formulas = [
     { 
         id: "opt-gamma", chapterId: "p-optique-1", title: "Gamma", 
         formula: "\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = \\frac{\\overline{OA'}}{\\overline{OA}}", 
-        definition: "",
+        definition: "Le grandissement γ quantifie le rapport de taille et le sens de l'image par rapport à l'objet.",
         properties: "Gamma est sans unité.",
         units: "A'B' [Taille image], AB [Taille objet], OA' [Pos. image], OA [Pos. objet]"
     },
     { 
         id: "opt-caract", chapterId: "p-optique-1", title: "Caractéristiques de l'image", 
         formula: "\\begin{array}{l} \\text{- Si } \\gamma < 0 : \\text{ image renversée} \\\\ \\text{- Si } \\gamma > 0 : \\text{ image droite} \\\\ \\text{- Si } |\\gamma| > 1 : \\text{ image agrandie} \\\\ \\text{- Si } |\\gamma| < 1 : \\text{ image rétrécie} \\end{array}", 
-        definition: "",
+        definition: "Ces 4 critères permettent de conclure sur la nature de l'image après avoir calculé la valeur de γ.",
         properties: "Analyse de l'image par rapport à l'objet.",
         units: ""
     },
@@ -270,13 +270,12 @@ function createCard(f) {
 function openModal(f) {
     const chapter = chapters.find(c => c.id === f.chapterId);
     const isProto = chapter.subject === 'protocoles';
-    const isSimpleOptics = f.id === 'opt-gamma' || f.id === 'opt-caract';
 
     document.querySelector('.modal-tabs').style.display = isProto ? 'none' : 'flex';
     document.getElementById('tab-eqn').style.display = isProto ? 'none' : 'block';
     
-    // Hide Definition tab for Gamma and Characteristics
-    document.querySelector('.tab-trigger[data-tab="def"]').style.display = (isProto || isSimpleOptics) ? 'none' : 'block';
+    // Check Definition tab visibility (only hidden for Protocols)
+    document.querySelector('.tab-trigger[data-tab="def"]').style.display = isProto ? 'none' : 'block';
 
     document.getElementById('modal-title').textContent = f.title;
     document.getElementById('modal-tag').textContent = `${chapter.subject.toUpperCase()} • ${chapter.level}`;
