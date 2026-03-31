@@ -158,11 +158,18 @@ const formulas = [
 
     // --- ONDES MÉCANIQUES ---
     { 
-        id: "onde-freq-per", chapterId: "p-ondes-1", title: "Fréquence et Période", 
-        formula: "f = \\frac{1}{T} \\quad \\text{et} \\quad T = \\frac{1}{f}", 
-        definition: "La fréquence représente le nombre de répétitions du phénomène périodique par seconde. La période est la durée d'un motif élémentaire.",
-        properties: "La fréquence est l'inverse de la période.",
+        id: "onde-freq", chapterId: "p-ondes-1", title: "Fréquence (f)", 
+        formula: "f = \\frac{1}{T}", 
+        definition: "La fréquence représente le nombre de répétitions d'un phénomène périodique par seconde.",
+        properties: "La fréquence correspond à l'inverse de la période.",
         units: "f [Fréquence] (Hz), T [Période] (s)"
+    },
+    { 
+        id: "onde-per", chapterId: "p-ondes-1", title: "Période (T)", 
+        formula: "T = \\frac{1}{f}", 
+        definition: "La période est la plus petite durée au bout de laquelle le phénomène se répète identique à lui-même.",
+        properties: "C'est la durée d'un motif élémentaire. Elle s'exprime en secondes dans le système international.",
+        units: "T [Période] (s), f [Fréquence] (Hz)"
     },
 
     // --- PROTOCOLES ---
