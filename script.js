@@ -94,18 +94,18 @@ const formulas = [
         units: "δ [Vergence] (δ/dioptries), OF' [Distance focale] (m)"
     },
     { 
-        id: "opt-gamma", chapterId: "p-optique-1", title: "Gamma (Grandissement)", 
+        id: "opt-gamma", chapterId: "p-optique-1", title: "Gamma", 
         formula: "\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = \\frac{\\overline{OA'}}{\\overline{OA}}", 
-        definition: "Le grandissement γ définit le rapport de taille entre l'image et l'objet.",
-        properties: "γ est sans unité.",
+        definition: "",
+        properties: "Gamma est sans unité.",
         units: "A'B' [Taille image], AB [Taille objet], OA' [Pos. image], OA [Pos. objet]"
     },
     { 
         id: "opt-caract", chapterId: "p-optique-1", title: "Caractéristiques de l'image", 
-        formula: "\\text{Analyse de } \\gamma", 
-        definition: "- Si γ < 0 : l'image est renversée.\n- Si γ > 0 : l'image est droite.\n- Si |γ| > 1 : l'image est agrandie (plus grande).\n- Si |γ| < 1 : l'image est rétrécie (plus petite).",
-        properties: "Ces règles permettent d'analyser l'image par rapport à l'objet.",
-        units: "γ [Grandissement]"
+        formula: "\\begin{array}{l} \\text{- Si } \\gamma < 0 : \\text{ image renversée} \\\\ \\text{- Si } \\gamma > 0 : \\text{ image droite} \\\\ \\text{- Si } |\\gamma| > 1 : \\text{ image agrandie} \\\\ \\text{- Si } |\\gamma| < 1 : \\text{ image rétrécie} \\end{array}", 
+        definition: "",
+        properties: "Analyse de l'image par rapport à l'objet.",
+        units: ""
     },
 
     // --- DOSAGES & TITRAGES ---
