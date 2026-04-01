@@ -179,12 +179,12 @@ header {
 }
 
 .hero-card i {
-    width: 48px; height: 48px;
+    width: 56px; height: 56px;
 }
 
 .hero-card .hero-emoji {
-    font-size: 32px; /* Réduction franche de la taille de l'émoji */
-    line-height: 48px; 
+    font-size: 38px; 
+    line-height: 56px; 
     margin: 0;
 }
 
