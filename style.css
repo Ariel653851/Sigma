@@ -183,13 +183,13 @@ header {
 }
 
 .hero-card [data-lucide="book-open"] {
-    color: #000000; 
-    fill: #000000;  
+    color: #5b21b6; /* Violet profond (Mélange bleu-rouge) */
+    fill: #5b21b6;  
 }
 
 .hero-card [data-lucide="graduation-cap"] {
-    color: #000000; 
-    fill: #000000;  
+    color: #475569; /* Gris foncé (Noir plus clair) */
+    fill: #475569;  
 }
 
 .hero-card span {
