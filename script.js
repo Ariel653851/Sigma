@@ -521,7 +521,14 @@ function goBack() {
     if (currentSearch) { 
         currentSearch = ''; 
         document.getElementById('main-search').value = ''; 
-    } else if (currentView === 'formulas') { 
+    } else if (currentView === 'formulas') {
+        const chapter = chapters.find(c => c.id === currentChapterId);
+        if (chapter && chapter.subject === 'protocoles') {
+            currentSubject = 'all'; // réinitialiser l'onglet sur "Tous" pour éviter la carte isolée
+            document.querySelectorAll('.sub-tab').forEach(x => {
+                x.classList.toggle('active', x.dataset.subject === 'all');
+            });
+        }
         currentView = 'chapters'; 
     } else { 
         currentView = 'home'; 
@@ -535,6 +542,14 @@ document.querySelectorAll('.sub-tab').forEach(t => t.onclick = () => {
     document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active')); 
     t.classList.add('active'); 
     currentSubject = t.dataset.subject; 
+    
+    // Si on clique sur l'onglet Protocoles, on affiche directement les protocoles !
+    if (currentSubject === 'protocoles') {
+        currentView = 'formulas';
+        currentChapterId = 'proto-chimie-1';
+        currentNav = 'formulas';
+    }
+    
     render(); 
 });
 document.querySelectorAll('.tab-trigger').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
