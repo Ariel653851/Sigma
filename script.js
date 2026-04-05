@@ -330,7 +330,11 @@ function renderDefinitions() {
         ];
     } else if (currentChapterId === 'c-redox-1') {
         defs = [
-            // Ajoute tes définitions ici pour Oxydoréduction
+            { t: "Oxydant", d: "Espèce chimique capable de capter un ou plusieurs électrons." },
+            { t: "Réducteur", d: "Espèce chimique capable de céder un ou plusieurs électrons." },
+            { t: "Oxydation", d: "Réaction au cours de laquelle une espèce chimique perd des électrons (le réducteur est oxydé)." },
+            { t: "Réduction", d: "Réaction au cours de laquelle une espèce chimique gagne des électrons (l'oxydant est réduit)." },
+            { t: "Couple Oxydant / Réducteur", d: "Ensemble formé par l'oxydant et le réducteur qui passent de l'un à l'autre par gain ou perte d'électrons. On le note Ox / Red." }
         ];
     } else if (currentChapterId === 'p-optique-1') {
         defs = [
@@ -341,15 +345,24 @@ function renderDefinitions() {
         ];
     } else if (currentChapterId === 'p-ondes-1') {
         defs = [
-            // Ajoute tes définitions ici pour Ondes Mécaniques
+            { t: "Onde Mécanique Progressive", d: "Une onde mécanique progressive est le phénomène de propagation d’une perturbation dans un milieu matériel sans transport de matière et avec transfert d’énergie." },
+            { t: "Onde Sonore Périodique", d: "Une onde sonore périodique est le phénomène de propagation d’une succession de zones de compression-dilatation du milieu de propagation, créées par la vibration d’une source (haut-parleur, émetteur d’ultrasons) à la fréquence f." },
+            { t: "Période (T)", d: "Plus petite durée au bout de laquelle le phénomène se répète à l'identique." },
+            { t: "Fréquence (f)", d: "Nombre de motifs élémentaires (périodes) par seconde. f = 1/T." },
+            { t: "Longueur d'onde (λ)", d: "Distance parcourue par l'onde pendant une période T." },
+            { t: "Retard (τ)", d: "Durée mise par une onde pour aller d'un point M à un point M'." }
         ];
     } else if (currentChapterId === 'p-energie-1') {
         defs = [
-            // Ajoute tes définitions ici pour Énergie Mécanique
+            { t: "Énergie Cinétique (Ec)", d: "Énergie que possède un corps en raison de sa vitesse." },
+            { t: "Énergie Potentielle (Ep)", d: "Énergie que possède un corps en fonction de sa position (ici son altitude)." },
+            { t: "Énergie Mécanique (Em)", d: "Somme de l'énergie cinétique et de toutes les énergies potentielles du système." }
         ];
     } else if (currentChapterId === 'p-elec-1') {
         defs = [
-            // Ajoute tes définitions ici pour Électricité
+            { t: "Intensité (I)", d: "Débit de charges électriques dans un circuit. Elle s'exprime en Ampères (A)." },
+            { t: "Tension (U)", d: "Différence de potentiel entre deux points d'un circuit. Elle s'exprime en Volts (V)." },
+            { t: "Effet Joule", d: "Dégagement de chaleur lors du passage d'un courant électrique dans un conducteur." }
         ];
     } else if (currentChapterId === 'c-dosage-1') {
         defs = [
