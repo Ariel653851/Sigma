@@ -448,7 +448,42 @@ function openModal(f) {
     document.getElementById('modal-title').textContent = f.title;
     document.getElementById('modal-tag').textContent = `${chapter.subject.toUpperCase()} • ${chapter.level}`;
     document.getElementById('modal-tag').className = `modal-badge ${chapter.subject}`;
-    document.getElementById('modal-units').textContent = f.units;
+    
+    // Parse units into nice grid layout
+    let unitsHtml = "—";
+    if (f.units && !isProto) {
+        unitsHtml = '<div class="modal-units-grid">';
+        f.units.split(',').forEach(u => {
+            const txt = u.trim();
+            if(!txt) return;
+            
+            let sym = txt;
+            if (txt.includes('[')) sym = txt.split('[')[0].trim();
+            else if (txt.includes('(')) sym = txt.split('(')[0].trim();
+
+            let name = "";
+            if (txt.includes('[')) name = txt.split('[')[1].split(']')[0].trim();
+
+            let unit = "";
+            if (txt.includes('(')) unit = txt.split('(')[1].split(')')[0].trim();
+
+            if (sym || name || unit) {
+                unitsHtml += `
+                    <div class="modal-unit-item">
+                        <div class="mu-sym">${sym}</div>
+                        <div class="mu-details">
+                            <span class="mu-name">${name || "Grandeur"}</span>
+                            <span class="mu-unit">${unit || "Sans unité"}</span>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+        unitsHtml += '</div>';
+    }
+    
+    document.getElementById('modal-units').innerHTML = unitsHtml;
+    
     document.getElementById('modal-def').textContent = f.definition;
     document.getElementById('modal-prop').textContent = f.properties;
     document.getElementById('math-box').innerHTML = f.formula ? `\\[ ${f.formula} \\]` : "";
