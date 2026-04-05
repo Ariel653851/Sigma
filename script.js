@@ -270,11 +270,18 @@ function render() {
         renderChapters();
     } else if (currentView === 'formulas') {
         appView.classList.remove('hidden');
-        chapTabs.classList.remove('hidden');
-        backBtn.classList.remove('hidden');
         const chapter = chapters.find(c => c.id === currentChapterId);
+        
+        // Show navigation tabs ONLY IF NOT A PROTOCOL
+        const isProtoChapter = chapter && chapter.subject === 'protocoles';
+        if (!isProtoChapter) {
+            chapTabs.classList.remove('hidden');
+        }
+
+        backBtn.classList.remove('hidden');
         viewTitle.textContent = chapter ? chapter.title : "Détails";
-        if (currentNav === 'formulas') renderFormulas();
+        
+        if (currentNav === 'formulas' || isProtoChapter) renderFormulas();
         else renderDefinitions();
     }
 
@@ -320,6 +327,14 @@ function renderDefinitions() {
             { t: "Masse Molaire (M)", d: "Masse d'une mole d'une substance donnée. Elle s'exprime en g/mol." },
             { t: "Concentration Molaire (C)", d: "Quantité de soluté (en mol) présente dans un litre de solution." },
             { t: "Dilution", d: "Opération consistant à ajouter du solvant à une solution pour en diminuer la concentration." }
+        ];
+    } else if (currentChapterId === 'c-redox-1') {
+        defs = [
+            { t: "Oxydant", d: "Espèce chimique capable de capter un ou plusieurs électrons." },
+            { t: "Réducteur", d: "Espèce chimique capable de céder un ou plusieurs électrons." },
+            { t: "Oxydation", d: "Réaction au cours de laquelle une espèce chimique perd des électrons (le réducteur est oxydé)." },
+            { t: "Réduction", d: "Réaction au cours de laquelle une espèce chimique gagne des électrons (l'oxydant est réduit)." },
+            { t: "Couple Oxydant / Réducteur", d: "Ensemble formé par l'oxydant et le réducteur qui passent de l'un à l'autre par gain ou perte d'électrons. On le note Ox / Red." }
         ];
     } else {
         defs = [{ t: "En attente", d: "Les définitions pour ce chapitre arrivent bientôt ! Ariel les ajoutera prochainement." }];
