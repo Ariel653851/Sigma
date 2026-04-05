@@ -345,7 +345,8 @@ function renderDefinitions() {
         ];
     } else if (currentChapterId === 'p-ondes-1') {
         defs = [
-            { t: "Onde Mécanique", d: "Phénomène de propagation d'une perturbation dans un milieu matériel sans transport de matière mais avec transport d'énergie." },
+            { t: "Onde Mécanique Progressive", d: "Une onde mécanique progressive est le phénomène de propagation d’une perturbation dans un milieu matériel sans transport de matière et avec transfert d’énergie." },
+            { t: "Onde Sonore Périodique", d: "Une onde sonore périodique est le phénomène de propagation d’une succession de zones de compression-dilatation du milieu de propagation, créées par la vibration d’une source (haut-parleur, émetteur d’ultrasons) à la fréquence f." },
             { t: "Période (T)", d: "Plus petite durée au bout de laquelle le phénomène se répète à l'identique." },
             { t: "Fréquence (f)", d: "Nombre de motifs élémentaires (périodes) par seconde. f = 1/T." },
             { t: "Longueur d'onde (λ)", d: "Distance parcourue par l'onde pendant une période T." },
