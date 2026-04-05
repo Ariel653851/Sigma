@@ -326,8 +326,7 @@ function renderDefinitions() {
             { t: "La Mole", d: "Unité de quantité de matière (symbole : mol) contenant exactement 6,022 x 10^23 entités élémentaires." },
             { t: "Masse Molaire (M)", d: "Masse d'une mole d'une substance donnée. Elle s'exprime en g/mol." },
             { t: "Concentration Molaire (C)", d: "Quantité de soluté (en mol) présente dans un litre de solution." },
-            { t: "Dilution", d: "Opération consistant à ajouter du solvant à une solution pour en diminuer la concentration." },
-            { t: "Validité de Beer-Lambert", d: "La solution doit être diluée car la loi de Beer-Lambert n'est vérifiée que pour des concentrations inférieures à 1,0 x 10^-2 mol.L^-1." }
+            { t: "Dilution", d: "Opération consistant à ajouter du solvant à une solution pour en diminuer la concentration." }
         ];
     } else if (currentChapterId === 'c-redox-1') {
         defs = [
