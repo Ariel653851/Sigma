@@ -336,8 +336,35 @@ function renderDefinitions() {
             { t: "Réduction", d: "Réaction au cours de laquelle une espèce chimique gagne des électrons (l'oxydant est réduit)." },
             { t: "Couple Oxydant / Réducteur", d: "Ensemble formé par l'oxydant et le réducteur qui passent de l'un à l'autre par gain ou perte d'électrons. On le note Ox / Red." }
         ];
+    } else if (currentChapterId === 'p-optique-1') {
+        defs = [
+            { t: "Lentille Convergente", d: "Système optique qui dévie les rayons lumineux parallèles vers un point unique appelé foyer image." },
+            { t: "Distance Focale (f')", d: "Distance entre le centre optique O de la lentille et le foyer image F'. Elle s'exprime en mètres." },
+            { t: "Vergence", d: "Grandeur notée δ qui caractérise la capacité d'une lentille à faire converger la lumière. Elle est l'inverse de la distance focale." },
+            { t: "Grandissement (γ)", d: "Rapport entre la taille de l'image et la taille de l'objet." }
+        ];
+    } else if (currentChapterId === 'p-ondes-1') {
+        defs = [
+            { t: "Onde Mécanique", d: "Phénomène de propagation d'une perturbation dans un milieu matériel sans transport de matière mais avec transport d'énergie." },
+            { t: "Période (T)", d: "Plus petite durée au bout de laquelle le phénomène se répète à l'identique." },
+            { t: "Fréquence (f)", d: "Nombre de motifs élémentaires (périodes) par seconde. f = 1/T." },
+            { t: "Longueur d'onde (λ)", d: "Distance parcourue par l'onde pendant une période T." },
+            { t: "Retard (τ)", d: "Durée mise par une onde pour aller d'un point M à un point M'." }
+        ];
+    } else if (currentChapterId === 'p-energie-1') {
+        defs = [
+            { t: "Énergie Cinétique (Ec)", d: "Énergie que possède un corps en raison de sa vitesse." },
+            { t: "Énergie Potentielle (Ep)", d: "Énergie que possède un corps en fonction de sa position (ici son altitude)." },
+            { t: "Énergie Mécanique (Em)", d: "Somme de l'énergie cinétique et de toutes les énergies potentielles du système." }
+        ];
+    } else if (currentChapterId === 'p-elec-1') {
+        defs = [
+            { t: "Intensité (I)", d: "Débit de charges électriques dans un circuit. Elle s'exprime en Ampères (A)." },
+            { t: "Tension (U)", d: "Différence de potentiel entre deux points d'un circuit. Elle s'exprime en Volts (V)." },
+            { t: "Effet Joule", d: "Dégagement de chaleur lors du passage d'un courant électrique dans un conducteur." }
+        ];
     } else {
-        defs = [{ t: "En attente", d: "Les définitions pour ce chapitre arrivent bientôt ! Ariel les ajoutera prochainement." }];
+        defs = [{ t: "À venir", d: "Les définitions pour ce chapitre arrivent bientôt ! Ariel les ajoutera prochainement." }];
     }
 
     defs.forEach(def => {
