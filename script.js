@@ -538,8 +538,8 @@ document.querySelectorAll('.sub-tab').forEach(t => t.onclick = () => {
     t.classList.add('active'); 
     currentSubject = t.dataset.subject; 
     
-    // Si on clique sur l'onglet Protocoles, on affiche directement les protocoles !
-    if (currentSubject === 'protocoles') {
+    // --- MODIFICATION : Raccourci direct seulement en 1ère ---
+    if (currentSubject === 'protocoles' && currentLevel === '1ere') {
         currentView = 'formulas';
         currentChapterId = 'proto-chimie-1';
         currentNav = 'formulas';
