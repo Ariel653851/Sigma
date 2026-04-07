@@ -8,8 +8,8 @@ const chapters = [
     { id: "c-mol-1", title: "La Mole & Quantités de Matière", subject: "chimie", level: "1ere" },
     { id: "c-redox-1", title: "Oxydoréduction & Tableau d'avancement", subject: "chimie", level: "1ere" },
     { id: "c-dosage-1", title: "Dosages & Titrages", subject: "chimie", level: "1ere" },
-    { id: "c-lewis-1", title: "Schéma de Lewis & Polarité", subject: "chimie", level: "1ere" },
-    { id: "c-nom-1", title: "Nomenclature", subject: "chimie", level: "1ere" },
+    { id: "c-lewis-1", title: "Schéma de Lewis & Polarité", subject: "chimie", level: "1ere", src: "assets/vsepr_table_colored.png" },
+    { id: "c-nom-1", title: "Nomenclature", subject: "chimie", level: "1ere", type: "image", src: "assets/nomenclature_final.png" },
     { id: "p-optique-1", title: "Optique & Couleurs", subject: "physique", level: "1ere" },
     { id: "p-elec-1", title: "Électricité", subject: "physique", level: "1ere" },
     { id: "p-energie-1", title: "Énergie Mécanique", subject: "physique", level: "1ere" },
@@ -135,38 +135,24 @@ const formulas = [
         units: "Ox [Oxydant], Red [Réducteur]"
     },
 
+    // --- SCHÉMA DE LEWIS ---
     { 
-        id: "vsepr-table", chapterId: "c-lewis-1", title: "Tableau de Géométrie (VSEPR)", 
-        formula: `
-            <div class="vsepr-container" style="overflow-x: auto; margin-top: 10px;">
-                <table style="width:100%; border-collapse:collapse; font-size:0.95rem; text-align:center; border: 1px solid #ddd;">
-                    <thead style="background:#f8fafc;">
-                        <tr style="border-bottom: 2px solid #cbd5e1;">
-                            <th style="padding:10px; border:1px solid #e2e8f0;">Total</th>
-                            <th style="padding:10px; border:1px solid #e2e8f0;">Liaisons (X)</th>
-                            <th style="padding:10px; border:1px solid #e2e8f0;">Non-liants (E)</th>
-                            <th style="padding:10px; border:1px solid #e2e8f0;">Formule</th>
-                            <th style="padding:10px; border:1px solid #e2e8f0;">Géométrie</th>
-                            <th style="padding:10px; border:1px solid #e2e8f0;">Nom usuel</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">2</td><td style="padding:8px; border:1px solid #edf2f7;">2</td><td style="padding:8px; border:1px solid #edf2f7;">0</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>2</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Linéaire</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Linéaire</b></td></tr>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">3</td><td style="padding:8px; border:1px solid #edf2f7;">3</td><td style="padding:8px; border:1px solid #edf2f7;">0</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>3</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Triangulaire plane</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Triangulaire</b></td></tr>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">3</td><td style="padding:8px; border:1px solid #edf2f7;">2</td><td style="padding:8px; border:1px solid #edf2f7;">1</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>2</sub>E<sub>1</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Coudée en V</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Coudée</b></td></tr>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">4</td><td style="padding:8px; border:1px solid #edf2f7;">4</td><td style="padding:8px; border:1px solid #edf2f7;">0</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>4</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Tétraédrique</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Tétraédrique</b></td></tr>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">4</td><td style="padding:8px; border:1px solid #edf2f7;">3</td><td style="padding:8px; border:1px solid #edf2f7;">1</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>3</sub>E<sub>1</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Pyramide trigonale</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Pyramide</b></td></tr>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">4</td><td style="padding:8px; border:1px solid #edf2f7;">2</td><td style="padding:8px; border:1px solid #edf2f7;">2</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>2</sub>E<sub>2</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Coudée en V</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Coudée</b></td></tr>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">5</td><td style="padding:8px; border:1px solid #edf2f7;">5</td><td style="padding:8px; border:1px solid #edf2f7;">0</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>5</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Bipyramide trigonale</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Bipyramide</b></td></tr>
-                        <tr><td style="padding:8px; border:1px solid #edf2f7;">6</td><td style="padding:8px; border:1px solid #edf2f7;">6</td><td style="padding:8px; border:1px solid #edf2f7;">0</td><td style="padding:8px; border:1px solid #edf2f7;">AX<sub>6</sub></td><td style="padding:8px; border:1px solid #edf2f7;">Octaédrique</td><td style="padding:8px; border:1px solid #edf2f7;"><b>Octaèdre</b></td></tr>
-                    </tbody>
-                </table>
+        id: "lewis-polar-1", chapterId: "c-lewis-1", title: "Liaison Polarisée", 
+        formula: `<div style="display:flex; flex-direction:column; gap:1rem; padding: 0.5rem 0;">
+            <div style="display:flex; align-items:center; gap:1rem; background:#f0fdf4; border-left: 4px solid #22c55e; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0;">
+                <span style="font-size:1.1rem; font-weight:700; font-family:serif;">|χ<sub>A</sub> − χ<sub>B</sub>| ≥ 0,4</span>
+                <span style="color:#15803d; font-weight:700; font-size:1rem;">= Liaison polarisée ✓</span>
             </div>
-        `,
-        definition: "La théorie VSEPR permet de prévoir la géométrie à partir de la répulsion des paires d'électrons autour de l'atome central.",
-        properties: "Ce tableau récapitule les arrangements spatiaux les plus courants rencontrés en classe de Première.",
-        units: ""
+            <div style="display:flex; align-items:center; gap:1rem; background:#fef2f2; border-left: 4px solid #ef4444; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0;">
+                <span style="font-size:1.1rem; font-weight:700; font-family:serif;">|χ<sub>A</sub> − χ<sub>B</sub>| &lt; 0,4</span>
+                <span style="color:#dc2626; font-weight:700; font-size:1rem;">= Liaison non polarisée ✗</span>
+            </div>
+        </div>`,
+        definition: "Une liaison covalente est polarisée si la différence d'électronégativité entre les deux atomes liés est supérieure ou égale à 0,4.",
+        properties: "|χA − χB| < 0,4 → liaison apolaire | |χA − χB| ≥ 0,4 → liaison polarisée | |χA − χB| ≥ 1,7 → liaison ionique",
+        units: "χA [Électronégativité de A], χB [Électronégativité de B]"
     },
+
     // --- ÉNERGIE MÉCANIQUE ---
     { 
         id: "ec-1-v3", chapterId: "p-energie-1", title: "Énergie Cinétique", 
@@ -299,9 +285,10 @@ function render() {
         appView.classList.remove('hidden');
         const chapter = chapters.find(c => c.id === currentChapterId);
         
-        // Show navigation tabs ONLY IF NOT A PROTOCOL
+        // Show navigation tabs ONLY IF NOT A PROTOCOL OR Nomenclature (full image chapters)
         const isProtoChapter = chapter && chapter.subject === 'protocoles';
-        if (!isProtoChapter) {
+        
+        if (!isProtoChapter && currentChapterId !== 'c-nom-1') {
             chapTabs.classList.remove('hidden');
         }
 
@@ -339,6 +326,56 @@ function renderChapters() {
 function renderFormulas() {
     const grid = document.getElementById('grid-container');
     grid.innerHTML = '';
+    
+    const chapter = chapters.find(c => c.id === currentChapterId);
+    if (chapter && chapter.type === 'image') {
+        const imgDiv = document.createElement('div');
+        imgDiv.className = "image-view-container";
+        imgDiv.innerHTML = `
+            <img src="${chapter.src}" alt="${chapter.title}" style="max-width:100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); background: white; padding: 1.5rem;">
+            <p style="margin-top: 1.5rem; color: var(--text-muted); font-weight: 600;">Fiche récapitulative : Nomenclature</p>
+        `;
+        grid.appendChild(imgDiv);
+        return;
+    }
+    
+    // Header table if chapter has VSEPR src
+    if (chapter && chapter.src && chapter.id !== 'c-nom-1') {
+        const tableHeader = document.createElement('div');
+        tableHeader.className = 'formula-card chimie';
+        tableHeader.style.cursor = 'default';
+        tableHeader.style.gridColumn = 'span 2';
+        tableHeader.innerHTML = `
+            <span class="card-tag chimie">CHIMIE</span>
+            <h3 style="margin-bottom: 0.75rem;">Tableau VSEPR</h3>
+            <div style="overflow-x: auto; margin-top: 0.5rem;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:center;">
+                    <thead>
+                        <tr style="background: #dbeafe; border-bottom: 2px solid #bfdbfe;">
+                            <th style="padding:5px 6px; font-weight:700; color:#1e40af; border: 1px solid #bfdbfe; white-space:nowrap;">Total</th>
+                            <th style="padding:5px 6px; font-weight:700; color:#1e40af; border: 1px solid #bfdbfe; white-space:nowrap;">X</th>
+                            <th style="padding:5px 6px; font-weight:700; color:#1e40af; border: 1px solid #bfdbfe; white-space:nowrap;">E</th>
+                            <th style="padding:5px 6px; font-weight:700; color:#1e40af; border: 1px solid #bfdbfe; white-space:nowrap;">Formule</th>
+                            <th style="padding:5px 6px; font-weight:700; color:#1e40af; border: 1px solid #bfdbfe; white-space:nowrap;">Géométrie</th>
+                            <th style="padding:5px 6px; font-weight:700; color:#1e40af; border: 1px solid #bfdbfe; white-space:nowrap;">Nom</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:4px 6px; border:1px solid #edf2f7;">2</td><td style="padding:4px 6px; border:1px solid #edf2f7;">2</td><td style="padding:4px 6px; border:1px solid #edf2f7;">0</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>2</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Linéaire</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Linéaire</td></tr>
+                        <tr style="background:#eff6ff;"><td style="padding:4px 6px; border:1px solid #edf2f7;">3</td><td style="padding:4px 6px; border:1px solid #edf2f7;">3</td><td style="padding:4px 6px; border:1px solid #edf2f7;">0</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>3</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Triangulaire</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Triangulaire</td></tr>
+                        <tr><td style="padding:4px 6px; border:1px solid #edf2f7;">3</td><td style="padding:4px 6px; border:1px solid #edf2f7;">2</td><td style="padding:4px 6px; border:1px solid #edf2f7;">1</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>2</sub>E<sub>1</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Coudée en V</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Coudée</td></tr>
+                        <tr style="background:#eff6ff;"><td style="padding:4px 6px; border:1px solid #edf2f7;">4</td><td style="padding:4px 6px; border:1px solid #edf2f7;">4</td><td style="padding:4px 6px; border:1px solid #edf2f7;">0</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>4</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Tétraédrique</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Tétraédrique</td></tr>
+                        <tr><td style="padding:4px 6px; border:1px solid #edf2f7;">4</td><td style="padding:4px 6px; border:1px solid #edf2f7;">3</td><td style="padding:4px 6px; border:1px solid #edf2f7;">1</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>3</sub>E<sub>1</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Pyramide trig.</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Pyramide</td></tr>
+                        <tr style="background:#eff6ff;"><td style="padding:4px 6px; border:1px solid #edf2f7;">4</td><td style="padding:4px 6px; border:1px solid #edf2f7;">2</td><td style="padding:4px 6px; border:1px solid #edf2f7;">2</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>2</sub>E<sub>2</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Coudée en V</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Coudée</td></tr>
+                        <tr><td style="padding:4px 6px; border:1px solid #edf2f7;">5</td><td style="padding:4px 6px; border:1px solid #edf2f7;">5</td><td style="padding:4px 6px; border:1px solid #edf2f7;">0</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>5</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Bipyramide</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Bipyramide</td></tr>
+                        <tr style="background:#eff6ff;"><td style="padding:4px 6px; border:1px solid #edf2f7;">5</td><td style="padding:4px 6px; border:1px solid #edf2f7;">6</td><td style="padding:4px 6px; border:1px solid #edf2f7;">0</td><td style="padding:4px 6px; border:1px solid #edf2f7;">AX<sub>6</sub></td><td style="padding:4px 6px; border:1px solid #edf2f7;">Octaédrique</td><td style="padding:4px 6px; border:1px solid #edf2f7; font-weight:600;">Octaèdre</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
+        grid.appendChild(tableHeader);
+    }
+    
     formulas.filter(f => f.chapterId === currentChapterId).forEach(f => grid.appendChild(createCard(f)));
 }
 
@@ -474,14 +511,18 @@ function createCard(f) {
                 <div class="proto-icon-wrapper">
                     <i data-lucide="${protoIcon}" class="proto-svg"></i>
                 </div>
+            ` : (f.img ? `
+                <div class="proto-icon-wrapper" style="background:#fff; border-radius: 8px; overflow:hidden; border: 1px solid var(--border);">
+                    <img src="${f.img}" style="width:100%; height:100%; object-fit:contain;">
+                </div>
             ` : (f.formula && f.formula.includes('<table') ? `
                 <div class="proto-icon-wrapper" style="background:#f0f9ff; color:#0369a1;">
                     <i data-lucide="table-2" class="proto-svg"></i>
                 </div>
-            ` : `\\[ ${f.formula} \\]`)}
+            ` : `\\[ ${f.formula} \\]`))}
         </div>
         <div class="bottom-legend-area">${isProto ? "" : pillsHtml}</div>
-        <div class="card-footer"><span>${isProto ? 'Voir le protocole' : 'Voir détails'}</span><i data-lucide="arrow-right"></i></div>
+        <div class="card-footer"><span>${isProto ? 'Voir le protocole' : (f.img ? 'Agrandir le tableau' : 'Voir détails')}</span><i data-lucide="arrow-right"></i></div>
     `;
     div.onclick = () => openModal(f);
     return div;
@@ -536,7 +577,10 @@ function openModal(f) {
     
     document.getElementById('modal-def').innerHTML = f.definition || "—";
     document.getElementById('modal-prop').innerHTML = f.properties || "—";
-    if (f.formula && f.formula.includes('<table')) {
+    if (f.img) {
+        document.getElementById('math-box').innerHTML = `<img src="${f.img}" style="max-width:100%; border-radius:8px; box-shadow: var(--shadow);">`;
+        document.getElementById('math-box').style.fontSize = "1rem";
+    } else if (f.formula && f.formula.includes('<table')) {
         document.getElementById('math-box').innerHTML = f.formula;
         document.getElementById('math-box').style.fontSize = "1.1rem"; // Plus gros
     } else {
@@ -620,4 +664,5 @@ document.querySelector('.modal-close').onclick = () => { document.getElementById
 window.onclick = (e) => { if (e.target === document.getElementById('modal-overlay')) { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; } };
 
 document.getElementById('count-num').textContent = formulas.length;
+document.getElementById('def-num').textContent = 39;
 render();
