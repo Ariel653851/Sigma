@@ -138,14 +138,14 @@ const formulas = [
     // --- SCHÉMA DE LEWIS ---
     { 
         id: "lewis-polar-1", chapterId: "c-lewis-1", title: "Liaison Polarisée", 
-        formula: `<div style="display:flex; flex-direction:column; gap:1rem; padding: 0.5rem 0;">
-            <div style="display:flex; align-items:center; gap:1rem; background:#f0fdf4; border-left: 4px solid #22c55e; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0;">
-                <span style="font-size:1.1rem; font-weight:700; font-family:serif;">|χ<sub>A</sub> − χ<sub>B</sub>| ≥ 0,4</span>
-                <span style="color:#15803d; font-weight:700; font-size:1rem;">= Liaison polarisée ✓</span>
+        formula: `<div style="display:flex; flex-direction:column; gap:0.8rem; padding: 0.5rem 0; width:100%;">
+            <div style="display:flex; flex-direction:column; align-items:center; background:#f0fdf4; border: 1px solid #bbf7d0; padding: 0.8rem; border-radius: 12px; text-align:center;">
+                <span style="font-size:1.2rem; font-weight:700; font-family:serif; color:#166534; margin-bottom:0.3rem;">|χ<sub>A</sub> - χ<sub>B</sub>| ≥ 0,4</span>
+                <span style="color:#15803d; font-weight:800; font-size:0.8rem;">POLARISÉE ✓</span>
             </div>
-            <div style="display:flex; align-items:center; gap:1rem; background:#fef2f2; border-left: 4px solid #ef4444; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0;">
-                <span style="font-size:1.1rem; font-weight:700; font-family:serif;">|χ<sub>A</sub> − χ<sub>B</sub>| &lt; 0,4</span>
-                <span style="color:#dc2626; font-weight:700; font-size:1rem;">= Liaison non polarisée ✗</span>
+            <div style="display:flex; flex-direction:column; align-items:center; background:#fef2f2; border: 1px solid #fecaca; padding: 0.8rem; border-radius: 12px; text-align:center;">
+                <span style="font-size:1.2rem; font-weight:700; font-family:serif; color:#991b1b; margin-bottom:0.3rem;">|χ<sub>A</sub> - χ<sub>B</sub>| &lt; 0,4</span>
+                <span style="color:#dc2626; font-weight:800; font-size:0.8rem;">APOLAIRE ✗</span>
             </div>
         </div>`,
         definition: "Une liaison covalente est polarisée si la différence d'électronégativité entre les deux atomes liés est supérieure ou égale à 0,4.",
@@ -328,12 +328,12 @@ function renderFormulas() {
     grid.innerHTML = '';
     
     const chapter = chapters.find(c => c.id === currentChapterId);
-    if (chapter && chapter.type === 'image') {
+    if (chapter && chapter.id === 'c-nom-1') {
         const imgDiv = document.createElement('div');
         imgDiv.className = "image-view-container";
         imgDiv.innerHTML = `
             <img src="${chapter.src}" alt="${chapter.title}" style="max-width:100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); background: white; padding: 1.5rem;">
-            <p style="margin-top: 1.5rem; color: var(--text-muted); font-weight: 600;">Fiche récapitulative : Nomenclature</p>
+            <p style="margin-top: 1.5rem; color: var(--text-muted); font-weight: 600;">Fiche récapitulative : Nomenclature (Groupes Alkyl -yl)</p>
         `;
         grid.appendChild(imgDiv);
         return;
@@ -344,7 +344,7 @@ function renderFormulas() {
         const tableHeader = document.createElement('div');
         tableHeader.className = 'formula-card chimie';
         tableHeader.style.cursor = 'default';
-        tableHeader.style.gridColumn = 'span 2';
+        tableHeader.style.gridColumn = 'span 2'; // On utilise 2/4 (50%)
         tableHeader.innerHTML = `
             <span class="card-tag chimie">CHIMIE</span>
             <h3 style="margin-bottom: 0.75rem;">Tableau VSEPR</h3>
@@ -376,7 +376,13 @@ function renderFormulas() {
         grid.appendChild(tableHeader);
     }
     
-    formulas.filter(f => f.chapterId === currentChapterId).forEach(f => grid.appendChild(createCard(f)));
+    formulas.filter(f => f.chapterId === currentChapterId).forEach(f => {
+        const card = createCard(f);
+        if (f.id === 'lewis-polar-1') {
+            card.style.gridColumn = "span 2"; 
+        }
+        grid.appendChild(card);
+    });
 }
 
 function renderDefinitions() {
@@ -460,7 +466,28 @@ function renderDefinitions() {
             <h3>${def.t}</h3>
             <p style="margin-top:1rem; line-height:1.6; color:var(--text-muted);">${def.d}</p>
         `;
+        div.onclick = (e) => {
+            e.stopPropagation();
+            const isExpanded = div.classList.contains('expanded');
+            
+            // Reset all
+            document.querySelectorAll('.formula-card.definitions-style').forEach(c => c.classList.remove('expanded'));
+            grid.classList.remove('has-expanded');
+            
+            if (!isExpanded) {
+                div.classList.add('expanded');
+                grid.classList.add('has-expanded');
+            }
+        };
         grid.appendChild(div);
+    });
+
+    // Reset when clicking empty space
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.formula-card.definitions-style')) {
+            document.querySelectorAll('.formula-card.definitions-style').forEach(c => c.classList.remove('expanded'));
+            grid.classList.remove('has-expanded');
+        }
     });
 }
 
@@ -519,7 +546,7 @@ function createCard(f) {
                 <div class="proto-icon-wrapper" style="background:#f0f9ff; color:#0369a1;">
                     <i data-lucide="table-2" class="proto-svg"></i>
                 </div>
-            ` : `\\[ ${f.formula} \\]`))}
+            ` : (f.formula.includes('<') ? f.formula : `\\[ ${f.formula} \\]`)))}
         </div>
         <div class="bottom-legend-area">${isProto ? "" : pillsHtml}</div>
         <div class="card-footer"><span>${isProto ? 'Voir le protocole' : (f.img ? 'Agrandir le tableau' : 'Voir détails')}</span><i data-lucide="arrow-right"></i></div>
@@ -651,18 +678,15 @@ document.querySelectorAll('.nav-tab').forEach(t => t.onclick = () => {
     updateNavTabs();
     render();
 });
-document.getElementById('main-search').oninput = (e) => { currentSearch = e.target.value; render(); };
-document.querySelector('.modal-close').onclick = () => {
-    document.getElementById('modal-overlay').style.display = 'none';
-    document.body.style.overflow = 'auto';
-};
-
-// Start
+// --- INIT ---
+document.getElementById('count-num').textContent = formulas.length;
+document.getElementById('def-num').textContent = 39;
 render();
+
+// Global listeners
 document.getElementById('main-search').oninput = (e) => { currentSearch = e.target.value; render(); };
 document.querySelector('.modal-close').onclick = () => { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; };
 window.onclick = (e) => { if (e.target === document.getElementById('modal-overlay')) { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; } };
 
-document.getElementById('count-num').textContent = formulas.length;
-document.getElementById('def-num').textContent = 39;
-render();
+// Re-init icons for new elements
+lucide.createIcons();

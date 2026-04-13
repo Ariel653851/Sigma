@@ -691,3 +691,42 @@ header {
     .header-inner { flex-direction: column; align-items: flex-start; }
     .search-wrap { min-width: 100%; }
 }
+
+/* IMMERSIVE DEFINITIONS */
+.grid-container {
+    transition: all 0.5s ease;
+    perspective: 1000px;
+}
+
+.grid-container.has-expanded .formula-card:not(.expanded) {
+    filter: blur(10px);
+    opacity: 0.4;
+    transform: scale(0.9) translateZ(-50px);
+    pointer-events: none;
+}
+
+.formula-card.definitions-style {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: zoom-in;
+    position: relative;
+    z-index: 1;
+}
+
+.formula-card.definitions-style.expanded {
+    z-index: 100;
+    transform: scale(1.15) translateZ(50px);
+    box-shadow: 0 40px 80px -15px rgba(0,0,0,0.3);
+    cursor: zoom-out;
+    background: #ffffff;
+    border-color: var(--primary);
+}
+
+.formula-card.definitions-style.expanded h3 {
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+.formula-card.definitions-style.expanded p {
+    font-size: 1.1rem;
+    color: var(--text);
+}
