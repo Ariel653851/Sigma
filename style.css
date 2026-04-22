@@ -136,8 +136,8 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 6rem 1rem;
-    min-height: 60vh;
+    padding: 4rem 1rem 2rem 1rem;
+    min-height: 40vh;
 }
 
 
@@ -676,7 +676,7 @@ header {
 }
 
 .hidden { display: none; }
-.empty-state { text-align: center; padding: 4rem 1rem; color: #888; }
+.empty-state { text-align: center; padding: 2rem 1rem; color: #888; }
 
 /* IMAGE VIEW (FOR NOMENCLATURE) */
 .image-view-container {

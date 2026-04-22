@@ -266,6 +266,7 @@ function render() {
     subjTabs.classList.add('hidden');
     chapTabs.classList.add('hidden');
     backBtn.classList.add('hidden');
+    document.getElementById('no-results').classList.add('hidden');
 
     if (currentSearch.length > 0) {
         appView.classList.remove('hidden');
@@ -274,6 +275,7 @@ function render() {
         renderSearch();
     } else if (currentView === 'home') {
         homeView.classList.remove('hidden');
+        document.getElementById('no-results').classList.remove('hidden'); // Re-show on home as requested
     } else if (currentView === 'chapters') {
         appView.classList.remove('hidden');
         subjTabs.classList.remove('hidden');
@@ -308,6 +310,10 @@ function renderChapters() {
     grid.innerHTML = '';
     let filtered = chapters.filter(c => c.level === currentLevel);
     if (currentSubject !== 'all') filtered = filtered.filter(c => c.subject === currentSubject);
+    if (filtered.length === 0) {
+        document.getElementById('no-results').classList.remove('hidden');
+        return;
+    }
     filtered.forEach(c => {
         const div = document.createElement('div');
         div.className = 'chapter-card';
@@ -376,7 +382,12 @@ function renderFormulas() {
         grid.appendChild(tableHeader);
     }
     
-    formulas.filter(f => f.chapterId === currentChapterId).forEach(f => {
+    const filteredFormulas = formulas.filter(f => f.chapterId === currentChapterId);
+    if (filteredFormulas.length === 0) {
+        document.getElementById('no-results').classList.remove('hidden');
+        return;
+    }
+    filteredFormulas.forEach(f => {
         const card = createCard(f);
         if (f.id === 'lewis-polar-1') {
             card.style.gridColumn = "span 2"; 
@@ -458,6 +469,10 @@ function renderDefinitions() {
         defs = [];
     }
 
+    if (defs.length === 0) {
+        document.getElementById('no-results').classList.remove('hidden');
+        return;
+    }
     defs.forEach(def => {
         const div = document.createElement('div');
         div.className = 'formula-card definitions-style';
