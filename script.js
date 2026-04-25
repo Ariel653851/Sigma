@@ -574,71 +574,25 @@ function openModal(f) {
     const chapter = chapters.find(c => c.id === f.chapterId);
     const isProto = chapter.subject === 'protocoles';
 
-    document.querySelector('.modal-tabs').style.display = isProto ? 'none' : 'flex';
-    document.getElementById('tab-eqn').style.display = isProto ? 'none' : 'block';
-    document.querySelector('.tab-trigger[data-tab="def"]').style.display = isProto ? 'none' : 'block';
-
     document.getElementById('modal-title').textContent = f.title;
     document.getElementById('modal-tag').textContent = `${chapter.subject.toUpperCase()} • ${chapter.level}`;
     document.getElementById('modal-tag').className = `modal-badge ${chapter.subject}`;
-    
-    // Parse units into nice grid layout
-    let unitsHtml = "—";
-    if (f.units && !isProto) {
-        unitsHtml = '<div class="modal-units-grid">';
-        f.units.split(',').forEach(u => {
-            const txt = u.trim();
-            if(!txt) return;
-            
-            let sym = txt;
-            if (txt.includes('[')) sym = txt.split('[')[0].trim();
-            else if (txt.includes('(')) sym = txt.split('(')[0].trim();
 
-            let name = "";
-            if (txt.includes('[')) name = txt.split('[')[1].split(']')[0].trim();
+    const modalBody = document.getElementById('modal-body');
+    const modalWin = document.querySelector('.modal-window');
+    const modalTabs = document.querySelector('.modal-tabs');
 
-            let unit = "";
-            if (txt.includes('(')) unit = txt.split('(')[1].split(')')[0].trim();
+    // Reset visibility and layout before deciding
+    modalTabs.style.display = isProto ? 'none' : 'flex';
 
-            if (sym || name || unit) {
-                unitsHtml += `
-                    <div class="modal-unit-item">
-                        <span class="mu-sym">${sym}</span>
-                        <span class="mu-details">
-                            <span class="mu-name">${name ? ' = ' + name : ''}</span>
-                            <span class="mu-unit">${unit ? '(' + unit + ')' : ''}</span>
-                        </span>
-                    </div>
-                `;
-            }
-        });
-        unitsHtml += '</div>';
-    }
-    
-    document.getElementById('modal-units').innerHTML = unitsHtml;
-    
-    document.getElementById('modal-def').innerHTML = f.definition || "—";
-    document.getElementById('modal-prop').innerHTML = f.properties || "—";
-    if (f.img) {
-        document.getElementById('math-box').innerHTML = `<img src="${f.img}" style="max-width:100%; border-radius:8px; box-shadow: var(--shadow);">`;
-        document.getElementById('math-box').style.fontSize = "1rem";
-    } else if (f.formula && f.formula.includes('<table')) {
-        document.getElementById('math-box').innerHTML = f.formula;
-        document.getElementById('math-box').style.fontSize = "1.1rem"; // Plus gros
-    } else {
-        document.getElementById('math-box').innerHTML = f.formula ? `\\[ ${f.formula} \\]` : "";
-        document.getElementById('math-box').style.fontSize = "1.8rem"; // Reset normal
-    }
-    
     if (isProto) {
-        const modalWin = document.querySelector('.modal-window');
         modalWin.classList.add('protocol-mode');
         
         // Custom rendering for protocol: side-by-side
         const steps = (f.definition || "").split('\n').filter(s => s.trim().length > 0);
         let stepsHtml = '<ul class="protocol-steps-list">';
         steps.forEach((step, idx) => {
-            const cleanStep = step.replace(/^\d+\.\s*/, ''); // Remove existing numbers if any
+            const cleanStep = step.replace(/^\d+\.\s*/, ''); 
             stepsHtml += `
                 <li class="protocol-step-item">
                     <span class="step-number">${idx + 1}</span>
@@ -648,11 +602,25 @@ function openModal(f) {
         });
         stepsHtml += '</ul>';
 
-        document.querySelector('.modal-body').innerHTML = `
+        // Add visual labels if it's Titration
+        let titrationLabels = "";
+        if (f.id === "proto-titrage") {
+            titrationLabels = `
+                <div class="titration-label l-burette">Burette graduée</div>
+                <div class="titration-label l-sol-titrante">Solution titrante</div>
+                <div class="titration-label l-erlen">Erlenmeyer</div>
+                <div class="titration-label l-sol-titree">Solution titrée</div>
+                <div class="titration-label l-stirrer">Agitateur magnétique</div>
+                <div class="titration-label l-potence">Potence</div>
+            `;
+        }
+
+        modalBody.innerHTML = `
             <div class="protocol-flex">
                 <div class="protocol-image-side">
-                    <div class="protocol-image-container">
+                    <div class="protocol-image-container" style="position:relative;">
                         <img src="${f.img}" alt="${f.title}">
+                        ${titrationLabels}
                     </div>
                     <p style="margin-top:1rem; font-size:0.8rem; color:var(--text-muted); font-weight:600; text-align:center;">
                         Schéma du montage expérimental
@@ -669,11 +637,10 @@ function openModal(f) {
             </div>
         `;
     } else {
-        const modalWin = document.querySelector('.modal-window');
         modalWin.classList.remove('protocol-mode');
         
         // Restore normal modal body structure
-        document.querySelector('.modal-body').innerHTML = `
+        modalBody.innerHTML = `
             <div class="tab-panel active" id="tab-eqn">
                 <div class="math-display" id="math-box"></div>
                 <div class="units-legend">
@@ -689,20 +656,43 @@ function openModal(f) {
             </div>
         `;
 
-        document.getElementById('modal-def').innerHTML = f.definition || "—";
-        document.getElementById('modal-prop').innerHTML = f.properties || "—";
-        if (f.img) {
-            document.getElementById('math-box').innerHTML = `<img src="${f.img}" style="max-width:100%; border-radius:8px; box-shadow: var(--shadow);">`;
-            document.getElementById('math-box').style.fontSize = "1rem";
-        } else if (f.formula && f.formula.includes('<table')) {
-            document.getElementById('math-box').innerHTML = f.formula;
-            document.getElementById('math-box').style.fontSize = "1.1rem";
-        } else {
-            document.getElementById('math-box').innerHTML = f.formula ? `\\[ ${f.formula} \\]` : "";
-            document.getElementById('math-box').style.fontSize = "1.8rem";
+        // Parse units
+        let unitsHtmlArr = [];
+        if (f.units) {
+            f.units.split(',').forEach(u => {
+                const txt = u.trim();
+                if(!txt) return;
+                let sym = txt.includes('[') ? txt.split('[')[0].trim() : (txt.includes('(') ? txt.split('(')[0].trim() : txt);
+                let name = txt.includes('[') ? txt.split('[')[1].split(']')[0].trim() : "";
+                let unit = txt.includes('(') ? txt.split('(')[1].split(')')[0].trim() : "";
+                unitsHtmlArr.push(`
+                    <div class="modal-unit-item">
+                        <span class="mu-sym">${sym}</span>
+                        <span class="mu-details">
+                            <span class="mu-name">${name ? ' = ' + name : ''}</span>
+                            <span class="mu-unit">${unit ? '(' + unit + ')' : ''}</span>
+                        </span>
+                    </div>
+                `);
+            });
         }
         
-        document.getElementById('modal-units').innerHTML = unitsHtml;
+        document.getElementById('modal-units').innerHTML = unitsHtmlArr.length > 0 ? `<div class="modal-units-grid">${unitsHtmlArr.join('')}</div>` : "—";
+        document.getElementById('modal-def').innerHTML = f.definition || "—";
+        document.getElementById('modal-prop').innerHTML = f.properties || "—";
+        
+        const mathBox = document.getElementById('math-box');
+        if (f.img) {
+            mathBox.innerHTML = `<img src="${f.img}" style="max-width:100%; border-radius:8px; box-shadow: var(--shadow);">`;
+            mathBox.style.fontSize = "1rem";
+        } else if (f.formula && f.formula.includes('<table')) {
+            mathBox.innerHTML = f.formula;
+            mathBox.style.fontSize = "1.1rem";
+        } else {
+            mathBox.innerHTML = f.formula ? `\\[ ${f.formula} \\]` : "";
+            mathBox.style.fontSize = "1.8rem";
+        }
+        
         switchTab('eqn');
     }
     

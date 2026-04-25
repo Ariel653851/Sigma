@@ -815,3 +815,46 @@ header {
         max-width: 550px;
     }
 }
+
+/* TITRATION LABELS */
+.titration-label {
+    position: absolute;
+    background: white;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 0.65rem;
+    font-weight: 700;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    color: var(--text);
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.titration-label::before {
+    content: '';
+    position: absolute;
+    background: #94a3b8;
+    height: 1px;
+    width: 20px;
+}
+
+/* Positions relatives à l'image */
+.l-burette { top: 20%; right: 15%; }
+.l-burette::before { left: -20px; top: 50%; }
+
+.l-sol-titrante { top: 35%; right: 15%; }
+.l-sol-titrante::before { left: -20px; top: 50%; }
+
+.l-erlen { bottom: 35%; right: 15%; }
+.l-erlen::before { left: -20px; top: 50%; }
+
+.l-sol-titree { bottom: 20%; right: 15%; }
+.l-sol-titree::before { left: -20px; top: 50%; }
+
+.l-stirrer { bottom: 10%; left: 10%; }
+.l-stirrer::before { right: -20px; top: 50%; }
+
+.l-potence { top: 30%; left: 0%; }
+.l-potence::before { right: -20px; top: 50%; }
