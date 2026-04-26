@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary: #0ea5e9;
+    --primary: #0284c7;
     --primary-soft: #f0f9ff;
     --secondary: #64748b;
     --bg: #f8fafc;
@@ -15,9 +15,9 @@
     --radius: 16px;
     --radius-sm: 8px;
     --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --physique: #10b981;
-    --chimie: #f97316;
-    --protocoles: #0ea5e9;
+    --physique: #059669;
+    --chimie: #c2410c;
+    --protocoles: #0284c7;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,7 +60,10 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 .subj-dot.chimie { background: var(--chimie); }
 .subj-dot.protocoles { background: var(--protocoles); }
 .card-tag, .card-info { display: block; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.25rem; margin-top: 0.2rem; }
-.card-tag.physique, .card-tag.chimie, .card-tag.protocoles { background: transparent; color: var(--text-muted); padding: 0; }
+.card-tag.physique, .card-tag.chimie, .card-tag.protocoles { background: transparent; padding: 0; }
+.card-tag.chimie { color: #0284c7; }
+.card-tag.physique { color: #c2410c; }
+.card-tag.protocoles { color: var(--text-muted); }
 
 /* UNIT PILLS */
 .bottom-legend-area { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; margin-top: auto; }
@@ -121,7 +124,6 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
     font-weight: 700;
     font-size: 1.05rem;
     cursor: pointer;
-    transition: all 0.2s;
     color: var(--text-muted);
 }
 .sub-tab.active, .level-tab.active {
@@ -131,7 +133,7 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 }
 .sub-tab:hover, .level-tab:hover { background: var(--bg); }
 
-.nav-tab { color: var(--text-muted); transition: all 0.2s; }
+.nav-tab { color: var(--text-muted); }
 .nav-tab.active { color: var(--primary); background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 .nav-tab:hover:not(.active) { color: var(--text); }
 .step-number { background: var(--protocoles); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; font-size: 1.1rem; }
@@ -236,3 +238,4 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 
 /* FOOTER TEXT */
 footer { text-align: center; color: #94a3b8; font-size: 0.85rem; margin-top: 3rem; padding: 1.5rem; border: none; }
+#count-num, #def-num { font-family: 'SF Mono', ui-monospace, Menlo, Monaco, Consolas, monospace; font-weight: 600; font-size: 0.9rem; letter-spacing: -0.02em; color: var(--text); }
