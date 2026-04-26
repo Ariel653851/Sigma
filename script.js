@@ -27,51 +27,60 @@ const allDefinitions = {
         { t: "Oxydation", d: "Réaction au cours de laquelle une espèce chimique perd des électrons (le réducteur est oxydé)." },
         { t: "Réduction", d: "Réaction au cours de laquelle une espèce chimique gagne des électrons (l'oxydant est réduit)." },
         { t: "Couple Oxydant / Réducteur", d: "Ensemble formé par l'oxydant et le réducteur qui passent de l'un à l'autre par gain ou perte d'électrons. On le note Ox / Red." },
-        { t: "Demi-équation", d: "Expression montrant le transfert d'électrons au sein d'un couple redox." },
-        { t: "Équation d'oxydo-réduction", d: "Somme des deux demi-équations où le nombre d'électrons échangés est identique." }
+        { t: "Équation d'oxydo-réduction", d: "Une équation d'oxydo-réduction est une réaction au cours de laquelle le réducteur d'un couple cède des électrons à un oxydant d'un autre couple." }
     ],
     "c-mol-1": [
-        { t: "La Mole", d: "Unité de quantité de matière contenant exactement 6,02214076×10^23 entités élémentaires." },
-        { t: "Constante d'Avogadro", d: "Nombre d'entités dans une mole (Na = 6,022 x 10^23 mol-1)." },
-        { t: "Masse Molaire (M)", d: "Masse d'une mole d'une espèce chimique (g/mol)." },
-        { t: "Concentration Molaire (C)", d: "Quantité de soluté dissous par litre de solution (mol/L)." },
+        { t: "La Mole", d: "Unité de quantité de matière (symbole : mol) contenant 6,022 x 10^23 entités." },
+        { t: "Concentration Molaire (C)", d: "Quantité de soluté par litre de solution (mol/L)." },
+        { t: "Dilution", d: "Action d'ajouter du solvant pour diminuer la concentration." },
         { t: "Concentration Massique (Cm)", d: "Masse de soluté dissous par litre de solution (g/L)." },
         { t: "Soluté", d: "Espèce minoritaire qui est dissoute dans un solvant." },
-        { t: "Solvant", d: "Milieu liquide majoritaire dans lequel on dissout le soluté." },
-        { t: "Solution Saturée", d: "Solution dans laquelle on ne peut plus dissoudre de soluté." }
+        { t: "Solvant", d: "Milieu liquide majoritaire dans lequel on dissout le soluté." }
     ],
     "p-optique-1": [
-        { t: "Lentille Convergente", d: "Lentille à bords minces qui fait converger un faisceau de rayons parallèles vers son foyer image." },
-        { t: "Centre Optique (O)", d: "Point central de la lentille où les rayons ne sont pas déviés." },
-        { t: "Distance Focale (f')", d: "Distance OF' entre le centre optique et le foyer image (en mètres)." },
-        { t: "Vergence (C ou V)", d: "Capacité d'une lentille à faire converger la lumière (V = 1/f'). S'exprime en dioptries (δ)." },
-        { t: "Grandissement (γ)", d: "Rapport entre la taille de l'image et la taille de l'objet (γ = A'B'/AB)." }
+        { t: "Lentille Convergente", d: "Système optique qui dévie les rayons lumineux parallèles vers un point unique appelé foyer image." },
+        { t: "Distance Focale (f')", d: "Distance entre le centre optique O de la lentille et le foyer image F'. Elle s'exprime en mètres." },
+        { t: "Vergence", d: "Grandeur notée δ qui caractérise la capacité d'une lentille à faire converger la lumière. Elle est l'inverse de la distance focale." },
+        { t: "Grandissement (γ)", d: "Rapport entre la taille de l'image et la taille de l'objet." }
     ],
     "p-ondes-1": [
-        { t: "Onde Mécanique", d: "Propagation d'une perturbation dans un milieu matériel sans transport de matière." },
-        { t: "Onde Transversale", d: "Onde dont la perturbation est perpendiculaire à la direction de propagation." },
-        { t: "Onde Longitudinale", d: "Onde dont la perturbation est parallèle à la direction de propagation." },
-        { t: "Période (T)", d: "Plus petite durée au bout de laquelle le phénomène se répète (en secondes)." },
-        { t: "Fréquence (f)", d: "Nombre de répétitions par seconde (f = 1/T, en Hertz)." },
-        { t: "Longueur d'onde (λ)", d: "Plus petite distance entre deux points dans le même état vibratoire (λ = v.T)." }
+        { t: "Onde Mécanique Progressive", d: "Une onde mécanique progressive est le phénomène de propagation d’une perturbation dans un milieu matériel sans transport de matière et avec transfert d’énergie." },
+        { t: "Onde Sonore Périodique", d: "Une onde sonore périodique est le phénomène de propagation d’une succession de zones de compression-dilatation du milieu de propagation, créées par la vibration d’une source (haut-parleur, émetteur d’ultrasons) à la fréquence f." },
+        { t: "Période (T)", d: "La période temporelle correspond au plus petit intervalle de temps au cours duquel le phénomène se répète identique à lui-même." },
+        { t: "Fréquence (f)", d: "La fréquence est le nombre de fois que le phénomène se répète en une seconde." },
+        { t: "Longueur d'onde (λ)", d: "La longueur d'onde (la période spatiale) est la plus petite distance séparant deux points en phase" },
+        { t: "Retard (τ)", d: "Durée mise par une onde pour aller d'un point M à un point M'." }
     ],
-    "c-dosage-1": [
-        { t: "Titre d'une solution", d: "Autre nom de la concentration massique ou molaire." },
-        { t: "Équivalence", d: "État du titrage où les réactifs sont introduits dans les proportions stœchiométriques." },
-        { t: "Indicateur Coloré", d: "Espèce chimique dont la couleur change selon le milieu, utilisée pour repérer l'équivalence." },
-        { t: "Loi de Beer-Lambert", d: "L'absorbance est proportionnelle à la concentration (A = k.C)." }
-    ],
-    "c-lewis-1": [
-        { t: "Électronégativité", d: "Capacité d'un atome à attirer les électrons des liaisons covalentes vers lui." },
-        { t: "Liaison Polarisée", d: "Liaison entre deux atomes dont la différence d'électronégativité est ≥ 0,4." },
-        { t: "Molécule Polaire", d: "Molécule possédant des liaisons polarisées et dont les centres de charges + et - ne sont pas confondus." },
-        { t: "Doublet Liant", d: "Paire d'électrons partagée entre deux atomes (liaison)." },
-        { t: "Doublet Non-Liant", d: "Paire d'électrons restant sur un atome sans participer aux liaisons." }
+    "p-energie-1": [
+        { t: "Énergie Cinétique (Ec)", d: "Énergie que possède un corps en raison de sa vitesse." },
+        { t: "Énergie Potentielle (Ep)", d: "Énergie que possède un corps en fonction de sa position (ici son altitude)." },
+        { t: "Énergie Mécanique (Em)", d: "Somme de l'énergie cinétique et de toutes les énergies potentielles du système." }
     ],
     "p-elec-1": [
-        { t: "Loi d'Ohm", d: "La tension aux bornes d'un conducteur ohmique est proportionnelle à l'intensité qui le traverse (U = R.I)." },
+        { t: "Intensité (I)", d: "Débit de charges électriques dans un circuit. Elle s'exprime en Ampères (A)." },
+        { t: "Tension (U)", d: "Différence de potentiel entre deux points d'un circuit. Elle s'exprime en Volts (V)." },
         { t: "Effet Joule", d: "Dégagement de chaleur lors du passage d'un courant électrique dans un conducteur." },
+        { t: "Loi d'Ohm", d: "La tension aux bornes d'un conducteur ohmique est proportionnelle à l'intensité qui le traverse (U = R.I)." },
         { t: "Conducteur Ohmique", d: "Composant dont la caractéristique tension-courant est une droite passant par l'origine." }
+    ],
+    "c-dosage-1": [
+        { t: "Dosage", d: "Action de déterminer la quantité de matière ou la concentration d'une espèce chimique dans une solution." },
+        { t: "Titrage", d: "Dosage par une réaction chimique totale et rapide entre une espèce titrée et une espèce titrante." },
+        { t: "Équivalence", d: "L'équivalence est le moment où les réactifs ont été introduits dans les proportions stœchiométriques." },
+        { t: "Loi de Beer-Lambert", d: "L'absorbance A d'une solution est proportionnelle à sa concentration C. A = k x C." },
+        { t: "Validité de Beer-Lambert", d: "La solution doit être diluée car la loi de Beer-Lambert n'est vérifiée que pour des concentrations inférieures à 1,0 x 10^-2 mol.L^-1." },
+        { t: "Vérification de Beer-Lambert", d: "En observant la courbe obtenue, on constate que l'absorbance A est une fonction linéaire de C et il existe donc une relation de proportionnalité entre A et C, ce qui confirme que la loi de Beer-Lambert est vérifiée." },
+        { t: "Choix de λ_max", d: "On choisit la longueur d'onde correspondant au maximum d'absorption car c'est celle où l'espèce absorbe le plus. D'après la loi de Beer-Lambert, cela maximise la différence d'absorbance entre deux solutions de concentrations différentes et rend la mesure plus sensible et plus précise." },
+        { t: "Indicateur Coloré", d: "Espèce chimique dont la couleur change selon le milieu, utilisée pour repérer l'équivalence." }
+    ],
+    "c-lewis-1": [
+        { t: "Règle du duet", d: "Pour les atomes avec Z ≤ 4, ils cherchent à avoir 2 électrons sur leur première couche." },
+        { t: "Règle de l'octet", d: "Pour les atomes avec Z ≥ 5, ils cherchent à avoir 8 électrons sur leur couche externe." },
+        { t: "Doublet liant", d: "Paire d'électrons partagée entre deux atomes pour former une liaison covalente." },
+        { t: "Doublet non-liant", d: "Paire d'électrons de la couche externe d'un atome qui ne participe pas aux liaisons." },
+        { t: "Électronégativité", d: "Grandeur traduisant la capacité d'un atome à attirer les électrons d'une liaison vers lui." },
+        { t: "Liaison polarisée", d: "Liaison entre deux atomes d'électronégativités différentes (différence > 0,4)." },
+        { t: "Molécule Polaire", d: "Molécule possédant des liaisons polarisées et dont les centres de charges + et - ne sont pas confondus." }
     ],
     "p-fluide-1": [
         { t: "Pression (P)", d: "Force pressante exercée par unité de surface (P = F/S, en Pascals)." },
@@ -517,9 +526,9 @@ function renderDefinitions() {
         const div = document.createElement('div');
         div.className = 'formula-card definitions-style';
         div.innerHTML = `
-            <span class="card-tag chemistry">DÉFINITION</span>
-            <h3>${def.t}</h3>
-            <p style="margin-top:1rem; line-height:1.6; color:var(--text-muted);">${def.d}</p>
+            <div style="font-size:0.75rem; font-weight:800; color:var(--text); letter-spacing:0.05em; margin-bottom:0.8rem; text-transform:uppercase;">DÉFINITION</div>
+            <h3 style="margin-bottom: 0.5rem;">${def.t}</h3>
+            <p style="margin-top:0.5rem; line-height:1.6; color:var(--text-muted); font-size:1.05rem;">${def.d}</p>
         `;
         div.onclick = (e) => {
             e.stopPropagation();

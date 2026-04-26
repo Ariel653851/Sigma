@@ -168,8 +168,9 @@
             <div id="app-view" class="view-section hidden">
                 <div class="view-header">
                     <div class="breadcrumb">
-                        <span id="level-label">1ere</span>
-                        <h2 id="view-title" style="margin-left:0.5rem;">Chapitres</h2>
+                        <span id="level-label">Première</span>
+                        <i data-lucide="chevron-right" style="width:20px;height:20px;color:var(--text-muted);"></i>
+                        <h2 id="view-title" style="margin:0; font-size:inherit;">Chapitres</h2>
                     </div>
                     <button id="back-btn" class="hidden">Retour</button>
                 </div>
@@ -220,8 +221,8 @@
             </div>
         </div>
 
-        <footer>
-            📚 <strong id="count-num">—</strong> formules & <strong id="def-num">—</strong> définitions répertoriées
+        <footer style="margin-top: 4rem; padding: 2rem; border: none; text-align: center; color: var(--text-muted); font-size: 0.8rem; font-weight: 500;">
+            📚 <strong id="count-num" style="color:var(--text); font-weight: 700; font-size:0.8rem;">—</strong> formules & <strong id="def-num" style="color:var(--text); font-weight: 700; font-size:0.8rem;">—</strong> définitions répertoriées
         </footer>
         <button id="copy-btn" onclick="copyLink()">
             <i data-lucide="clipboard" style="width:16px; height:16px;"></i> Copier le lien
