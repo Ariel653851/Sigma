@@ -104,12 +104,12 @@
         .proto-props-box { margin-top: 2rem; padding: 1.5rem; background: #fff7ed; border-radius: 12px; border-left: 4px solid var(--protocoles); }
         .math-display { text-align: center; font-size: 2rem; padding: 2rem; background: var(--bg); border-radius: 12px; margin-bottom: 1.5rem; }
 
-        #copy-btn { position: fixed; bottom: 2rem; right: 2rem; padding: 1.2rem 2.5rem; background: var(--text); color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: 800; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); z-index: 1000; transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem; font-size: 1rem; }
-        #copy-btn:hover { transform: scale(1.05); background: var(--primary); }
-        #toast { position: fixed; bottom: 6rem; left: 50%; transform: translateX(-50%); background: #0f172a; color: white; padding: 1rem 2rem; border-radius: 16px; opacity: 0; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; z-index: 3000; font-weight: 700; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
-        #toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
-        footer { text-align: center; color: #64748b; font-size: 1rem; margin-top: 5rem; padding: 2rem; border-top: 1px solid var(--border); }
-        footer strong { color: var(--text); font-weight: 800; font-size: 1.1rem; }
+        #copy-btn { position: fixed; bottom: 2rem; right: 2rem; padding: 0.8rem 1.5rem; background: white; color: var(--primary); border: 2px solid var(--primary); border-radius: 50px; cursor: pointer; font-weight: 800; box-shadow: 0 4px 16px rgba(14,165,233,0.15); z-index: 1000; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        #copy-btn:hover { transform: translateY(-3px); background: var(--primary); color: white; }
+        #toast { position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(10px); background: #111; color: #fff; padding: 0.6rem 1.5rem; border-radius: 50px; font-size: 0.85rem; opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 3000; }
+        #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        footer { text-align: center; color: #94a3b8; font-size: 0.85rem; margin-top: 3rem; padding: 1.5rem; border: none; }
+        footer strong { color: var(--text); font-weight: 700; font-size: 0.85rem; }
     </style>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -221,8 +221,8 @@
             </div>
         </div>
 
-        <footer style="margin-top: 4rem; padding: 2rem; border: none; text-align: center; color: var(--text-muted); font-size: 0.8rem; font-weight: 500;">
-            📚 <strong id="count-num" style="color:var(--text); font-weight: 700; font-size:0.8rem;">—</strong> formules & <strong id="def-num" style="color:var(--text); font-weight: 700; font-size:0.8rem;">—</strong> définitions répertoriées
+        <footer>
+            📚 <strong id="count-num">—</strong> formules & <strong id="def-num">—</strong> définitions répertoriées
         </footer>
         <button id="copy-btn" onclick="copyLink()">
             <i data-lucide="clipboard" style="width:16px; height:16px;"></i> Copier le lien
