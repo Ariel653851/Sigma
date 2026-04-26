@@ -25,7 +25,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg)
 .app-container { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem; }
 
 /* HEADER */
-header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 2rem; }
+header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); margin-bottom: 2rem; }
 .header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
 .brand { display: flex; flex-direction: column; gap: 0.1rem; color: var(--primary); }
 .brand-top { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 700; }
@@ -223,3 +223,7 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .empty-state { text-align: center; padding: 4rem; color: var(--text-muted); }
+
+/* FOOTER TEXT */
+footer { text-align: center; color: #94a3b8; font-size: 0.85rem; margin-top: 3rem; padding: 1.5rem; border: none; }
+footer strong { color: var(--text); font-weight: 700; font-size: 0.85rem; }
