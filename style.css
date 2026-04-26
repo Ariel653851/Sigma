@@ -104,7 +104,7 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 .hidden { display: none !important; }
 
 /* TABS & BUTTONS */
-.sub-tab, .nav-tab, .level-tab {
+.sub-tab, .level-tab {
     padding: 0.6rem 1.5rem;
     border-radius: 50px;
     border: 1px solid var(--border);
@@ -114,12 +114,16 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
     transition: all 0.2s;
     color: var(--text-muted);
 }
-.sub-tab.active, .nav-tab.active, .level-tab.active {
+.sub-tab.active, .level-tab.active {
     background: var(--text);
     color: white;
     border-color: var(--text);
 }
-.sub-tab:hover, .nav-tab:hover, .level-tab:hover { background: var(--bg); }
+.sub-tab:hover, .level-tab:hover { background: var(--bg); }
+
+.nav-tab { color: var(--text-muted); transition: all 0.2s; }
+.nav-tab.active { color: var(--primary); background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.nav-tab:hover:not(.active) { color: var(--text); }
 .step-number { background: var(--protocoles); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; font-size: 1.1rem; }
 .step-text { font-size: 1.1rem; line-height: 1.6; font-weight: 500; }
 
