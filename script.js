@@ -9,7 +9,8 @@ const chapters = [
     { id: "c-redox-1", title: "Oxydoréduction & Tableau d'avancement", subject: "chimie", level: "1ere" },
     { id: "c-dosage-1", title: "Dosages & Titrages", subject: "chimie", level: "1ere" },
     { id: "c-lewis-1", title: "Schéma de Lewis & Polarité", subject: "chimie", level: "1ere", src: "assets/vsepr_table_colored.png" },
-    { id: "c-nom-1", title: "Nomenclature", subject: "chimie", level: "1ere", src: "assets/nomenclature_final.png" },
+    { id: "c-nom-1", title: "Nomenclature", subject: "chimie", level: "1ere", src: "assets/nomenclature_recap_v2.png" },
+    { id: "c-struct-1", title: "Structure des Espèces Chimiques", subject: "chimie", level: "1ere" },
     { id: "p-optique-1", title: "Optique & Couleurs", subject: "physique", level: "1ere" },
     { id: "p-ondes-1", title: "Ondes Mécaniques", subject: "physique", level: "1ere" },
     { id: "p-energie-1", title: "Énergie Mécanique", subject: "physique", level: "1ere" },
@@ -281,6 +282,69 @@ const formulas = [
         properties: "L'onde au point M' reproduit le mouvement du point M avec un décalage temporel égal au retard τ.",
         units: "\\tau [Retard] (s), MM' [Distance M à M'] (m), v [Célérité] (m/s)"
     },
+    // --- STRUCTURE DES ESPÈCES CHIMIQUES ---
+    {
+        id: "solubility", chapterId: "c-struct-1", title: "Solubilité d'une espèce chimique",
+        formula: "s = \\frac{m_{max}}{V}",
+        definition: "La solubilité est la masse maximale d'un soluté que l'on peut dissoudre dans un litre de solvant à une température donnée.",
+        properties: "Une solution est dite saturée lorsque la masse de soluté introduite est supérieure à la solubilité.",
+        units: "s [Solubilité] (g/L), m_max [Masse max] (g), V [Volume] (L)"
+    },
+    {
+        id: "electrostatic-force", chapterId: "c-struct-1", title: "Intensité de la force électrostatique",
+        formula: "F_{A/B} = \\frac{1}{4\\pi\\epsilon_0} \\cdot \\frac{|q_A \\cdot q_B|}{r^2}",
+        definition: "Force d'interaction entre deux corps A et B portant des charges électriques qA et qB.",
+        units: `<ul style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+            <li>\\(q_A\\) et \\(q_B\\) sont les charges respectives (en coulombs),</li>
+            <li>\\(r\\) est la distance entre les deux charges (en mètres),</li>
+            <li>\\(\\epsilon_0\\) est la permittivité du vide,</li>
+            <li style="list-style:none; margin-left:-1.5rem; margin-top:0.8rem; margin-bottom:0.8rem;">
+                \\[ \\frac{1}{4\\pi\\epsilon_0} = 9,0 \\times 10^9 \\text{ N} \\cdot \\text{m}^2 \\cdot \\text{C}^{-2} \\]
+            </li>
+        </ul>
+        <p style="margin-top:0.5rem; font-weight:700; color:var(--text);">\\(F_{A/B}\\) se lit force exercée par \\(B\\) sur \\(A\\).</p>`,
+        properties: `<ul style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+            <li>\\(q_A\\) et \\(q_B\\) sont les charges respectives (en coulombs),</li>
+            <li>\\(r\\) est la distance entre les deux charges (en mètres),</li>
+            <li>\\(\\epsilon_0\\) est la permittivité du vide,</li>
+            <li style="list-style:none; margin-left:-1.5rem; margin-top:0.8rem; margin-bottom:0.8rem;">
+                \\[ \\frac{1}{4\\pi\\epsilon_0} = 9,0 \\times 10^9 \\text{ N} \\cdot \\text{m}^2 \\cdot \\text{C}^{-2} \\]
+            </li>
+        </ul>
+        <p style="margin-top:0.5rem; font-weight:700; color:var(--text);">\\(F_{A/B}\\) se lit force exercée par \\(B\\) sur \\(A\\).</p>`,
+        cardUnits: "F [Force] (Newton), qA; qB [Charges] (Coulomb), r [Dist.] (mètre), 1/4πε0 [Cste] (9.10⁹ Newton.mètre².Coulomb⁻²)"
+    },
+
+    {
+        id: "ions-list", chapterId: "c-struct-1", title: "Ions à connaître par cœur",
+        formula: `<div class="ions-table-container">
+            <table class="ions-table">
+                <thead>
+                    <tr>
+                        <th>Cation</th>
+                        <th>Formule</th>
+                        <th class="sep"></th>
+                        <th>Anion</th>
+                        <th>Formule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Aluminium</td><td>Al³⁺</td><td class="sep"></td><td>Bromure</td><td>Br⁻</td></tr>
+                    <tr><td>Ammonium</td><td>NH₄⁺</td><td class="sep"></td><td>Chlorure</td><td>Cl⁻</td></tr>
+                    <tr><td>Hydronium</td><td>H₃O⁺</td><td class="sep"></td><td>Fluorure</td><td>F⁻</td></tr>
+                    <tr><td>Calcium</td><td>Ca²⁺</td><td class="sep"></td><td>Iodure</td><td>I⁻</td></tr>
+                    <tr><td>Cuivre (II)</td><td>Cu²⁺</td><td class="sep"></td><td>Nitrate</td><td>NO₃⁻</td></tr>
+                    <tr><td>Fer (II)</td><td>Fe²⁺</td><td class="sep"></td><td>Phosphate</td><td>PO₄³⁻</td></tr>
+                    <tr><td>Fer (III)</td><td>Fe³⁺</td><td class="sep"></td><td>Sulfate</td><td>SO₄²⁻</td></tr>
+                    <tr><td>Sodium</td><td>Na⁺</td><td class="sep"></td><td>Hydroxyde</td><td>HO⁻</td></tr>
+                </tbody>
+            </table>
+        </div>`,
+        definition: "Liste des ions monoatomiques et polyatomiques fréquents en chimie de Première.",
+        properties: "Un cation est chargé positivement, un anion est chargé négativement.",
+        units: ""
+    },
+
     {
         id: "pe-etalon-1", chapterId: "proto-chimie-1", title: "Protocole : Dosage par étalonnage",
         formula: `<img src="assets/proto_etalonnage.png?v=2" style="max-width:100%; border-radius:12px;">`,
@@ -399,29 +463,43 @@ function renderFormulas() {
     grid.innerHTML = '';
     const chapter = chapters.find(c => c.id === currentChapterId);
     
-    if (chapter && chapter.src && chapter.id !== 'c-nom-1') {
+    if (chapter && chapter.src) {
         const tableCard = document.createElement('div');
         tableCard.className = 'formula-card chimie';
-        tableCard.style.gridColumn = 'span 2';
+        // Mode GÉANT pour la Nomenclature
+        if (chapter.id === 'c-nom-1') {
+            tableCard.style.gridColumn = '1 / -1';
+            tableCard.style.padding = '0';
+            tableCard.style.border = 'none';
+            tableCard.style.background = 'transparent';
+            tableCard.style.boxShadow = 'none';
+        } else {
+            tableCard.style.gridColumn = 'span 2';
+        }
+
+        const tableTitle = chapter.id === 'c-nom-1' ? 'Récapitulatif Complet : Nomenclature' : 'Géométrie des Molécules (VSEPR)';
         tableCard.innerHTML = `
-            <span class="card-tag chimie">TABLEAU RECAPITULATIF</span>
-            <h3 style="margin-bottom: 1.5rem; font-size:1.5rem;">Géométrie des Molécules (VSEPR)</h3>
-            <div style="background:#fff; border-radius:16px; padding:10px; border:1px solid var(--border); overflow:hidden;">
-                <img src="${chapter.src}" style="width:100%; height:auto; display:block; cursor:zoom-in;" onclick="openModal({title:'Tableau VSEPR', img:'${chapter.src}', chapterId:'c-lewis-1'})">
+            ${chapter.id === 'c-nom-1' ? '' : '<span class="card-tag chimie">TABLEAU RECAPITULATIF</span>'}
+            <h3 style="margin-bottom: 1.5rem; font-size:1.8rem; text-align:center;">${tableTitle}</h3>
+            <div style="background:#fff; border-radius:16px; padding:0; border:1px solid var(--border); overflow:hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <img src="${chapter.src}?v=2" style="width:100%; height:auto; display:block; cursor:zoom-in;" onclick="openModal({title:'${tableTitle}', img:'${chapter.src}?v=2', chapterId:'${chapter.id}'})">
             </div>
-            <p style="margin-top:1rem; font-size:0.9rem; color:var(--text-muted); font-weight:600; text-align:center;">Cliquez sur l'image pour agrandir</p>
+            <p style="margin-top:1rem; font-size:1rem; color:var(--text-muted); font-weight:700; text-align:center;">Cliquez sur l'image pour voir en plein écran</p>
         `;
         grid.appendChild(tableCard);
     }
 
+    const noResults = document.getElementById('no-results');
+    noResults.classList.add('hidden');
+
     const filteredFormulas = formulas.filter(f => f.chapterId === currentChapterId);
-    if (filteredFormulas.length === 0) {
-        document.getElementById('no-results').classList.remove('hidden');
+    if (filteredFormulas.length === 0 && !chapter.src) {
+        noResults.classList.remove('hidden');
         return;
     }
     filteredFormulas.forEach(f => {
         const card = createCard(f);
-        if (f.id === 'lewis-polar-1') card.style.gridColumn = "span 2";
+        if (f.id === 'lewis-polar-1' || f.id === 'electrostatic-force' || f.id === 'ions-list') card.style.gridColumn = "span 2";
         grid.appendChild(card);
     });
 }
@@ -497,7 +575,8 @@ function createCard(f) {
     div.className = `formula-card ${chapter.subject}`;
     div.dataset.id = f.id;
 
-    const pillsHtml = f.units && !isProto ? f.units.split(',').map(u => {
+    const unitsToParse = f.cardUnits || f.units;
+    const pillsHtml = unitsToParse && !isProto ? unitsToParse.split(',').map(u => {
         const txt = u.trim();
         const sym = txt.includes('[') ? txt.split('[')[0].trim() : (txt.includes('(') ? txt.split('(')[0].trim() : txt);
         const unit = txt.includes('(') ? txt.split('(')[1].split(')')[0] : '';
@@ -526,8 +605,8 @@ function createCard(f) {
                     <img src="${f.img}" style="width:100%; height:100%; object-fit:contain;">
                 </div>
             ` : (f.formula && f.formula.includes('<table') ? `
-                <div class="proto-icon-wrapper" style="background:#f0f9ff; color:#0369a1;">
-                    <i data-lucide="table-2" class="proto-svg"></i>
+                <div class="table-preview-container" style="zoom: 0.8;">
+                    ${f.formula}
                 </div>
             ` : (f.formula.startsWith('<') ? f.formula : `\\[ ${f.formula} \\]`)))}
         </div>
@@ -616,16 +695,20 @@ function openModal(f) {
         // Render normal content...
         let unitsHtml = "—";
         if (f.units) {
-            unitsHtml = '<div class="modal-units-grid">';
-            f.units.split(',').forEach(u => {
-                const txt = u.trim();
-                if(!txt) return;
-                let sym = txt.includes('[') ? txt.split('[')[0].trim() : (txt.includes('(') ? txt.split('(')[0].trim() : txt);
-                let name = txt.includes('[') ? txt.split('[')[1].split(']')[0].trim() : "";
-                let unit = txt.includes('(') ? txt.split('(')[1].split(')')[0].trim() : "";
-                unitsHtml += `<div class="modal-unit-item"><span class="mu-sym">${sym}</span><span class="mu-details"><span class="mu-name">${name ? ' = ' + name : ''}</span><span class="mu-unit">${unit ? '(' + unit + ')' : ''}</span></span></div>`;
-            });
-            unitsHtml += '</div>';
+            if (f.units.startsWith('<') || f.units.includes('•')) {
+                unitsHtml = `<div style="line-height:1.8; color:var(--text-muted); font-weight:600;">${f.units}</div>`;
+            } else {
+                unitsHtml = '<div class="modal-units-grid">';
+                f.units.split(',').forEach(u => {
+                    const txt = u.trim();
+                    if(!txt) return;
+                    let sym = txt.includes('[') ? txt.split('[')[0].trim() : (txt.includes('(') ? txt.split('(')[0].trim() : txt);
+                    let name = txt.includes('[') ? txt.split('[')[1].split(']')[0].trim() : "";
+                    let unit = txt.includes('(') ? txt.split('(')[1].split(')')[0].trim() : "";
+                    unitsHtml += `<div class="modal-unit-item"><span class="mu-sym">${sym}</span><span class="mu-details"><span class="mu-name">${name ? ' = ' + name : ''}</span><span class="mu-unit">${unit ? '(' + unit + ')' : ''}</span></span></div>`;
+                });
+                unitsHtml += '</div>';
+            }
         }
         document.getElementById('modal-units').innerHTML = unitsHtml;
         document.getElementById('modal-def').innerHTML = f.definition || "—";
