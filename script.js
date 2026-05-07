@@ -312,7 +312,7 @@ const formulas = [
             </li>
         </ul>
         <p style="margin-top:0.5rem; font-weight:700; color:var(--text);">\\(F_{A/B}\\) se lit force exercée par \\(B\\) sur \\(A\\).</p>`,
-        cardUnits: "F [Force] (Newton), qA; qB [Charges] (Coulomb), r [Dist.] (mètre), 1/4πε0 [Cste] (9.10⁹ Newton.mètre².Coulomb⁻²)"
+        cardUnits: "F [Force] (Newton), qA; qB [Charges] (Coulomb), r [Dist.] (mètre), 1/4πε0 (=9.10⁹ N.m².C⁻²)"
     },
 
     {
@@ -363,14 +363,14 @@ const formulas = [
         definition: "BUT : Préparer une solution moins concentrée à partir d'une solution mère.\n\n1. Prélever le volume V_mère de solution mère avec une pipette jaugée.\n2. Introduire le prélèvement dans la fiole jaugée de volume V_fille.\n3. Remplir aux 2/3 avec de l'eau distillée et agiter pour mélanger.\n4. Ajuster au trait de jauge avec de l'eau distillée et homogénéiser.",
         properties: "Facteur de dilution : F = V_fille / V_mère", units: ""
     },
-    { 
-        id: "proto-titrage", chapterId: "proto-chimie-1", title: "Protocole : Titrage colorimétrique", 
+    {
+        id: "proto-titrage", chapterId: "proto-chimie-1", title: "Protocole : Titrage colorimétrique",
         formula: `<img src="assets/proto_titrage.png?v=2" style="max-width:100%; border-radius:12px;">`,
         definition: "BUT : Déterminer la concentration d'une espèce en solution par une réaction chimique totale et rapide.\n\n1. On ajoute petit à petit la solution titrante (dans la burette graduée) dans la solution titrée (dans l'Erlenmeyer).\n2. Dès la première goutte versée, la réaction chimique se produit immédiatement.\n3. Tant que l'équivalence n'est pas atteinte, le réactif titrant est consommé immédiatement.\n4. À l'équivalence, le réactif titré est lui aussi totalement consommé.",
         properties: "Volume à l'équivalence : Veq", units: ""
     },
-    { 
-        id: "proto-extraction", chapterId: "proto-chimie-1", title: "Protocole : Extraction liquide-liquide", 
+    {
+        id: "proto-extraction", chapterId: "proto-chimie-1", title: "Protocole : Extraction liquide-liquide",
         formula: `<img src="assets/proto_extraction.png?v=2" style="max-width:100%; border-radius:12px;">`,
         definition: "BUT : Extraire une espèce chimique d'un mélange à l'aide d'un solvant dans lequel elle est plus soluble.\n\n1. On ajoute le solvant B au mélange initial ;\n2. On agite puis on laisse décanter : les deux phases se séparent ;\n3. L’espèce passe dans la phase où elle est plus soluble ;\n4. On récupère la phase contenant l’espèce d’intérêt",
         properties: "On utilise une ampoule à décanter.", units: ""
@@ -430,7 +430,9 @@ function render() {
     }
     if (window.MathJax) window.MathJax.typesetPromise();
     lucide.createIcons();
+    setTimeout(updateNavIndicator, 0);
 }
+
 
 function renderChapters() {
     const grid = document.getElementById('grid-container');
@@ -462,7 +464,7 @@ function renderFormulas() {
     const grid = document.getElementById('grid-container');
     grid.innerHTML = '';
     const chapter = chapters.find(c => c.id === currentChapterId);
-    
+
     if (chapter && chapter.src) {
         const tableCard = document.createElement('div');
         tableCard.className = 'formula-card chimie';
@@ -481,8 +483,10 @@ function renderFormulas() {
         tableCard.innerHTML = `
             ${chapter.id === 'c-nom-1' ? '' : '<span class="card-tag chimie">TABLEAU RECAPITULATIF</span>'}
             <h3 style="margin-bottom: 1.5rem; font-size:1.8rem; text-align:center;">${tableTitle}</h3>
-            <div style="background:#fff; border-radius:16px; padding:0; border:1px solid var(--border); overflow:hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                <img src="${chapter.src}?v=2" style="width:100%; height:auto; display:block; cursor:zoom-in;" onclick="openModal({title:'${tableTitle}', img:'${chapter.src}?v=2', chapterId:'${chapter.id}'})">
+            <div style="max-width: 80%; margin: 0 auto;">
+                <div style="background:#fff; border-radius:16px; padding:0; border:1px solid var(--border); overflow:hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="${chapter.src}?v=2" style="width:100%; height:auto; display:block; cursor:zoom-in;" onclick="openModal({title:'${tableTitle}', img:'${chapter.src}?v=2', chapterId:'${chapter.id}'})">
+                </div>
             </div>
             <p style="margin-top:1rem; font-size:1rem; color:var(--text-muted); font-weight:700; text-align:center;">Cliquez sur l'image pour voir en plein écran</p>
         `;
@@ -499,7 +503,7 @@ function renderFormulas() {
     }
     filteredFormulas.forEach(f => {
         const card = createCard(f);
-        if (f.id === 'lewis-polar-1' || f.id === 'electrostatic-force' || f.id === 'ions-list') card.style.gridColumn = "span 2";
+        if (f.id === 'lewis-polar-1' || f.id === 'ions-list') card.style.gridColumn = "span 2";
         grid.appendChild(card);
     });
 }
@@ -566,6 +570,18 @@ function updateNavTabs() {
     document.querySelectorAll('.nav-tab').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.nav === currentNav);
     });
+    updateNavIndicator();
+}
+
+function updateNavIndicator() {
+    const wrapper = document.querySelector('.nav-tabs-wrapper');
+    const indicator = document.querySelector('.nav-tab-indicator');
+    const activeTab = wrapper?.querySelector('.nav-tab.active');
+    if (!indicator || !activeTab || !wrapper) return;
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const tabRect = activeTab.getBoundingClientRect();
+    indicator.style.left = (tabRect.left - wrapperRect.left) + 'px';
+    indicator.style.width = tabRect.width + 'px';
 }
 
 function createCard(f) {
@@ -581,7 +597,10 @@ function createCard(f) {
         const sym = txt.includes('[') ? txt.split('[')[0].trim() : (txt.includes('(') ? txt.split('(')[0].trim() : txt);
         const unit = txt.includes('(') ? txt.split('(')[1].split(')')[0] : '';
         if (!sym && !unit) return '';
-        return `<div class="unit-pill"><span class="pill-sym">${sym}</span><span class="pill-arrow">↑</span><span class="pill-unit">${unit}</span></div>`;
+        const isEq = unit.startsWith('=');
+        const displayUnit = isEq ? unit.slice(1) : unit;
+        const arrow = isEq ? '=' : '↑';
+        return `<div class="unit-pill"><span class="pill-sym">${sym}</span><span class="pill-arrow">${arrow}</span><span class="pill-unit">${displayUnit}</span></div>`;
     }).join('') : "";
 
     // Icônes personnalisées pour les protocoles
@@ -613,7 +632,17 @@ function createCard(f) {
         <div class="bottom-legend-area">${isProto ? "" : pillsHtml}</div>
         <div class="card-footer"><span>${isProto ? 'Voir le protocole' : (f.img ? 'Agrandir le tableau' : 'Voir détails')}</span><i data-lucide="arrow-right"></i></div>
     `;
-    div.onclick = () => openModal(f);
+    if (isProto) {
+        div.onclick = () => {
+            div.classList.add('proto-click');
+            setTimeout(() => {
+                div.classList.remove('proto-click');
+                openModal(f);
+            }, 200);
+        };
+    } else {
+        div.onclick = () => openModal(f);
+    }
     return div;
 }
 
@@ -635,11 +664,11 @@ function openModal(f) {
         modalWin.className = "modal-window protocol-mode";
         modalWin.style.maxWidth = "1200px";
         modalWin.style.width = "98%";
-        
+
         const rawLines = (f.definition || "").split('\n').filter(s => s.trim().length > 0);
         let butHtml = "";
         let stepsHtml = '<div class="protocol-steps-list">';
-        
+
         let stepCount = 1;
         rawLines.forEach(line => {
             const trimmed = line.trim();
@@ -701,7 +730,7 @@ function openModal(f) {
                 unitsHtml = '<div class="modal-units-grid">';
                 f.units.split(',').forEach(u => {
                     const txt = u.trim();
-                    if(!txt) return;
+                    if (!txt) return;
                     let sym = txt.includes('[') ? txt.split('[')[0].trim() : (txt.includes('(') ? txt.split('(')[0].trim() : txt);
                     let name = txt.includes('[') ? txt.split('[')[1].split(']')[0].trim() : "";
                     let unit = txt.includes('(') ? txt.split('(')[1].split(')')[0].trim() : "";
@@ -713,7 +742,7 @@ function openModal(f) {
         document.getElementById('modal-units').innerHTML = unitsHtml;
         document.getElementById('modal-def').innerHTML = f.definition || "—";
         document.getElementById('modal-prop').innerHTML = f.properties || "—";
-        
+
         const mathBox = document.getElementById('math-box');
         if (f.img) {
             mathBox.innerHTML = `<img src="${f.img}" style="max-width:100%; border-radius:8px; box-shadow: var(--shadow);">`;
@@ -739,6 +768,13 @@ function switchTab(id) {
 }
 
 function selectLevel(lvl) { currentLevel = lvl; currentView = 'chapters'; render(); }
+function goHome() {
+    currentView = 'home';
+    currentChapterId = null;
+    currentSearch = '';
+    document.getElementById('main-search').value = '';
+    render();
+}
 function goBack() {
     if (currentSearch) {
         currentSearch = '';
@@ -784,7 +820,7 @@ function updateStatus() {
     const totalFormulas = formulas.length;
     let totalDefs = 0;
     Object.values(allDefinitions).forEach(arr => totalDefs += arr.length);
-    
+
     const countEl = document.getElementById('count-num');
     const defEl = document.getElementById('def-num');
     if (countEl) countEl.textContent = totalFormulas;
@@ -798,6 +834,8 @@ render();
 document.getElementById('main-search').oninput = (e) => { currentSearch = e.target.value; render(); };
 document.querySelector('.modal-close').onclick = () => { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; };
 window.onclick = (e) => { if (e.target === document.getElementById('modal-overlay')) { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; } };
+document.getElementById('home-btn').addEventListener('click', () => goHome());
+
 
 // Re-init icons for new elements
 lucide.createIcons();
