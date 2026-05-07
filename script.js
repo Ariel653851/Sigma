@@ -289,7 +289,7 @@ const formulas = [
     },
     {
         id: "proto-dissol", chapterId: "proto-chimie-1", title: "Protocole : Dissolution",
-        formula: `<img src="assets/proto_dissolution.png?v=2" style="max-width:100%; border-radius:12px;">`,
+        formula: `<img src="assets/proto_dissolution_v3.png?v=3" style="max-width:100%; border-radius:12px;">`,
         definition: "BUT : Préparer une solution de concentration précise à partir d'un solide.\n\n1. Peser exactement la masse m de solide dans la coupelle.\n2. Introduire le solide dans la fiole jaugée via un entonnoir.\n3. Remplir la fiole aux 2/3 avec de l'eau distillée et agiter.\n4. Compléter jusqu'au trait de jauge, boucher et homogénéiser.",
         properties: "Relation massique : m = C × V × M", units: ""
     },
@@ -377,7 +377,6 @@ function renderChapters() {
         const div = document.createElement('div');
         div.className = `chapter-card ${c.subject}`;
         div.style.opacity = '0';
-        div.style.transitionDelay = (i * 0.04) + 's';
         div.innerHTML = `<div class="subj-dot ${c.subject}"></div><div class="card-info">${c.subject.toUpperCase()}</div><h3>${c.title}</h3>`;
         div.onclick = () => {
             currentChapterId = c.id;
