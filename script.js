@@ -108,6 +108,10 @@ const allDefinitions = {
         {
             t: "Molécule amphiphile",
             d: "Une <strong>molécule amphiphile</strong> est une molécule qui possède :<br><br>• La <strong>chaîne carbonée</strong>, apolaire (ne se mélange pas avec l'eau) et <strong>lipophile</strong> (qui aime la graisse) ;<br><br>• La <strong>tête ionique</strong> (le groupe carboxylate), polaire, chargée négativement et <strong>hydrophile</strong>."
+        },
+        {
+            t: "Tensioactif",
+            d: "Un <strong>tensioactif</strong> est une molécule <strong>amphiphile</strong>. Ils permettent de réaliser des <strong>émulsions</strong> entre des espèces <strong>non miscibles</strong>."
         }
     ]
 };
