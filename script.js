@@ -87,6 +87,28 @@ const allDefinitions = {
         { t: "Pression (P)", d: "Force pressante exercée par unité de surface (P = F/S, en Pascals)." },
         { t: "Loi de Mariotte", d: "À température constante, le produit P.V d'une masse de gaz est constant." },
         { t: "Masse Volumique (ρ)", d: "Masse d'un corps par unité de volume (kg/m3)." }
+    ],
+    "c-struct-1": [
+        {
+            t: "Dissolution d'un solide ionique",
+            d: "Lorsqu'on plonge un cristal dans l'eau, trois grandes étapes ont lieu :<br><br><strong>1. Dissociation</strong> des ions du solide : les molécules d'eau cassent les liaisons entre les ions du cristal (molécule polaire).<br><br><strong>2. Solvatation</strong> (ou <strong>hydratation</strong>) des ions : les ions sont entourés par les atomes portant la charge opposée.<br><br><strong>3. Dispersion</strong> des ions dans la solution : on obtient une <strong>solution ionique</strong>."
+        },
+        {
+            t: "Miscibilité des liquides",
+            d: "Deux liquides sont dits <strong>miscibles</strong> s'ils peuvent se mélanger pour former un mélange homogène.<br><br><strong>Condition principale :</strong> Deux liquides sont miscibles s'ils ont la <strong>même polarité</strong>."
+        },
+        {
+            t: "Extraction par solvant",
+            d: "<strong>Objectif :</strong> Extraire une espèce dissoute dans un solvant A en la transférant dans un solvant B.<br><br><strong>Conditions pour le choix du solvant B d'extraction :</strong><br><br>• Le solvant A et le solvant B ne doivent pas être miscibles entre eux (ex : eau et huile) ;<br><br>• L'espèce à extraire doit être plus soluble dans B que dans A ;<br><br>• On préfère toujours utiliser le solvant <strong>le moins toxique</strong> possible."
+        },
+        {
+            t: "Justifier la solubilité d'une espèce A dans une espèce B",
+            d: "<strong>1.</strong> Déterminer le schéma de Lewis des deux espèces.<br><br><strong>2.</strong> En déduire leur polarité.<br><br><strong>3.</strong> S'ils ont la même polarité, alors l'espèce A est très soluble dans l'espèce B."
+        },
+        {
+            t: "Molécule amphiphile",
+            d: "Une <strong>molécule amphiphile</strong> est une molécule qui possède :<br><br>• La <strong>chaîne carbonée</strong>, apolaire (ne se mélange pas avec l'eau) et <strong>lipophile</strong> (qui aime la graisse) ;<br><br>• La <strong>tête ionique</strong> (le groupe carboxylate), polaire, chargée négativement et <strong>hydrophile</strong>."
+        }
     ]
 };
 
@@ -526,9 +548,12 @@ function renderDefinitions() {
         const div = document.createElement('div');
         div.className = 'formula-card definitions-style';
         div.innerHTML = `
-            <div style="font-size:0.75rem; font-weight:800; color:var(--text); letter-spacing:0.05em; margin-bottom:0.8rem; text-transform:uppercase;">DÉFINITION</div>
-            <h3 style="margin-bottom: 0.5rem;">${def.t}</h3>
-            <p style="margin-top:0.5rem; line-height:1.6; color:var(--text-muted); font-size:1.05rem;">${def.d}</p>
+            <div class="def-label-badge">DÉFINITION</div>
+            <div class="def-title-block">
+                <div class="def-title-bar"></div>
+                <h3 class="def-title-text">${def.t}</h3>
+            </div>
+            <p class="def-body-text">${def.d}</p>
         `;
         div.onclick = (e) => {
             e.stopPropagation();
