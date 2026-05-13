@@ -239,6 +239,7 @@ const formulas = [
         properties: "<strong>3 rayons remarquables :</strong><br><br>• Le rayon passant par O n'est pas dévié.<br><br>• Le rayon parallèle à l'axe optique émerge en passant par le foyer image F'.<br><br>• Le rayon passant par le foyer objet F émerge parallèle à l'axe optique.",
         units: "O [Centre optique], F [Foyer objet], F' [Foyer image], Δ [Axe optique]"
     },
+    {
         id: "opt-conj", chapterId: "p-optique-1", title: "Relation de conjugaison",
         formula: "\\frac{1}{\\overline{OA'}} - \\frac{1}{\\overline{OA}} = \\frac{1}{\\overline{OF'}}",
         definition: "Lien entre la position de l'objet A, de l'image A' et du foyer image F'.",
@@ -884,73 +885,45 @@ function goBack() {
     render();
 }
 
-// Event Listeners Initialization
-function initEventListeners() {
-    // Back button
-    const backBtn = document.getElementById('back-btn');
-    if (backBtn) backBtn.onclick = goBack;
-
-    // Subject tabs
-    document.querySelectorAll('.sub-tab').forEach(t => {
-        t.onclick = () => {
-            document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
-            t.classList.add('active');
-            currentSubject = t.dataset.subject;
-            if (currentSubject === 'protocoles' && currentLevel === '1ere') {
-                currentView = 'formulas';
-                currentChapterId = 'proto-chimie-1';
-                currentNav = 'formulas';
-            }
-            render();
-        };
-    });
-
-    // Modal tabs
-    document.querySelectorAll('.tab-trigger').forEach(t => {
-        t.onclick = () => switchTab(t.dataset.tab);
-    });
-
-    // Navigation tabs
-    document.querySelectorAll('.nav-tab').forEach(t => {
-        t.onclick = () => {
-            currentNav = t.dataset.nav;
-            updateNavTabs();
-            render();
-        };
-    });
-
-    // Search
-    const searchInput = document.getElementById('main-search');
-    if (searchInput) {
-        searchInput.oninput = (e) => { 
-            currentSearch = e.target.value; 
-            render(); 
-        };
+// Event Listeners
+document.getElementById('back-btn').onclick = goBack;
+document.querySelectorAll('.sub-tab').forEach(t => t.onclick = () => {
+    document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    currentSubject = t.dataset.subject;
+    if (currentSubject === 'protocoles' && currentLevel === '1ere') {
+        currentView = 'formulas';
+        currentChapterId = 'proto-chimie-1';
+        currentNav = 'formulas';
     }
+    render();
+});
+document.querySelectorAll('.tab-trigger').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
+document.querySelectorAll('.nav-tab').forEach(t => t.onclick = () => {
+    currentNav = t.dataset.nav;
+    updateNavTabs();
+    render();
+});
 
-    // Modal Close
-    const modalClose = document.querySelector('.modal-close');
-    const modalOverlay = document.getElementById('modal-overlay');
-    if (modalClose && modalOverlay) {
-        modalClose.onclick = () => {
-            modalOverlay.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        };
-        window.onclick = (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        };
-    }
+function updateStatus() {
+    const totalFormulas = formulas.length;
+    let totalDefs = 0;
+    Object.values(allDefinitions).forEach(arr => totalDefs += arr.length);
 
-    // Home button
-    const homeBtn = document.getElementById('home-btn');
-    if (homeBtn) homeBtn.onclick = () => goHome();
+    const countEl = document.getElementById('count-num');
+    const defEl = document.getElementById('def-num');
+    if (countEl) countEl.textContent = totalFormulas;
+    if (defEl) defEl.textContent = totalDefs;
 }
 
-// Initial Launch
 updateStatus();
 render();
-initEventListeners();
+
+// Global listeners
+document.getElementById('main-search').oninput = (e) => { currentSearch = e.target.value; render(); };
+document.querySelector('.modal-close').onclick = () => { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; };
+window.onclick = (e) => { if (e.target === document.getElementById('modal-overlay')) { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; } };
+document.getElementById('home-btn').addEventListener('click', () => goHome());
+
+// Re-init icons for new elements
 lucide.createIcons();
