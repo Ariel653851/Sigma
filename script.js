@@ -858,22 +858,30 @@ function switchTab(id) {
     });
 }
 
-function selectLevel(lvl) { currentLevel = lvl; currentView = 'chapters'; render(); }
+function selectLevel(lvl) { 
+    currentLevel = lvl; 
+    currentView = 'chapters'; 
+    render(); 
+}
+
 function goHome() {
     currentView = 'home';
     currentChapterId = null;
     currentSearch = '';
-    document.getElementById('main-search').value = '';
+    const searchInput = document.getElementById('main-search');
+    if (searchInput) searchInput.value = '';
     render();
 }
+
 function goBack() {
     if (currentSearch) {
         currentSearch = '';
-        document.getElementById('main-search').value = '';
+        const searchInput = document.getElementById('main-search');
+        if (searchInput) searchInput.value = '';
     } else if (currentView === 'formulas') {
         const chapter = chapters.find(c => c.id === currentChapterId);
         if (chapter && chapter.subject === 'protocoles') {
-            currentSubject = 'all'; // réinitialiser l'onglet sur "Tous" pour éviter la carte isolée
+            currentSubject = 'all';
             document.querySelectorAll('.sub-tab').forEach(x => {
                 x.classList.toggle('active', x.dataset.subject === 'all');
             });
@@ -885,26 +893,7 @@ function goBack() {
     render();
 }
 
-// Event Listeners
-document.getElementById('back-btn').onclick = goBack;
-document.querySelectorAll('.sub-tab').forEach(t => t.onclick = () => {
-    document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    currentSubject = t.dataset.subject;
-    if (currentSubject === 'protocoles' && currentLevel === '1ere') {
-        currentView = 'formulas';
-        currentChapterId = 'proto-chimie-1';
-        currentNav = 'formulas';
-    }
-    render();
-});
-document.querySelectorAll('.tab-trigger').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
-document.querySelectorAll('.nav-tab').forEach(t => t.onclick = () => {
-    currentNav = t.dataset.nav;
-    updateNavTabs();
-    render();
-});
-
+// Initialisation
 function updateStatus() {
     const totalFormulas = formulas.length;
     let totalDefs = 0;
@@ -916,14 +905,52 @@ function updateStatus() {
     if (defEl) defEl.textContent = totalDefs;
 }
 
+// Attach Events
+document.addEventListener('DOMContentLoaded', () => {
+    const backBtn = document.getElementById('back-btn');
+    if (backBtn) backBtn.onclick = goBack;
+
+    document.querySelectorAll('.sub-tab').forEach(t => {
+        t.onclick = () => {
+            document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
+            t.classList.add('active');
+            currentSubject = t.dataset.subject;
+            if (currentSubject === 'protocoles' && currentLevel === '1ere') {
+                currentView = 'formulas';
+                currentChapterId = 'proto-chimie-1';
+                currentNav = 'formulas';
+            }
+            render();
+        };
+    });
+
+    document.querySelectorAll('.tab-trigger').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
+    document.querySelectorAll('.nav-tab').forEach(t => t.onclick = () => {
+        currentNav = t.dataset.nav;
+        updateNavTabs();
+        render();
+    });
+
+    const searchInput = document.getElementById('main-search');
+    if (searchInput) searchInput.oninput = (e) => { currentSearch = e.target.value; render(); };
+
+    const modalClose = document.querySelector('.modal-close');
+    if (modalClose) modalClose.onclick = () => { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; };
+
+    window.onclick = (e) => {
+        const modal = document.getElementById('modal-overlay');
+        if (e.target === modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
+    };
+
+    const homeBtn = document.getElementById('home-btn');
+    if (homeBtn) homeBtn.onclick = () => goHome();
+
+    updateStatus();
+    render();
+    lucide.createIcons();
+});
+
+// Backup execution if DOMContentLoaded already fired
 updateStatus();
 render();
-
-// Global listeners
-document.getElementById('main-search').oninput = (e) => { currentSearch = e.target.value; render(); };
-document.querySelector('.modal-close').onclick = () => { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; };
-window.onclick = (e) => { if (e.target === document.getElementById('modal-overlay')) { document.getElementById('modal-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; } };
-document.getElementById('home-btn').addEventListener('click', () => goHome());
-
-// Re-init icons for new elements
 lucide.createIcons();
