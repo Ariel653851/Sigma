@@ -56,6 +56,15 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 .hero-card { background: white; border: 1px solid rgba(0,0,0,0.06); padding: 2.5rem 2rem; border-radius: var(--radius); width: 250px; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); position: relative; overflow: hidden; }
 .hero-card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(0,0,0,0.06); }
 .hero-card.level-2nde:hover { border-color: #8b5cf6; box-shadow: 0 20px 30px rgba(139, 92, 246, 0.1); }
+.hero-card.level-1ere { 
+    background: #ff0000 !important; 
+    animation: pulse-red 1s infinite alternate;
+}
+@keyframes pulse-red {
+    from { background: #ff0000; }
+    to { background: #990000; }
+}
+.hero-card.level-1ere span { color: white !important; }
 .hero-card.level-1ere:hover { border-color: #2563eb; box-shadow: 0 20px 30px rgba(37, 99, 235, 0.1); }
 .hero-card.level-term:hover { border-color: #10b981; box-shadow: 0 20px 30px rgba(16, 185, 129, 0.1); }
 .hero-emoji { font-size: 52px; margin-bottom: 0.5rem; display: block; text-align: center; }
