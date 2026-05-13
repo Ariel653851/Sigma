@@ -178,6 +178,67 @@ const formulas = [
 
     // --- OPTIQUE & COULEURS ---
     {
+        id: "opt-schema-lentille", chapterId: "p-optique-1", title: "Construction de l'image (Lentille)",
+        formula: `<svg viewBox="0 0 600 300" style="width:100%; height:auto; max-height:220px;">
+            <defs>
+                <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1d4ed8" />
+                </marker>
+                <marker id="arrow-orange" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#ea580c" />
+                </marker>
+                <marker id="arrow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#65a30d" />
+                </marker>
+                <marker id="arrow-pink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#ec4899" />
+                </marker>
+            </defs>
+
+            <!-- Axe optique -->
+            <line x1="20" y1="150" x2="580" y2="150" stroke="#94a3b8" stroke-width="1.5" />
+            <polygon points="590,150 580,146 580,154" fill="#94a3b8" />
+            <text x="580" y="135" fill="#64748b" font-size="12" text-anchor="end" font-weight="600">Axe optique Δ</text>
+
+            <!-- Lentille convergente -->
+            <line x1="300" y1="35" x2="300" y2="265" stroke="#9333ea" stroke-width="1.5" />
+            <polygon points="300,25 296,35 304,35" fill="#9333ea" />
+            <polygon points="300,275 296,265 304,265" fill="#9333ea" />
+            <text x="290" y="250" fill="#9333ea" font-size="12" text-anchor="end" font-weight="600">Lentille<tspan x="290" dy="16">convergente</tspan></text>
+
+            <!-- Points F, F', O -->
+            <line x1="200" y1="145" x2="200" y2="155" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="200" y="175" fill="#64748b" font-size="14" text-anchor="middle" font-weight="800">F</text>
+            
+            <line x1="400" y1="145" x2="400" y2="155" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="400" y="175" fill="#64748b" font-size="14" text-anchor="middle" font-weight="800">F'</text>
+
+            <text x="285" y="175" fill="#64748b" font-size="14" text-anchor="middle" font-weight="800">O</text>
+
+            <!-- Rayons -->
+            <polyline points="100,50 200,50 300,50" stroke="#1d4ed8" stroke-width="1.5" marker-mid="url(#arrow-blue)" fill="none" />
+            <polyline points="300,50 400,150 520,270" stroke="#1d4ed8" stroke-width="1.5" marker-mid="url(#arrow-blue)" fill="none" />
+
+            <polyline points="100,50 200,150 300,250" stroke="#65a30d" stroke-width="1.5" marker-mid="url(#arrow-green)" fill="none" />
+            <polyline points="300,250 400,250 520,250" stroke="#65a30d" stroke-width="1.5" marker-mid="url(#arrow-green)" fill="none" />
+
+            <polyline points="100,50 300,150 520,260" stroke="#ea580c" stroke-width="1.5" marker-mid="url(#arrow-orange)" fill="none" />
+
+            <!-- Objet et Image -->
+            <line x1="100" y1="150" x2="100" y2="53" stroke="#ec4899" stroke-width="2" marker-end="url(#arrow-pink)" />
+            <text x="100" y="175" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="800">A</text>
+            <text x="100" y="38" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="800">B</text>
+            <text x="100" y="195" fill="#ec4899" font-size="12" text-anchor="middle" font-weight="600">Objet</text>
+
+            <line x1="500" y1="150" x2="500" y2="247" stroke="#ec4899" stroke-width="2" marker-end="url(#arrow-pink)" />
+            <text x="500" y="140" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="800">A'</text>
+            <text x="500" y="270" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="800">B'</text>
+            <text x="500" y="120" fill="#ec4899" font-size="12" text-anchor="middle" font-weight="600">Image</text>
+        </svg>`,
+        definition: "Schéma illustrant la formation d'une image A'B' à travers une lentille convergente.",
+        properties: "<strong>3 rayons remarquables :</strong><br><br>• Le rayon passant par O n'est pas dévié.<br><br>• Le rayon parallèle à l'axe optique émerge en passant par le foyer image F'.<br><br>• Le rayon passant par le foyer objet F émerge parallèle à l'axe optique.",
+        units: "O [Centre optique], F [Foyer objet], F' [Foyer image], Δ [Axe optique]"
+    },
         id: "opt-conj", chapterId: "p-optique-1", title: "Relation de conjugaison",
         formula: "\\frac{1}{\\overline{OA'}} - \\frac{1}{\\overline{OA}} = \\frac{1}{\\overline{OF'}}",
         definition: "Lien entre la position de l'objet A, de l'image A' et du foyer image F'.",
@@ -824,7 +885,9 @@ function goBack() {
 }
 
 // Event Listeners
-document.getElementById('back-btn').onclick = goBack;
+const backBtn = document.getElementById('back-btn');
+if (backBtn) backBtn.onclick = goBack;
+
 document.querySelectorAll('.sub-tab').forEach(t => t.onclick = () => {
     document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
