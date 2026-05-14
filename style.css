@@ -654,11 +654,54 @@ footer {
         height: 92vh !important;
         border-radius: 24px 24px 0 0 !important;
         margin: 0 !important;
-        padding: 1.5rem 1.2rem !important;
+        padding: 1.8rem 1.4rem !important;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #modal-header-box { text-align: center; margin-bottom: 1.5rem; }
+    #modal-title { font-size: 1.6rem !important; line-height: 1.2; }
+    
+    .modal-tabs { 
+        background: #f1f5f9; 
+        padding: 5px; 
+        border-radius: 12px; 
+        margin-bottom: 2rem;
+    }
+    .tab-trigger { 
+        flex: 1; 
+        padding: 0.7rem 0.5rem; 
+        font-size: 0.85rem; 
+        border-radius: 8px;
+    }
+    .tab-trigger.active { background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    
+    #math-box { 
+        font-size: 1.4rem; 
+        padding: 2rem 1rem; 
+        background: #f8fafc; 
+        border-radius: 16px;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+    }
+    
+    .modal-units-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    .modal-unit-item {
+        background: white;
+        border: 1px solid #f1f5f9;
+        padding: 0.8rem 1rem;
+        border-radius: 10px;
     }
     
     .protocol-flex { flex-direction: column !important; gap: 1.5rem !important; }
-    .protocol-image-container { order: 1; border-radius: 14px; }
+    .protocol-image-container { order: 1; border-radius: 14px; min-height: 200px !important; }
     .protocol-content-container { order: 2; }
     
     #back-btn {
