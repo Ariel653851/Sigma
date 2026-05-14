@@ -572,9 +572,18 @@ footer {
 
 /* --- RESPONSIVE MOBILE (Look Application Native) --- */
 @media (max-width: 768px) {
-    :root { --radius: 16px; } /* Coins plus arrondis pour le look App */
+    :root { --radius: 16px; }
     
-    .app-container { padding: 0; } /* Supprime les marges sur les côtés */
+    html, body { 
+        overflow-x: hidden; /* Verrouille le scroll horizontal au niveau global */
+        position: relative;
+        width: 100%;
+    }
+
+    .app-container { 
+        padding: 0; 
+        overflow-x: hidden; /* Sécurité supplémentaire */
+    }
     
     header { 
         padding: 1.2rem 1rem; 
