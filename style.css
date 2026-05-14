@@ -628,6 +628,20 @@ footer {
         width: 100% !important;
     }
     
+    /* Bouton Retour et Breadcrumb sur mobile */
+    .view-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .breadcrumb { font-size: 0.9rem; width: 100%; justify-content: space-between; }
+    #back-btn { 
+        width: 100%; 
+        justify-content: center; 
+        padding: 0.8rem; 
+        background: #f1f5f9; 
+        border-radius: 10px; 
+        color: var(--text);
+        display: flex !important; /* On s'assure qu'il est visible s'il n'est pas caché par le JS */
+    }
+    #back-btn.hidden { display: none !important; }
+    
     .math-display { font-size: 1.1rem; overflow-x: auto; padding: 10px 0; }
     
     footer { font-size: 0.75rem; padding: 1.2rem 0; margin-bottom: 60px; }
