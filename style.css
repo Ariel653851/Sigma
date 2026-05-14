@@ -569,3 +569,40 @@ footer {
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
     pointer-events: none;
 }
+
+/* --- RESPONSIVE MOBILE (UNIQUEMENT SUR PETITS ÉCRANS) --- */
+@media (max-width: 768px) {
+    .app-container { padding: 10px; }
+    
+    header { padding: 1rem 0; }
+    .header-inner { flex-direction: column; align-items: stretch; gap: 1rem; }
+    .search-wrap { min-width: 100%; }
+    
+    .hero { padding: 2rem 1rem; }
+    .hero-content h2 { font-size: 1.8rem; }
+    .hero-actions { gap: 1rem; }
+    .hero-card { width: 100%; max-width: 320px; padding: 1.5rem; }
+    
+    .grid-container { 
+        grid-template-columns: 1fr !important; 
+        gap: 1rem; 
+    }
+    
+    .formula-card { grid-column: span 1 !important; padding: 1.25rem; }
+    
+    .modal-window { 
+        width: 95% !important; 
+        padding: 1.5rem !important; 
+        margin: 10px !important;
+    }
+    
+    .protocol-flex { flex-direction: column !important; }
+    .protocol-content-container { min-width: 100% !important; }
+    .protocol-image-container { min-height: 250px !important; }
+    
+    .math-display { font-size: 1.1rem; overflow-x: auto; padding: 10px 0; }
+    
+    footer { font-size: 0.8rem; padding: 1.5rem 0; }
+    
+    #copy-btn { bottom: 10px; right: 10px; font-size: 0.8rem; padding: 0.6rem 1rem; }
+}
