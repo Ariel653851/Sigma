@@ -639,21 +639,50 @@ footer {
         border-radius: 12px;
         border: 1px solid rgba(0,0,0,0.03);
     }
-    .sub-tab { 
-        padding: 0.5rem 0.2rem;
-        font-size: 0.75rem;
+    .sub-tab.active {
+        background: var(--text);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        color: white;
     }
     
-    /* Grille à 2 colonnes pour les chapitres */
     .grid-container { 
-        grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 0.8rem; 
+        grid-template-columns: 1fr !important; 
+        gap: 1rem; 
         padding: 1rem;
     }
     
-    /* Les cartes de formules reprennent toute la largeur si besoin via JS ou CSS spécifique */
+    /* Chapitres en mode "Liste Large" */
+    .chapter-card { 
+        flex-direction: row !important;
+        align-items: center;
+        padding: 1rem 1.2rem;
+        gap: 1rem;
+        min-height: 70px;
+    }
+    .chapter-card .card-info { display: none; } /* On cache le texte redondant */
+    .chapter-card h3 { 
+        font-size: 0.95rem; 
+        margin: 0; 
+        flex: 1; 
+        font-weight: 700;
+        color: var(--text);
+    }
+    .chapter-card .subj-dot { 
+        width: 14px; 
+        height: 14px; 
+        flex-shrink: 0; 
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .chapter-card::after { 
+        content: '\2192'; 
+        font-size: 1.1rem;
+        color: var(--primary);
+        opacity: 0.8;
+        margin-left: auto;
+    }
+    
     .formula-card { 
-        padding: 1rem;
+        padding: 1.4rem;
         border-radius: 16px;
     }
     .formula-card h3 { font-size: 0.9rem; }
@@ -682,6 +711,38 @@ footer {
     .protocol-step-item { padding: 0.7rem 1rem; }
     .step-number { width: 24px; height: 24px; font-size: 0.8rem; }
     .step-text { font-size: 0.9rem; }
+
+    /* Bouton retour réajusté (Icon-style) */
+    #back-btn {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: var(--text-muted);
+    }
+    #back-btn i { width: 14px; height: 14px; }
+    .view-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+        margin-bottom: 1.2rem;
+        gap: 1rem;
+    }
+    .breadcrumb { 
+        font-size: 1rem; 
+        gap: 0.4rem; 
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    #view-title { font-size: 1rem !important; }
 
     #copy-btn { 
         bottom: 20px; 
