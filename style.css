@@ -108,6 +108,11 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
     box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1); 
     z-index: 10;
 }
+.chapter-card, .formula-card {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
 .chapter-card.physique:hover, .formula-card.physique:hover { border-color: var(--physique); }
 .chapter-card.chimie:hover, .formula-card.chimie:hover { border-color: var(--chimie); }
 .chapter-card.protocoles:hover, .formula-card.protocoles:hover { border-color: var(--protocoles); }
@@ -645,6 +650,23 @@ footer {
         color: white;
     }
     
+    /* Optimisation Fluidité : Désactivation des effets lourds */
+    .chapter-card::before, .formula-card::before {
+        display: none !important; /* Coupe l'animation de bordure tournante sur mobile */
+    }
+    .chapter-card:hover, .formula-card:hover {
+        transform: none; /* Pas de hover complexe sur mobile */
+    }
+    .chapter-card:active, .formula-card:active, .sub-tab:active, #back-btn:active {
+        transform: scale(0.96) !important;
+        background: #f1f5f9;
+        transition: transform 0.1s ease;
+    }
+    
+    * {
+        -webkit-tap-highlight-color: transparent; /* Enlever le rectangle gris au clic iOS */
+    }
+    
     .grid-container { 
         grid-template-columns: 1fr !important; 
         gap: 0.75rem; 
@@ -686,6 +708,9 @@ footer {
         opacity: 0.8;
         margin-left: auto;
     }
+    
+    /* Désactiver les pulses d'icônes sur mobile pour plus de fluidité */
+    .chapter-card:hover .subj-dot { animation: none !important; transform: none !important; }
     
     .formula-card { 
         padding: 1rem 0.8rem;
