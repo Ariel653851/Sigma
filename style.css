@@ -734,10 +734,26 @@ footer {
     .chapter-card:hover, .formula-card:hover {
         transform: none; /* Pas de hover complexe sur mobile */
     }
-    .chapter-card:active, .formula-card:active, .sub-tab:active, #back-btn:active {
-        transform: scale(0.96) !important;
-        background: #f1f5f9;
-        transition: transform 0.1s ease;
+    .chapter-card:active, .formula-card:active {
+        transform: scale(0.97) !important;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s ease;
+    }
+    
+    .sub-tab:active, .nav-tab:active, #back-btn:active {
+        transform: scale(0.95) !important;
+        opacity: 0.8;
+        transition: transform 0.1s ease, opacity 0.1s ease;
+    }
+    
+    /* Animation douce pour l'apparition des éléments sur mobile */
+    .chapter-card, .formula-card {
+        animation: fade-in-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+    
+    @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     
     * {
