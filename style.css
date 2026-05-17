@@ -949,4 +949,29 @@ footer {
     .formula-card[style*="grid-column: span 2"] {
         grid-column: span 2 !important;
     }
+
+    /* Amélioration de la table des ions sur mobile */
+    .ions-table-container {
+        margin: 0;
+        border-radius: 8px;
+        /* Ajout d'une ombre subtile pour l'effet carte */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .ions-table {
+        font-size: 0.75rem; /* Police plus petite pour s'adapter */
+    }
+    .ions-table th {
+        padding: 10px 6px;
+        font-size: 0.6rem;
+        letter-spacing: 0;
+    }
+    .ions-table td {
+        padding: 10px 6px;
+    }
+    .ions-table .sep {
+        display: none; /* Masquer la colonne séparatrice pour gagner de l'espace */
+    }
+    .ions-table td:nth-child(2), .ions-table td:nth-child(5) {
+        font-size: 0.85rem; /* Formules chimiques un peu plus petites mais lisibles */
+    }
 }
