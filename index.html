@@ -125,11 +125,12 @@
         </footer>
         <img id="site-logo" src="assets/logo.png" alt="MaïmoLab Logo">
         <button id="copy-btn" onclick="copyLink()">
-            📋 Copier le lien
+            <i data-lucide="link-2"></i>
+            <span>Copier le lien</span>
         </button>
         <div id="toast"></div>
     </div>
-
+ 
     <script src="script.js"></script>
     <script>
         setTimeout(() => lucide.createIcons(), 100);
@@ -139,11 +140,27 @@
                 t.textContent = '✅ Lien copié ! Partage-le à tes camarades';
                 t.classList.add('show');
                 const btn = document.getElementById('copy-btn');
-                const originalContent = btn.innerHTML;
-                btn.innerHTML = '✅ Copié !';
+                const span = btn.querySelector('span');
+                const icon = btn.querySelector('i');
+                
+                const originalText = span.textContent;
+                span.textContent = 'Copié !';
+                btn.style.borderColor = '#10b981';
+                btn.style.color = '#10b981';
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'check');
+                    lucide.createIcons();
+                }
+                
                 setTimeout(() => {
                     t.classList.remove('show');
-                    btn.innerHTML = originalContent;
+                    span.textContent = originalText;
+                    btn.style.borderColor = '';
+                    btn.style.color = '';
+                    if (icon) {
+                        icon.setAttribute('data-lucide', 'link-2');
+                        lucide.createIcons();
+                    }
                 }, 2000);
             });
         }
