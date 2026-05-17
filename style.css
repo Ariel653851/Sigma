@@ -939,6 +939,21 @@ footer {
     
     #site-logo { width: 45px; bottom: 16px; left: 16px; }
 
+    /* Rendre les encadrés de définitions plus petits et compacts sur mobile */
+    .formula-card.definitions-style {
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        gap: 0.3rem;
+    }
+    .formula-card.definitions-style .def-title-text {
+        font-size: 1rem;
+    }
+    .formula-card.definitions-style .def-body-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-top: 0.2rem;
+    }
+
     /* Forcer 1 colonne pour les définitions car le texte est long */
     .grid-container.has-expanded, 
     #app-view:has(#chapter-nav-tabs .nav-tab[data-nav="definitions"].active) .grid-container {
