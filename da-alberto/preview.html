@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Da Alberto – Restaurant Italien à Paris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --red:    #C41E3A;
+  --dark:   #1A1A1A;
+  --cream:  #F9F5EE;
+  --gold:   #C9A84C;
+  --grey:   #6B6B6B;
+  --white:  #FFFFFF;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --radius: 12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; color: var(--dark); background: var(--white); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+h1 { font-size: clamp(3rem, 8vw, 6rem); color: var(--white); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h3 { font-size: 1.4rem; }
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+section { padding: 5rem 0; }
+.btn-primary {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border: 2px solid var(--red);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+.btn-primary:hover { background: transparent; color: var(--red); transform: translateY(-2px); }
+.btn-reserve {
+  background: var(--gold);
+  color: var(--dark) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-reserve:hover { opacity: 0.85; transform: translateY(-1px); }
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(26,26,26,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.3s;
+}
+.nav-container {
+  max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+  height: 68px; display: flex; align-items: center; justify-content: space-between;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white); font-style: italic; }
+.nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+.nav-links a { color: rgba(255,255,255,0.80); font-size: 0.9rem; font-weight: 400; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.burger { display: none; background: none; border: none; color: var(--white); font-size: 1.6rem; cursor: pointer; }
+#hero {
+  height: 100vh; min-height: 600px; position: relative;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80') center/cover no-repeat;
+  padding: 0;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(26,26,26,0.75) 0%, rgba(196,30,58,0.45) 100%);
+}
+.hero-content { position: relative; z-index: 1; padding: 0 1.5rem; }
+.hero-sub {
+  display: block; font-size: 0.8rem; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; font-weight: 700;
+}
+#hero p {
+  color: rgba(255,255,255,0.85); font-size: 1.25rem;
+  font-style: italic; font-family: 'Playfair Display', serif; margin: 1rem 0 2rem;
+}
+#about { background: var(--cream); }
+.about-img { border-radius: var(--radius); overflow: hidden; }
+.img-placeholder {
+  background: linear-gradient(135deg, #f0e6d3, #e8d5b7);
+  border-radius: var(--radius); height: 420px;
+  display: flex; align-items: center; justify-content: center; font-size: 6rem;
+}
+.about-text { display: flex; flex-direction: column; gap: 1rem; }
+.about-text p { color: var(--grey); font-size: 1.05rem; }
+.stats { display: flex; gap: 2rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.10); }
+.stat { display: flex; flex-direction: column; }
+.stat strong { font-size: 1.8rem; font-family: 'Playfair Display', serif; color: var(--red); }
+.stat span { font-size: 0.8rem; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; }
+#menu { background: var(--white); }
+#menu .container { text-align: center; }
+#menu h2 { margin-bottom: 2.5rem; }
+.tabs { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.tab {
+  padding: 0.6rem 1.5rem; border-radius: 50px; border: 2px solid #ddd;
+  background: transparent; color: var(--grey); font-size: 0.9rem;
+  font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.tab.active, .tab:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; text-align: left; }
+.menu-card { border: 1px solid #eee; border-radius: var(--radius); padding: 1.5rem; transition: box-shadow 0.25s, transform 0.25s; }
+.menu-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.menu-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+.menu-card h3 { font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 700; }
+.menu-price { font-weight: 700; color: var(--red); font-size: 1rem; white-space: nowrap; margin-left: 0.5rem; }
+.menu-desc { font-size: 0.88rem; color: var(--grey); }
+.menu-badge {
+  display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; background: var(--cream); color: var(--gold);
+  border-radius: 4px; padding: 2px 8px; margin-top: 0.75rem;
+}
+#gallery { background: var(--dark); color: var(--white); }
+#gallery .section-label { color: var(--gold); }
+#gallery h2 { color: var(--white); margin-bottom: 2rem; }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 220px 220px; gap: 1rem; margin-top: 2rem;
+}
+.gallery-item {
+  border-radius: var(--radius); display: flex; align-items: center;
+  justify-content: center; font-size: 3.5rem; transition: transform 0.3s; cursor: pointer;
+}
+.gallery-item:hover { transform: scale(1.03); }
+.g1 { background: linear-gradient(135deg, #8B2635, #C41E3A); grid-column: span 2; }
+.g2 { background: linear-gradient(135deg, #3D2B1F, #6B4226); }
+.g3 { background: linear-gradient(135deg, #2D5A27, #4A8A42); }
+.g4 { background: linear-gradient(135deg, #4A3728, #8B6914); }
+.g5 { background: linear-gradient(135deg, #1A3A2A, #2D6B4A); grid-column: span 2; }
+.g6 { background: linear-gradient(135deg, #6B1A1A, #C41E3A); }
+#contact { background: var(--cream); }
+.contact-cols { align-items: start; }
+.info-block { display: flex; gap: 1rem; margin-bottom: 1.75rem; }
+.info-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.info-block strong { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem; }
+.info-block p { color: var(--grey); font-size: 0.95rem; }
+.info-block a { color: var(--red); }
+.contact-form { background: var(--white); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow); }
+.contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+.form-row:last-of-type { grid-template-columns: 1fr; }
+input, select, textarea {
+  width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #ddd;
+  border-radius: 8px; font-family: 'Lato', sans-serif; font-size: 0.9rem;
+  color: var(--dark); background: var(--white); transition: border-color 0.2s;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--red); }
+textarea { resize: vertical; margin-bottom: 1rem; }
+.contact-form .btn-primary { width: 100%; text-align: center; }
+footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 2rem 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--white); }
+footer p { font-size: 0.85rem; }
+.footer-socials { display: flex; gap: 1.5rem; }
+.footer-socials a { font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+.footer-socials a:hover { color: var(--gold); }
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-cols .contact-info { order: 1; }
+  .contact-cols .contact-form { order: 0; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .g1, .g5 { grid-column: span 2; }
+  .form-row { grid-template-columns: 1fr; }
+  .stats { gap: 1rem; }
+  .burger { display: block; }
+  .nav-links {
+    display: none; flex-direction: column;
+    position: absolute; top: 68px; left: 0; right: 0;
+    background: rgba(26,26,26,0.97); padding: 1.5rem; gap: 1.25rem;
+  }
+  .nav-links.open { display: flex; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  section { padding: 3.5rem 0; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .g1, .g5 { grid-column: span 1; }
+}
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="logo">Da Alberto</a>
+      <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">Notre Histoire</a></li>
+        <li><a href="#menu">La Carte</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="tel:+33123456789" class="btn-reserve">Réserver</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-sub">Authentique cuisine italienne</span>
+      <h1>Da Alberto</h1>
+      <p>La dolce vita au cœur de Paris</p>
+      <a href="#menu" class="btn-primary">Découvrir la carte</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container two-col">
+      <div class="about-img">
+        <div class="img-placeholder"><span>🍕</span></div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">Notre Histoire</span>
+        <h2>Une passion transmise depuis 1987</h2>
+        <p>Alberto est arrivé de Naples avec une valise, une recette de sa mamma et l'envie de partager la vraie cuisine italienne. Depuis plus de 35 ans, notre restaurant perpétue cette tradition : des produits frais, des pâtes faites maison chaque matin, et un accueil chaleureux comme à la maison.</p>
+        <p>Ici, pas de surgelés, pas de compromis. Juste l'Italie dans votre assiette.</p>
+        <div class="stats">
+          <div class="stat"><strong>35+</strong><span>ans d'expérience</span></div>
+          <div class="stat"><strong>100%</strong><span>Fait maison</span></div>
+          <div class="stat"><strong>4.8★</strong><span>sur Google</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="container">
+      <span class="section-label">La Carte</span>
+      <h2>Nos spécialités</h2>
+      <div class="tabs">
+        <button class="tab active" data-tab="entrees">Entrées</button>
+        <button class="tab" data-tab="plats">Plats</button>
+        <button class="tab" data-tab="pizzas">Pizzas</button>
+        <button class="tab" data-tab="desserts">Desserts</button>
+      </div>
+      <div class="menu-grid" id="menu-content"></div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <span class="section-label">Galerie</span>
+      <h2>L'ambiance Da Alberto</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item g1"><span>🍝</span></div>
+        <div class="gallery-item g2"><span>🍷</span></div>
+        <div class="gallery-item g3"><span>🥗</span></div>
+        <div class="gallery-item g4"><span>🍮</span></div>
+        <div class="gallery-item g5"><span>🫒</span></div>
+        <div class="gallery-item g6"><span>🍕</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container two-col contact-cols">
+      <div class="contact-info">
+        <span class="section-label">Nous Trouver</span>
+        <h2>Venez nous rendre visite</h2>
+        <div class="info-block">
+          <div class="info-icon">📍</div>
+          <div><strong>Adresse</strong><p>12 Rue des Oliviers, 75011 Paris</p></div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">🕐</div>
+          <div>
+            <strong>Horaires</strong>
+            <p>Mar – Ven : 12h–14h30 / 19h–22h30</p>
+            <p>Sam – Dim : 12h–23h00</p>
+            <p>Lundi : Fermé</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">📞</div>
+          <div><strong>Téléphone</strong><p><a href="tel:+33123456789">01 23 45 67 89</a></p></div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">✉️</div>
+          <div><strong>Email</strong><p><a href="mailto:bonjour@daalberto.fr">bonjour@daalberto.fr</a></p></div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Réserver une table</h3>
+        <form id="reservation-form">
+          <div class="form-row">
+            <input type="text" placeholder="Votre nom" required />
+            <input type="email" placeholder="Votre email" required />
+          </div>
+          <div class="form-row">
+            <input type="date" required />
+            <input type="time" value="19:30" required />
+          </div>
+          <div class="form-row">
+            <select>
+              <option value="">Nombre de personnes</option>
+              <option>1 personne</option>
+              <option>2 personnes</option>
+              <option>3 personnes</option>
+              <option>4 personnes</option>
+              <option>5+ personnes</option>
+            </select>
+          </div>
+          <textarea placeholder="Un message ? (allergies, occasion spéciale...)" rows="3"></textarea>
+          <button type="submit" class="btn-primary">Confirmer la réservation</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">Da Alberto</div>
+      <p>© 2025 Da Alberto · 12 Rue des Oliviers, Paris 11e</p>
+      <div class="footer-socials">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Google</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+const menuData = {
+  entrees: [
+    { name: "Bruschetta al pomodoro", desc: "Pain grillé, tomates fraîches, basilic, ail, huile d'olive extra-vierge", price: "8,50 €", badge: "Végétarien" },
+    { name: "Carpaccio di manzo", desc: "Fines tranches de bœuf, roquette, parmesan, câpres et citronnette", price: "13,00 €", badge: "" },
+    { name: "Burrata pugliese", desc: "Burrata crémeuse, tomates cerises, basilic frais, réduction balsamique", price: "11,00 €", badge: "Coup de ♥" },
+    { name: "Supplì al telefono", desc: "Croquettes de riz à la viande et mozzarella filante, sauce tomate", price: "9,00 €", badge: "" },
+  ],
+  plats: [
+    { name: "Spaghetti alla carbonara", desc: "Pâtes maison, guanciale, œuf, pecorino romano, poivre noir", price: "16,00 €", badge: "Maison" },
+    { name: "Osso buco alla milanese", desc: "Jarret de veau braisé, gremolata, risotto safrané", price: "22,00 €", badge: "Spécialité" },
+    { name: "Tagliatelle al ragù", desc: "Pâtes fraîches, ragù bolognaise mijoté 4 heures, parmesan affiné", price: "17,50 €", badge: "Maison" },
+    { name: "Salmone al forno", desc: "Saumon rôti aux herbes, légumes grillés, sauce vierge au citron", price: "19,00 €", badge: "" },
+    { name: "Risotto ai funghi", desc: "Risotto crémeux aux champignons sauvages, truffe noire, parmesan", price: "18,00 €", badge: "Végétarien" },
+    { name: "Saltimbocca alla romana", desc: "Escalope de veau, prosciutto, sauge, beurre blanc au vin blanc", price: "21,00 €", badge: "" },
+  ],
+  pizzas: [
+    { name: "Margherita D.O.C.", desc: "Sauce tomates San Marzano, mozzarella di bufala, basilic frais", price: "13,50 €", badge: "Classique" },
+    { name: "Diavola", desc: "Sauce tomate, mozzarella, salami piquant, piment, huile au piment", price: "15,00 €", badge: "Épicée 🌶️" },
+    { name: "Quattro formaggi", desc: "Mozzarella, gorgonzola, fontina, parmesan, miel de truffe", price: "16,00 €", badge: "" },
+    { name: "Tartufo", desc: "Crème de truffe, mozzarella, champignons, huile de truffe, roquette", price: "18,50 €", badge: "Coup de ♥" },
+    { name: "Prosciutto e rucola", desc: "Sauce tomate, mozzarella, jambon de Parme 24 mois, roquette, parmesan", price: "16,00 €", badge: "" },
+  ],
+  desserts: [
+    { name: "Tiramisù della casa", desc: "Recette de la mamma d'Alberto, mascarpone, biscuits savoiardi, espresso", price: "8,00 €", badge: "Maison" },
+    { name: "Panna cotta al caramello", desc: "Panna cotta vanille, caramel beurre salé, éclats de noisettes", price: "7,50 €", badge: "" },
+    { name: "Cannoli siciliani", desc: "Tubes croustillants, ricotta sucrée, pépites de chocolat, pistaches", price: "7,00 €", badge: "" },
+    { name: "Gelato artigianale", desc: "3 boules au choix : pistache, stracciatella, citron, fruits rouges", price: "6,50 €", badge: "Artisanal" },
+  ],
+};
+
+function renderMenu(tab) {
+  const grid = document.getElementById('menu-content');
+  grid.innerHTML = menuData[tab].map(item => `
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <h3>${item.name}</h3>
+        <span class="menu-price">${item.price}</span>
+      </div>
+      <p class="menu-desc">${item.desc}</p>
+      ${item.badge ? `<span class="menu-badge">${item.badge}</span>` : ''}
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMenu(btn.dataset.tab);
+  });
+});
+
+renderMenu('entrees');
+
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('nav-links');
+burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+document.getElementById('reservation-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ Demande envoyée !';
+  btn.style.background = '#2D6B4A';
+  btn.style.borderColor = '#2D6B4A';
+  setTimeout(() => {
+    btn.textContent = 'Confirmer la réservation';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    e.target.reset();
+  }, 3000);
+});
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background =
+    window.scrollY > 80 ? 'rgba(26,26,26,0.98)' : 'rgba(26,26,26,0.92)';
+});
+  </script>
+</body>
+</html>
