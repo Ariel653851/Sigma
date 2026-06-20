@@ -159,7 +159,25 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 
 .formula-card h3, .chapter-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.3; margin-top: 0.25rem; transition: color 0.3s ease; }
 .chapter-card:hover h3 { color: var(--primary); }
-.card-eqn { font-size: 1.25rem; padding: 1.5rem 0.5rem; flex: 1; display: flex; justify-content: center; align-items: center; text-align: center; }
+.card-eqn { 
+    font-size: 1.05rem; 
+    padding: 1.5rem 0.25rem; 
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    max-width: 100%; 
+    overflow-x: auto; 
+    overflow-y: hidden;
+    scrollbar-width: none; 
+}
+.card-eqn .mjx-chtml {
+    font-size: 92% !important;
+}
+.card-eqn::-webkit-scrollbar {
+    display: none;
+}
 
 /* CARD TAGS & DOTS */
 .subj-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; transition: all 0.3s ease; }

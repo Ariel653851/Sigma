@@ -13,6 +13,7 @@ const chapters = [
     { id: "c-struct-1", title: "Structure des Espèces Chimiques", subject: "chimie", level: "1ere" },
     { id: "p-optique-1", title: "Optique & Couleurs", subject: "physique", level: "1ere" },
     { id: "p-ondes-1", title: "Ondes Mécaniques", subject: "physique", level: "1ere" },
+    { id: "p-mouv-1", title: "Mouvement et Forces", subject: "physique", level: "1ere" },
     { id: "p-energie-1", title: "Énergie Mécanique", subject: "physique", level: "1ere" },
     { id: "p-fluide-1", title: "Fluides", subject: "physique", level: "1ere" },
     { id: "p-inter-1", title: "Interactions Fondamentales", subject: "physique", level: "1ere" },
@@ -112,6 +113,36 @@ const allDefinitions = {
         {
             t: "Tensioactif",
             d: "Un <strong>tensioactif</strong> est une molécule <strong>amphiphile</strong>. Ils permettent de réaliser des <strong>émulsions</strong> entre des espèces <strong>non miscibles</strong>."
+        }
+    ],
+    "p-mouv-1": [
+        {
+            t: "Référentiel",
+            d: "Objet solide de référence (associé à un repère d'espace et une horloge) par rapport auquel on étudie le mouvement d'un système."
+        },
+        {
+            t: "Référentiel Galiléen",
+            d: "Référentiel dans lequel le principe d'inertie est rigoureusement vérifié. À l'échelle humaine, le référentiel terrestre peut être considéré comme galiléen pour des expériences de courte durée."
+        },
+        {
+            t: "Système",
+            d: "Objet ou ensemble d'objets matériel dont on étudie le mouvement. Il est souvent modélisé par un point matériel unique concentrant toute sa masse."
+        },
+        {
+            t: "Trajectoire",
+            d: "Ensemble des positions successives occupées par le système au cours du temps (ex: rectiligne, circulaire ou curviligne)."
+        },
+        {
+            t: "Vecteur vitesse instantanée",
+            d: "Vecteur caractérisant la vitesse d'un système à un instant précis t. Il est toujours tangent à la trajectoire au point considéré et orienté dans le sens du mouvement."
+        },
+        {
+            t: "Principe d'inertie",
+            d: "Dans un référentiel galiléen, si un système est soumis à des forces extérieures qui se compensent, alors il est soit immobile, soit en mouvement rectiligne uniforme (et réciproquement)."
+        },
+        {
+            t: "Forces qui se compensent",
+            d: "Forces s'exerçant sur un système dont la somme vectorielle est égale au vecteur nul (\\(\\sum \\vec{F}_{ext} = \\vec{0}\\))."
         }
     ]
 };
@@ -372,6 +403,97 @@ const formulas = [
         properties: "L'onde au point M' reproduit le mouvement du point M avec un décalage temporel égal au retard τ.",
         units: "\\tau [Retard] (s), MM' [Distance M à M'] (m), v [Célérité] (m/s)"
     },
+    // --- MOUVEMENT ET FORCES ---
+    {
+        id: "mouv-schema-vecteurs", chapterId: "p-mouv-1", title: "Construction des vecteurs Vitesse & Force",
+        formula: `<svg viewBox="0 0 600 300" style="width:100%; height:auto; max-height:250px;">
+            <defs>
+                <marker id="arrow-orange" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#ea580c" />
+                </marker>
+                <marker id="arrow-purple" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b5cf6" />
+                </marker>
+                <marker id="arrow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" />
+                </marker>
+            </defs>
+
+            <!-- Trajectoire curviligne -->
+            <path d="M 80,240 Q 250,40 520,180" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,6" />
+            
+            <!-- Points M1, M2, M3 -->
+            <circle cx="154" cy="149" r="5" fill="#1e293b" />
+            <text x="154" y="169" fill="#475569" font-size="12" font-weight="700" text-anchor="middle">M₁</text>
+            
+            <circle cx="275" cy="110" r="5" fill="#1e293b" />
+            <text x="275" y="92" fill="#1e293b" font-size="13" font-weight="800" text-anchor="middle">M₂</text>
+            
+            <circle cx="434" cy="134" r="5" fill="#1e293b" />
+            <text x="434" y="154" fill="#475569" font-size="12" font-weight="700" text-anchor="middle">M₃</text>
+
+            <!-- Vecteur v2 au point M2 -->
+            <line x1="275" y1="110" x2="350" y2="101" stroke="#ea580c" stroke-width="2.5" marker-end="url(#arrow-orange)" />
+            <text x="345" y="90" fill="#ea580c" font-size="12" font-weight="700">\\(\\vec{v}_2\\)</text>
+
+            <!-- Vecteur v3 au point M3 -->
+            <line x1="434" y1="134" x2="509" y2="148" stroke="#ea580c" stroke-width="2.5" marker-end="url(#arrow-orange)" />
+            <text x="509" y="163" fill="#ea580c" font-size="12" font-weight="700">\\(\\vec{v}_3\\)</text>
+            
+            <!-- Translation de v3 au point M2 pour la construction de delta v -->
+            <line x1="275" y1="110" x2="350" y2="124" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" />
+            <text x="355" y="132" fill="#94a3b8" font-size="10" font-weight="600">\\(\\vec{v}_3\\) (translaté)</text>
+
+            <!-- Vecteur variation de vitesse delta v2 au point M2 -->
+            <line x1="350" y1="101" x2="350" y2="124" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="2,2" />
+            
+            <!-- Vecteur delta v2 tracé depuis M2 -->
+            <line x1="275" y1="110" x2="275" y2="155" stroke="#8b5cf6" stroke-width="2.5" marker-end="url(#arrow-purple)" />
+            <text x="250" y="140" fill="#8b5cf6" font-size="12" font-weight="800">\\(\\Delta\\vec{v}_2\\)</text>
+
+            <!-- Vecteur Force résultante résultant des forces extérieures colinéaire à delta v2 -->
+            <line x1="290" y1="110" x2="290" y2="170" stroke="#10b981" stroke-width="3" marker-end="url(#arrow-green)" />
+            <text x="300" y="145" fill="#10b981" font-size="13" font-weight="800">\\(\\sum \\vec{F}_{ext}\\)</text>
+        </svg>`,
+        definition: "Méthode graphique de tracé du vecteur variation de vitesse \\(\\Delta\\vec{v}_2 = \\vec{v}_3 - \\vec{v}_2\\) et lien avec la somme des forces extérieures \\(\\sum \\vec{F}_{ext}\\).",
+        properties: "<strong>Propriétés clés :</strong><br><br>• \\(\\Delta\\vec{v}_2\\) est construit au point \\(M_2\\) en reportant la vitesse suivante \\(\\vec{v}_3\\) et en lui soustrayant \\(\\vec{v}_2\\).<br><br>• D'après la 2ème loi de Newton, la force résultante \\(\\sum \\vec{F}_{ext}\\) est <strong>colinéaire et de même sens</strong> que \\(\\Delta\\vec{v}_2\\).",
+        units: "M [Positions successives], v [Vitesse instantanée] (m/s), \\Delta v [Variation vitesse] (m/s), \\Sigma F [Forces] (N)"
+    },
+    {
+        id: "mouv-vit-moy", chapterId: "p-mouv-1", title: "1. Vitesse moyenne entre le point d'avant et le point d'après",
+        formula: "\\vec{v}(t) = \\frac{\\overrightarrow{M(t-\\Delta t)M(t+\\Delta t)}}{2\\Delta t}",
+        definition: "Approximation du vecteur vitesse à l'instant t en calculant la vitesse moyenne entre la position précédente (à t - \\Delta t) et la position suivante (à t + \\Delta t).",
+        properties: "Cette méthode est l'approximation standard la plus précise pour tracer des vecteurs vitesse lors de l'étude de chronophotographies.",
+        units: "v(t) [Vitesse] (m/s), M(t-Δt)M(t+Δt) [Déplacement] (m), Δt [Intervalle temps] (s)"
+    },
+    {
+        id: "mouv-vit-inst", chapterId: "p-mouv-1", title: "2. Vitesse moyenne entre le point actuel et le point d'après",
+        formula: "\\vec{v}(t) = \\frac{\\overrightarrow{M(t)M(t+\\Delta t)}}{\\Delta t}",
+        definition: "Approximation du vecteur vitesse au temps t en calculant la vitesse moyenne entre la position actuelle (à t) et la position suivante (à t + \\Delta t).",
+        properties: "C'est l'approximation classique du premier ordre utilisée pour simplifier les calculs de vecteurs vitesse.",
+        units: "v(t) [Vitesse] (m/s), M(t)M(t+Δt) [Déplacement] (m), Δt [Intervalle temps] (s)"
+    },
+    {
+        id: "mouv-vit-norme", chapterId: "p-mouv-1", title: "3. Norme de la vitesse",
+        formula: "v(t) = \\frac{M(t)M(t+\\Delta t)}{\\Delta t}",
+        definition: "Valeur numérique de la vitesse (grandeur scalaire) à l'instant t, correspondant à la distance parcourue divisée par la durée du parcours.",
+        properties: "La norme de la vitesse est toujours positive ou nulle. Contrairement au vecteur vitesse, elle ne possède pas de direction, de sens, ni de flèche vectorielle.",
+        units: "v(t) [Vitesse] (m/s), M(t)M(t+Δt) [Distance] (m), Δt [Intervalle temps] (s)"
+    },
+    {
+        id: "mouv-var-vit", chapterId: "p-mouv-1", title: "4. Vecteur variation de vitesse",
+        formula: "\\Delta\\vec{v}_i = \\vec{v}_{i+1} - \\vec{v}_i",
+        definition: "Le vecteur variation de vitesse \\(\\Delta\\vec{v}_i\\) caractérise le changement de vitesse (valeur et/ou direction) entre les instants ti et ti+1.",
+        properties: "Il est nul si le mouvement est rectiligne et uniforme. Il est dirigé vers le centre de la trajectoire si le mouvement est circulaire.",
+        units: "\\Delta v_i [Var. vitesse] (m/s), v_i [Vitesse actuelle] (m/s), v_i+1 [Vitesse suiv.] (m/s)"
+    },
+    {
+        id: "mouv-newton-2", chapterId: "p-mouv-1", title: "5. Deuxième loi de Newton (Approchée)",
+        formula: "\\sum \\vec{F}_{ext} \\approx m \\cdot \\frac{\\Delta\\vec{v}}{\\Delta t}",
+        definition: "Relation fondamentale liant les forces extérieures appliquées à un système de masse m constante et la variation de son vecteur vitesse.",
+        properties: "La force résultante \\(\\sum \\vec{F}_{ext}\\) et la variation du vecteur vitesse \\(\\Delta\\vec{v}\\) ont toujours la <strong>même direction et le même sens</strong>.",
+        units: "\\Sigma F_ext [Somme des forces] (N), m [Masse] (kg), \\Delta v/\\Delta t [Taux de var. vitesse] (m/s²)"
+    },
     // --- STRUCTURE DES ESPÈCES CHIMIQUES ---
     {
         id: "solubility", chapterId: "c-struct-1", title: "Solubilité d'une espèce chimique",
@@ -593,7 +715,7 @@ function renderFormulas() {
     }
     filteredFormulas.forEach(f => {
         const card = createCard(f);
-        if (f.id === 'lewis-polar-1' || f.id === 'ions-list') card.style.gridColumn = "span 2";
+        if (f.id === 'lewis-polar-1' || f.id === 'ions-list' || f.id === 'mouv-schema-vecteurs') card.style.gridColumn = "span 2";
         grid.appendChild(card);
     });
 }
