@@ -160,20 +160,21 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 .formula-card h3, .chapter-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.3; margin-top: 0.25rem; transition: color 0.3s ease; }
 .chapter-card:hover h3 { color: var(--primary); }
 .card-eqn { 
-    font-size: 1.05rem; 
-    padding: 1.5rem 0.25rem; 
+    font-size: 1rem; 
+    padding: 1.25rem 0.25rem; 
     flex: 1; 
     display: flex; 
-    justify-content: center; 
     align-items: center; 
-    text-align: center; 
-    max-width: 100%; 
+    width: 100%; 
     overflow-x: auto; 
     overflow-y: hidden;
     scrollbar-width: none; 
 }
+.card-eqn > * {
+    margin: 0 auto;
+}
 .card-eqn .mjx-chtml {
-    font-size: 92% !important;
+    font-size: 95% !important;
 }
 .card-eqn::-webkit-scrollbar {
     display: none;
@@ -523,6 +524,173 @@ header { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radiu
 .formula-card.definitions-style.expanded .def-label-badge {
     background: var(--primary);
     color: white;
+}
+
+/* ALL DEFINITIONS DIRECTORY VIEW STYLES */
+.defs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+.defs-header-box {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.defs-search-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.defs-search-wrap i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    width: 18px;
+    height: 18px;
+}
+
+.defs-search-input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    background: #f8fafc;
+    transition: all 0.25s ease;
+    outline: none;
+}
+
+.defs-search-input:focus {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.defs-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.defs-toggle-group {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: 10px;
+    gap: 2px;
+}
+
+.defs-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.defs-toggle-btn.active {
+    background: #ffffff;
+    color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.defs-counter-badge {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.defs-chapter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.defs-chapter-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.defs-chapter-banner.chimie {
+    border-left-color: var(--chimie);
+}
+
+.defs-chapter-banner.physique {
+    border-left-color: var(--physique);
+}
+
+.defs-chapter-banner h4 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.defs-chapter-count {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: #f1f5f9;
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+.def-card-chapter-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    color: var(--text-muted);
+    display: inline-block;
+    margin-bottom: 4px;
+}
+.def-card-chapter-tag.chimie {
+    background: #ecfdf5;
+    color: var(--chimie);
+}
+.def-card-chapter-tag.physique {
+    background: #f0f9ff;
+    color: var(--physique);
 }
 
 /* FOOTER & BUTTONS */

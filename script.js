@@ -15,8 +15,8 @@ const chapters = [
     { id: "p-ondes-1", title: "Ondes Mécaniques", subject: "physique", level: "1ere" },
     { id: "p-mouv-1", title: "Mouvement et Forces", subject: "physique", level: "1ere" },
     { id: "p-energie-1", title: "Énergie Mécanique", subject: "physique", level: "1ere" },
+    { id: "p-ec-1", title: "Énergie Cinétique", subject: "physique", level: "1ere" },
     { id: "p-fluide-1", title: "Fluides", subject: "physique", level: "1ere" },
-    { id: "p-inter-1", title: "Interactions Fondamentales", subject: "physique", level: "1ere" },
     { id: "p-elec-1", title: "Électricité", subject: "physique", level: "1ere" },
     { id: "proto-chimie-1", title: "Protocoles de Chimie", subject: "protocoles", level: "1ere" }
 ];
@@ -56,7 +56,17 @@ const allDefinitions = {
     "p-energie-1": [
         { t: "Énergie Cinétique (Ec)", d: "Énergie que possède un corps en raison de sa vitesse." },
         { t: "Énergie Potentielle (Ep)", d: "Énergie que possède un corps en fonction de sa position (ici son altitude)." },
-        { t: "Énergie Mécanique (Em)", d: "Somme de l'énergie cinétique et de toutes les énergies potentielles du système." }
+        { t: "Énergie Mécanique (Em)", d: "Somme de l'énergie cinétique et de toutes les énergies potentielles du système." },
+        { t: "Théorème de l'énergie mécanique", d: "La variation de l'énergie mécanique d'un système entre deux instants A et B est égale à la somme des travaux des forces non conservatrices s'exerçant sur ce système entre ces deux instants." },
+        { t: "Force Conservatrice", d: "Force dont le travail ne dépend pas du chemin suivi (ex: le poids)." },
+        { t: "Force Non Conservatrice", d: "Force dont le travail dépend du chemin suivi (ex: force de frottement)." }
+    ],
+    "p-ec-1": [
+        { t: "Énergie Cinétique (Ec)", d: "Énergie que possède un corps en raison de sa vitesse (dépend de sa masse et du carré de sa vitesse)." },
+        { t: "Théorème de l'énergie cinétique", d: "La variation de l'énergie cinétique d'un système entre deux instants A et B est égale à la somme des travaux des forces extérieures appliquées au système entre ces deux instants." },
+        { t: "Travail d'une force (W)", d: "Énergie transférée par une force lors du déplacement de son point d'application." },
+        { t: "Travail Moteur", d: "Travail d'une force dont le point d'application se déplace dans le sens favorisant le mouvement (W > 0)." },
+        { t: "Travail Résistant", d: "Travail d'une force qui s'oppose au mouvement du système (W < 0)." }
     ],
     "p-elec-1": [
         { t: "Intensité (I)", d: "Débit de charges électriques dans un circuit. Elle s'exprime en Ampères (A)." },
@@ -345,13 +355,7 @@ const formulas = [
     },
 
     // --- ÉNERGIE MÉCANIQUE ---
-    {
-        id: "ec-1-v3", chapterId: "p-energie-1", title: "Énergie Cinétique",
-        formula: "E_c = \\frac{1}{2} m v^2",
-        definition: "Énergie liée au mouvement d'un système de masse m et de vitesse v.",
-        properties: "Toujours positive ou nulle. m en kg, v en m/s.",
-        units: "Ec [Joules] (J)"
-    },
+
     {
         id: "ep-1-v3", chapterId: "p-energie-1", title: "Énergie Potentielle (Pesanteur)",
         formula: "E_p = m \\cdot g \\cdot z",
@@ -365,6 +369,235 @@ const formulas = [
         definition: "Somme de l'énergie cinétique et de l'énergie potentielle.",
         properties: "Se conserve si les frottements sont négligés.",
         units: "Em [Joules] (J)"
+    },
+
+    {
+        id: "travail-poids-em", chapterId: "p-energie-1", title: "Travail du poids",
+        formula: "W_{AB}(\\vec{P}) = m \\cdot g \\cdot (z_A - z_B)",
+        definition: "Travail d'une force conservative constante (le poids) lors d'un déplacement de A vers B.",
+        properties: "Indépendant du chemin suivi, seule l'altitude compte. zA > zB (descente, travail moteur) ; zA < zB (montée, travail résistant).",
+        units: "WAB(P) [Travail] (J), m [Masse] (kg), g [Gravité] (N/kg), zA; zB [Altitude init; fin] (m)"
+    },
+    {
+        id: "travail-support-em", chapterId: "p-energie-1", title: "Travail de la réaction du support",
+        formula: "W_{AB}(\\vec{R}_n) = 0",
+        definition: "Travail de la réaction normale du support lors d'un déplacement sur une surface.",
+        properties: "La réaction normale Rn est orthogonale au déplacement, donc son travail est toujours nul (cos(90°) = 0).",
+        units: "WAB(Rn) [Travail] (J)"
+    },
+    {
+        id: "travail-frottement-em", chapterId: "p-energie-1", title: "Travail de la force de frottement",
+        formula: "W_{AB}(\\vec{f}) = -f \\cdot AB",
+        definition: "Travail de la force de frottement constante opposée au déplacement rectiligne de A vers B.",
+        properties: "Le travail est toujours résistant (négatif) car la force s'oppose au mouvement (cos(180°) = -1).",
+        units: "WAB(f) [Travail] (J), f [Force frott.] (N), AB [Distance] (m)"
+    },
+    {
+        id: "tem-1-v3", chapterId: "p-energie-1", title: "Théorème de l'énergie mécanique",
+        formula: "\\Delta E_m = E_m(B) - E_m(A) = \\sum W_{AB}(\\vec{F}_{non\\,cons})",
+        definition: "La variation de l'énergie mécanique d'un système entre deux positions A et B est égale à la somme des travaux des forces non conservatrices appliquées au système entre ces deux positions.",
+        properties: "Les forces non conservatrices incluent les frottements et les forces motrices. Si seules des forces conservatrices travaillent, l'énergie mécanique se conserve (\\Delta E_m = 0).",
+        units: "\\Delta Em [Variation d'énergie mécanique] (J), Em(B); Em(A) [Éner. fin.; init.] (J), \\Sigma W_{AB}(\\vec{F}) [Somme travaux forces non cons.] (J)"
+    },
+    {
+        id: "forces-non-conservatives-em", chapterId: "p-energie-1", title: "Forces Conservatives & Non Conservatives",
+        formula: `<div style="width:100%; margin:0.5rem 0;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem; background:#fff; border-radius:12px; overflow:hidden; border:1px solid var(--border);">
+                <thead>
+                    <tr style="background:#f8fafc; border-bottom:2px solid var(--border);">
+                        <th style="padding:10px 12px; text-align:left; font-weight:800; color:var(--text); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">Type</th>
+                        <th style="padding:10px 12px; text-align:left; font-weight:800; color:var(--text); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">Force</th>
+                        <th style="padding:10px 12px; text-align:left; font-weight:800; color:var(--text); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">Symbole</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom:1px solid #e2e8f0;">
+                        <td colspan="3" style="padding:8px 12px; font-weight:800; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; background:#f0fdf4; color:#16a34a;">✅ Forces Conservatives</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:8px 12px; color:#16a34a; font-weight:700; font-size:0.8rem;">Conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Poids</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{P}\\)</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:8px 12px; color:#16a34a; font-weight:700; font-size:0.8rem;">Conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Réaction normale du support</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{R}_n\\)</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:8px 12px; color:#16a34a; font-weight:700; font-size:0.8rem;">Conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Tension d'un fil / câble</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{T}\\)</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e8f0;">
+                        <td colspan="3" style="padding:8px 12px; font-weight:800; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; background:#fef2f2; color:#dc2626;">❌ Forces Non Conservatives</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:8px 12px; color:#dc2626; font-weight:700; font-size:0.8rem;">Non conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Frottement</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{f}\\)</td>
+                    </tr>
+                    <tr style="border-bottom:none;">
+                        <td style="padding:8px 12px; color:#dc2626; font-weight:700; font-size:0.8rem;">Non conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Force motrice / traction</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{F}_m\\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>`,
+        definition: "Les forces conservatives ont un travail qui ne dépend pas du chemin suivi (ex: le poids). Les forces non conservatives ont un travail qui dépend du chemin suivi (ex: frottements).",
+        properties: "Seules les forces non conservatives modifient l'énergie mécanique du système.",
+        units: ""
+    },
+
+    // --- ÉNERGIE CINÉTIQUE ---
+    {
+        id: "ec-1-v3", chapterId: "p-ec-1", title: "Énergie Cinétique",
+        formula: "E_c = \\frac{1}{2} m v^2",
+        definition: "Énergie que possède un système du fait de son mouvement.",
+        properties: "L'énergie cinétique est toujours positive ou nulle et dépend du référentiel d'étude. m en kg, v en m/s.",
+        units: "Ec [Énergie cinétique] (J), m [Masse] (kg), v [Vitesse] (m/s)"
+    },
+    {
+        id: "tec-1-v3", chapterId: "p-ec-1", title: "Théorème de l'énergie cinétique",
+        formula: "\\Delta E_c = E_c(B) - E_c(A) = \\sum W_{AB}(\\vec{F}_{ext})",
+        definition: "La variation d'énergie cinétique entre deux positions A et B est égale à la somme des travaux des forces extérieures appliquées au système entre A et B.",
+        properties: "Valable uniquement dans un référentiel galiléen. La variation d'énergie cinétique s'exprime en Joules.",
+        units: "\\Delta Ec [Variation d'énergie cinétique] (J), Ec(B); Ec(A) [Éner. fin.; init.] (J), \\Sigma W_{AB}(\\vec{F}) [Somme travaux forces ext.] (J)"
+    },
+
+    {
+        id: "travail-poids-ec", chapterId: "p-ec-1", title: "Travail du poids",
+        formula: "W_{AB}(\\vec{P}) = m \\cdot g \\cdot (z_A - z_B)",
+        definition: "Travail d'une force conservative constante (le poids) lors d'un déplacement de A vers B.",
+        properties: "Indépendant du chemin suivi, seule l'altitude compte. zA > zB (descente, travail moteur) ; zA < zB (montée, travail résistant).",
+        units: "WAB(P) [Travail] (J), m [Masse] (kg), g [Gravité] (N/kg), zA; zB [Altitude init; fin] (m)"
+    },
+    {
+        id: "travail-support-ec", chapterId: "p-ec-1", title: "Travail de la réaction du support",
+        formula: "W_{AB}(\\vec{R}_n) = 0",
+        definition: "Travail de la réaction normale du support lors d'un déplacement sur une surface.",
+        properties: "La réaction normale Rn est orthogonale au déplacement, donc son travail est toujours nul (cos(90°) = 0).",
+        units: "WAB(Rn) [Travail] (J)"
+    },
+    {
+        id: "travail-frottement-ec", chapterId: "p-ec-1", title: "Travail de la force de frottement",
+        formula: "W_{AB}(\\vec{f}) = -f \\cdot AB",
+        definition: "Travail de la force de frottement constante opposée au déplacement rectiligne de A vers B.",
+        properties: "Le travail est toujours résistant (négatif) car la force s'oppose au mouvement (cos(180°) = -1).",
+        units: "WAB(f) [Travail] (J), f [Force frott.] (N), AB [Distance] (m)"
+    },
+    {
+        id: "forces-non-conservatives-ec", chapterId: "p-ec-1", title: "Forces Conservatives & Non Conservatives",
+        formula: `<div style="width:100%; margin:0.5rem 0;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem; background:#fff; border-radius:12px; overflow:hidden; border:1px solid var(--border);">
+                <thead>
+                    <tr style="background:#f8fafc; border-bottom:2px solid var(--border);">
+                        <th style="padding:10px 12px; text-align:left; font-weight:800; color:var(--text); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">Type</th>
+                        <th style="padding:10px 12px; text-align:left; font-weight:800; color:var(--text); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">Force</th>
+                        <th style="padding:10px 12px; text-align:left; font-weight:800; color:var(--text); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">Symbole</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom:1px solid #e2e8f0;">
+                        <td colspan="3" style="padding:8px 12px; font-weight:800; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; background:#f0fdf4; color:#16a34a;">✅ Forces Conservatives</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:8px 12px; color:#16a34a; font-weight:700; font-size:0.8rem;">Conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Poids</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{P}\\)</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:8px 12px; color:#16a34a; font-weight:700; font-size:0.8rem;">Conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Réaction normale du support</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{R}_n\\)</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:8px 12px; color:#16a34a; font-weight:700; font-size:0.8rem;">Conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Tension d'un fil / câble</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{T}\\)</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e8f0;">
+                        <td colspan="3" style="padding:8px 12px; font-weight:800; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; background:#fef2f2; color:#dc2626;">❌ Forces Non Conservatives</td>
+                    </tr>
+                    <tr style="border-bottom:none;">
+                        <td style="padding:8px 12px; color:#dc2626; font-weight:700; font-size:0.8rem;">Non conservative</td>
+                        <td style="padding:8px 12px; font-weight:600;">Frottement</td>
+                        <td style="padding:8px 12px; font-weight:800; color:var(--physique); font-family:'Outfit',sans-serif; font-size:1rem;">\\(\\vec{f}\\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>`,
+        definition: "Les forces conservatives ont un travail qui ne dépend pas du chemin suivi (ex: le poids). Les forces non conservatives ont un travail qui dépend du chemin suivi (ex: frottements).",
+        properties: "Seules les forces non conservatives modifient l'énergie mécanique du système.",
+        units: ""
+    },
+
+    // --- FLUIDES ---
+    {
+        id: "fluide-pression", chapterId: "p-fluide-1", title: "Pression et Force Pressante",
+        formula: "P = \\frac{F}{S}",
+        definition: "La pression P exercée par un fluide sur une surface S est le rapport de la norme de la force pressante F sur la surface S.",
+        properties: "La force pressante est toujours perpendiculaire (orthogonale) à la paroi. 1 Pa = 1 N/m² ; 1 bar = 10⁵ Pa.",
+        units: "P [Pression] (Pa), F [Force pressante] (N), S [Surface] (m²)"
+    },
+    {
+        id: "fluide-mariotte", chapterId: "p-fluide-1", title: "Loi de Mariotte (Gaz parfait)",
+        formula: "P \\cdot V = \\text{constante}",
+        definition: "À température constante et pour une quantité de matière donnée de gaz, le produit de la pression P par le volume V est constant (P₁ · V₁ = P₂ · V₂).",
+        properties: "Une diminution de volume (compression) entraîne une augmentation proportionnelle de la pression.",
+        units: "P [Pression] (Pa ou bar), V [Volume] (m³ ou L)"
+    },
+    {
+        id: "fluide-rho", chapterId: "p-fluide-1", title: "Masse Volumique",
+        formula: "\\rho = \\frac{m}{V}",
+        definition: "Masse m d'un échantillon de fluide par unité de volume V.",
+        properties: "Pour l'eau douce : ρ_eau = 1000 kg/m³ = 1,0 kg/L. Pour l'air à 20°C : ρ_air ≈ 1,2 kg/m³.",
+        units: "\\rho [Masse volumique] (kg/m³), m [Masse] (kg), V [Volume] (m³)"
+    },
+    {
+        id: "fluide-statique", chapterId: "p-fluide-1", title: "Loi fondamentale de la statique des fluides",
+        formula: "P_B - P_A = \\rho \\cdot g \\cdot (z_A - z_B)",
+        definition: "Dans un fluide incompressible et au repos, la différence de pression entre deux points A et B dépend uniquement de la différence d'altitude (ou profondeur h = z_A - z_B).",
+        properties: "La pression augmente de façon linéaire avec la profondeur dans un liquide au repos : P(h) = P_{atm} + \\rho \\cdot g \\cdot h.",
+        units: "PA, PB [Pressions] (Pa), \\rho [Masse volumique] (kg/m³), g [Gravité] (N/kg), zA, zB [Altitudes] (m)"
+    },
+
+    // --- ÉLECTRICITÉ ---
+    {
+        id: "elec-ohm", chapterId: "p-elec-1", title: "Loi d'Ohm",
+        formula: "U = R \\cdot I",
+        definition: "La tension U aux bornes d'un conducteur ohmique est égale au produit de sa résistance R par l'intensité I du courant qui le traverse.",
+        properties: "Valable uniquement pour un récepteur ohmique (conducteur ohmique). U en Volts (V), R en Ohms (Ω), I en Ampères (A).",
+        units: "U [Tension] (V), R [Résistance] (Ω), I [Intensité] (A)"
+    },
+    {
+        id: "elec-puissance", chapterId: "p-elec-1", title: "Puissance Électrique",
+        formula: "P = U \\cdot I",
+        definition: "La puissance électrique consommée ou fournie par un appareil est le produit de la tension U à ses bornes par l'intensité I du courant.",
+        properties: "Pour un conducteur ohmique (U = R·I), la puissance dissipée par effet Joule s'écrit P = R · I² = U² / R.",
+        units: "P [Puissance] (W), U [Tension] (V), I [Intensité] (A)"
+    },
+    {
+        id: "elec-energie", chapterId: "p-elec-1", title: "Énergie Électrique",
+        formula: "E = P \\cdot \\Delta t = U \\cdot I \\cdot \\Delta t",
+        definition: "Énergie électrique transférée ou consommée par un dipôle électrique pendant une durée de fonctionnement Δt.",
+        properties: "Si P est en Watts (W) et Δt en secondes (s), E est en Joules (J). 1 kWh = 3,6 × 10⁶ J.",
+        units: "E [Énergie] (J ou kWh), P [Puissance] (W), \\Delta t [Durée] (s)"
+    },
+    {
+        id: "elec-noeuds", chapterId: "p-elec-1", title: "Loi des Nœuds",
+        formula: "\\sum I_{\\text{entrants}} = \\sum I_{\\text{sortants}}",
+        definition: "La somme des intensités des courants entrant dans un nœud d'un circuit électrique est égale à la somme des intensités des courants qui en sortent.",
+        properties: "Traduit la conservation de la charge électrique dans les circuits en dérivation.",
+        units: "I [Intensités] (A)"
+    },
+    {
+        id: "elec-mailles", chapterId: "p-elec-1", title: "Loi des Mailles",
+        formula: "\\sum U_k = 0",
+        definition: "Dans une maille orientée d'un circuit électrique, la somme algébrique des tensions le long de la maille est nulle.",
+        properties: "Traduit l'unicité du potentiel électrique en tout point du circuit.",
+        units: "U [Tensions] (V)"
     },
 
     // --- ONDES MÉCANIQUES ---
@@ -597,6 +830,8 @@ let currentChapterId = null;
 let currentSearch = '';
 let currentView = 'home';
 let currentNav = 'formulas';
+let defsGroupMode = 'chapter';
+let defsSubjectFilter = 'all';
 
 function render() {
     const homeView = document.getElementById('home-view');
@@ -614,13 +849,20 @@ function render() {
     backBtn.classList.add('hidden');
     document.getElementById('no-results').classList.add('hidden');
 
-    if (currentSearch.length > 0) {
+    if (currentSearch.length > 0 && currentSubject !== 'definitions') {
         appView.classList.remove('hidden');
         backBtn.classList.remove('hidden');
         viewTitle.textContent = "Résultats";
         renderSearch();
     } else if (currentView === 'home') {
         homeView.classList.remove('hidden');
+    } else if (currentSubject === 'definitions') {
+        appView.classList.remove('hidden');
+        subjTabs.classList.remove('hidden');
+        backBtn.classList.remove('hidden');
+        viewTitle.textContent = "Répertoire des Définitions";
+        levelLabel.textContent = currentLevel === '1ere' ? 'Première' : (currentLevel === 'term' ? 'Terminale' : 'Seconde');
+        renderAllDefinitions();
     } else if (currentView === 'chapters') {
         appView.classList.remove('hidden');
         subjTabs.classList.remove('hidden');
@@ -715,7 +957,8 @@ function renderFormulas() {
     }
     filteredFormulas.forEach(f => {
         const card = createCard(f);
-        if (f.id === 'lewis-polar-1' || f.id === 'ions-list' || f.id === 'mouv-schema-vecteurs') card.style.gridColumn = "span 2";
+        const wideCards = ['lewis-polar-1', 'ions-list', 'mouv-schema-vecteurs', 'tec-1-v3', 'tem-1-v3', 'travail-poids-em', 'travail-poids-ec', 'fluide-statique', 'elec-energie'];
+        if (wideCards.includes(f.id) || f.id.startsWith('forces-non-conservatives-')) card.style.gridColumn = "span 2";
         grid.appendChild(card);
     });
 }
@@ -768,6 +1011,114 @@ function renderDefinitions() {
             grid.classList.remove('has-expanded');
         }
     });
+}
+
+function renderAllDefinitions() {
+    const grid = document.getElementById('grid-container');
+    grid.innerHTML = '';
+
+    let allDefsList = [];
+    const availableChapters = chapters.filter(c => c.level === currentLevel);
+
+    availableChapters.forEach(chap => {
+        const chapDefs = allDefinitions[chap.id] || [];
+        chapDefs.forEach(d => {
+            allDefsList.push({
+                ...d,
+                chapterId: chap.id,
+                chapterTitle: chap.title,
+                chapterSubject: chap.subject
+            });
+        });
+    });
+
+    const searchTerm = (currentSearch || '').trim().toLowerCase();
+    if (searchTerm.length > 0) {
+        allDefsList = allDefsList.filter(d => 
+            d.t.toLowerCase().includes(searchTerm) || 
+            d.d.toLowerCase().includes(searchTerm) ||
+            d.chapterTitle.toLowerCase().includes(searchTerm)
+        );
+    }
+
+    if (allDefsList.length === 0) {
+        document.getElementById('no-results').classList.remove('hidden');
+        return;
+    }
+
+    const container = document.createElement('div');
+    container.className = 'defs-container';
+
+    // Group definitions by chapter
+    const groupedByChap = {};
+    allDefsList.forEach(d => {
+        if (!groupedByChap[d.chapterId]) {
+            groupedByChap[d.chapterId] = {
+                title: d.chapterTitle,
+                subject: d.chapterSubject,
+                defs: []
+            };
+        }
+        groupedByChap[d.chapterId].defs.push(d);
+    });
+
+    Object.values(groupedByChap).forEach(group => {
+        group.defs.sort((a, b) => a.t.localeCompare(b.t, 'fr'));
+
+        const sec = document.createElement('div');
+        sec.className = 'defs-chapter-section';
+
+        const banner = document.createElement('div');
+        banner.className = `defs-chapter-banner ${group.subject}`;
+        banner.innerHTML = `
+            <div class="subj-dot ${group.subject}"></div>
+            <h4>${group.title}</h4>
+            <span class="defs-chapter-count">${group.defs.length} déf.</span>
+        `;
+        sec.appendChild(banner);
+
+        const cardsGrid = document.createElement('div');
+        cardsGrid.className = 'grid-container';
+        cardsGrid.style.padding = '0';
+
+        group.defs.forEach(def => {
+            const card = createSingleDefCard(def, false);
+            cardsGrid.appendChild(card);
+        });
+
+        sec.appendChild(cardsGrid);
+        container.appendChild(sec);
+    });
+
+    grid.appendChild(container);
+    lucide.createIcons();
+}
+
+function createSingleDefCard(def, showChapTag) {
+    const div = document.createElement('div');
+    div.className = 'formula-card definitions-style';
+    div.innerHTML = `
+        ${showChapTag ? `<div class="def-card-chapter-tag ${def.chapterSubject}">${def.chapterSubject.toUpperCase()} • ${def.chapterTitle}</div>` : ''}
+        <div class="def-label-badge">DÉFINITION</div>
+        <div class="def-title-block">
+            <div class="def-title-bar"></div>
+            <h3 class="def-title-text">${def.t}</h3>
+        </div>
+        <p class="def-body-text">${def.d}</p>
+    `;
+    div.onclick = (e) => {
+        e.stopPropagation();
+        const isExpanded = div.classList.contains('expanded');
+        document.querySelectorAll('.formula-card.definitions-style').forEach(c => c.classList.remove('expanded'));
+        const grid = document.getElementById('grid-container');
+        grid.classList.remove('has-expanded');
+
+        if (!isExpanded) {
+            div.classList.add('expanded');
+            grid.classList.add('has-expanded');
+        }
+    };
+    return div;
 }
 
 function renderSearch() {
@@ -982,16 +1333,20 @@ function switchTab(id) {
     });
 }
 
-function selectLevel(lvl) { 
-    currentLevel = lvl; 
-    currentView = 'chapters'; 
-    render(); 
+function selectLevel(lvl) {
+    currentLevel = lvl;
+    currentView = 'chapters';
+    render();
 }
 
 function goHome() {
     currentView = 'home';
     currentChapterId = null;
     currentSearch = '';
+    currentSubject = 'all';
+    document.querySelectorAll('.sub-tab').forEach(x => {
+        x.classList.toggle('active', x.dataset.subject === 'all');
+    });
     const searchInput = document.getElementById('main-search');
     if (searchInput) searchInput.value = '';
     render();
@@ -1002,6 +1357,12 @@ function goBack() {
         currentSearch = '';
         const searchInput = document.getElementById('main-search');
         if (searchInput) searchInput.value = '';
+    } else if (currentSubject === 'definitions') {
+        currentSubject = 'all';
+        document.querySelectorAll('.sub-tab').forEach(x => {
+            x.classList.toggle('active', x.dataset.subject === 'all');
+        });
+        currentView = 'chapters';
     } else if (currentView === 'formulas') {
         const chapter = chapters.find(c => c.id === currentChapterId);
         if (chapter && chapter.subject === 'protocoles') {
