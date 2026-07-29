@@ -18,7 +18,31 @@ const chapters = [
     { id: "p-ec-1", title: "Énergie Cinétique", subject: "physique", level: "1ere" },
     { id: "p-fluide-1", title: "Fluides", subject: "physique", level: "1ere" },
     { id: "p-elec-1", title: "Électricité", subject: "physique", level: "1ere" },
-    { id: "proto-chimie-1", title: "Protocoles de Chimie", subject: "protocoles", level: "1ere" }
+    { id: "proto-chimie-1", title: "Protocoles de Chimie", subject: "protocoles", level: "1ere" },
+
+    // Terminale Physique
+    { id: "p-mouv-term", title: "Cinématique & Vecteurs", subject: "physique", level: "term" },
+    { id: "p-newton-term", title: "Lois de Newton & Projectiles", subject: "physique", level: "term" },
+    { id: "p-kepler-term", title: "Lois de Kepler & Satellites", subject: "physique", level: "term" },
+    { id: "p-fluide-term", title: "Mécanique des Fluides & Bernoulli", subject: "physique", level: "term" },
+    { id: "p-thermo-term", title: "Thermodynamique & Bilan Thermique", subject: "physique", level: "term" },
+    { id: "p-ondes-term", title: "Diffraction, Interférences & Doppler", subject: "physique", level: "term" },
+    { id: "p-optique-term", title: "Lunette Astronomique", subject: "physique", level: "term" },
+    { id: "p-quantique-term", title: "Physique Quantique & Photons", subject: "physique", level: "term" },
+    { id: "p-rc-term", title: "Circuit RC & Condensateur", subject: "physique", level: "term" },
+
+    // Terminale Chimie
+    { id: "c-acide-term", title: "Acides, Bases & pH", subject: "chimie", level: "term" },
+    { id: "c-cinetique-term", title: "Cinétique Chimique & Ordre 1", subject: "chimie", level: "term" },
+    { id: "c-equilibre-term", title: "Équilibre Chimique & Quotient Qr", subject: "chimie", level: "term" },
+    { id: "c-titrage-term", title: "Titrages pH-métriques & Conductimétriques", subject: "chimie", level: "term" },
+    { id: "c-piles-term", title: "Piles & Énergie Électrochimique", subject: "chimie", level: "term" },
+    { id: "c-electrolyse-term", title: "Électrolyse & Transformations Forcées", subject: "chimie", level: "term" },
+    { id: "c-synthèse-term", title: "Synthèse Organique & Mécanismes", subject: "chimie", level: "term" },
+    { id: "c-spectro-term", title: "Spectroscopies IR & RMN", subject: "chimie", level: "term" },
+
+    // Terminale Protocoles
+    { id: "proto-term", title: "🚨 Protocoles de Terminale", subject: "protocoles", level: "term" }
 ];
 
 // --- DATA: DEFINITIONS (Centralized) ---
@@ -154,6 +178,130 @@ const allDefinitions = {
             t: "Forces qui se compensent",
             d: "Forces s'exerçant sur un système dont la somme vectorielle est égale au vecteur nul (\\(\\sum \\vec{F}_{ext} = \\vec{0}\\))."
         }
+    ],
+
+    // --- TERMINALE PHYSIQUE ---
+    "p-mouv-term": [
+        { t: "Vecteur position", d: "Vecteur \\(\\vec{OM}\\) reliant l'origine du repère au point M, exprimé par ses coordonnées (x, y)." },
+        { t: "Vecteur vitesse", d: "Dérivée du vecteur position par rapport au temps : \\(\\vec{v} = \\frac{d\\vec{OM}}{dt}\\). Tangent à la trajectoire, en m/s." },
+        { t: "Vecteur accélération", d: "Dérivée du vecteur vitesse par rapport au temps : \\(\\vec{a} = \\frac{d\\vec{v}}{dt}\\), en m/s²." },
+        { t: "Vecteur accélération centripète", d: "Pour un mouvement circulaire uniforme, l'accélération est dirigée vers le centre du cercle : \\(a = \\frac{v^2}{R}\\)." },
+        { t: "Mouvement circulaire uniforme", d: "Mouvement dont la trajectoire est un cercle et dont la valeur de la vitesse est constante. L'accélération est centripète (vers le centre)." }
+    ],
+    "p-newton-term": [
+        { t: "1ère loi de Newton (Inertie)", d: "Dans un référentiel galiléen, si la somme vectorielle des forces est nulle, le système est en mouvement rectiligne uniforme ou immobile." },
+        { t: "2ème loi de Newton (Dynamique)", d: "La somme des forces extérieures est égale au produit masse × accélération : \\(\\sum \\vec{F}_{ext} = m \\vec{a}\\)." },
+        { t: "3ème loi de Newton (Réciprocité)", d: "Si un corps A exerce une force sur un corps B, alors B exerce sur A une force de même direction, même valeur, mais de sens opposé." },
+        { t: "Portée (tir parabolique)", d: "Distance horizontale parcourue par un projectile jusqu'à sa chute. Elle dépend de la vitesse initiale et de l'angle de tir." },
+        { t: "Chute libre", d: "Mouvement d'un corps soumis uniquement à la pesanteur. La trajectoire est parabolique si la vitesse initiale est horizontale." }
+    ],
+    "p-kepler-term": [
+        { t: "1ère loi de Kepler (Orbites)", d: "Chaque planète décrit une ellipse dont le Soleil occupe l'un des deux foyers." },
+        { t: "2ème loi de Kepler (Aires)", d: "Le segment joignant le Soleil à une planète balaie des aires égales en des temps égaux. La planète va plus vite près du Soleil." },
+        { t: "3ème loi de Kepler (Périodes)", d: "Le rapport du carré de la période T sur le cube du demi grand axe a est constant pour tous les corps orbitant autour du même astre : T²/a³ = constante." },
+        { t: "Gravitation universelle (Newton)", d: "Deux corps s'attirent avec une force proportionnelle à leurs masses et inversement proportionnelle au carré de leur distance : F = G·m₁·m₂/r²." },
+        { t: "Satellite géostationnaire", d: "Satellite dont la période de révolution est égale à la période de rotation de la Terre (24h). Il reste fixe par rapport à un point sur Terre." }
+    ],
+    "p-fluide-term": [
+        { t: "Écoulement laminaire", d: "Écoulement régulier et organisé dans lequel les filets fluides sont parallèles et ne se mélangent pas." },
+        { t: "Débit volumique", d: "Volume de fluide qui traverse une section S en une seconde : Q = S × v (en m³/s)." },
+        { t: "Équation de continuité", d: "Pour un fluide incompressible, le débit volumique est constant : S₁v₁ = S₂v₂. Plus une section est étroite, plus le fluide va vite." },
+        { t: "Théorème de Bernoulli", d: "Pour un fluide incompressible en écoulement laminaire, la somme P + ½ρv² + ρgh est constante le long d'une ligne de courant." },
+        { t: "Poussée d'Archimède", d: "Tout corps plongé dans un fluide subit une poussée verticale ascendante égale au poids du fluide déplacé : Π = ρ_fluide × V_immergé × g." }
+    ],
+    "p-thermo-term": [
+        { t: "Énergie interne (U)", d: "Somme de toutes les énergies microscopiques d'un système (agitation thermique, interactions entre particules). Elle augmente avec la température." },
+        { t: "Premier principe de la thermodynamique", d: "La variation d'énergie interne d'un système est égale à la somme du travail W et du transfert thermique Q reçus : ΔU = W + Q." },
+        { t: "Transfert thermique (Q)", d: "Énergie échangée par conduction, convection ou rayonnement entre deux corps à des températures différentes. Q > 0 si le système reçoit de la chaleur." },
+        { t: "Capacité thermique (C)", d: "Quantité d'énergie nécessaire pour élever d'un kelvin la température d'un système : Q = C × ΔT (en J/K)." },
+        { t: "Bilan énergétique", d: "Méthode permettant d'analyser les échanges d'énergie d'un système avec son environnement pour trouver la variation de température." }
+    ],
+    "p-ondes-term": [
+        { t: "Diffraction", d: "Phénomène par lequel une onde se propage en contournant un obstacle ou en s'élargissant après un passage par une fente. Visible si λ ≈ taille de la fente." },
+        { t: "Interférences constructives", d: "Superposition de deux ondes en phase, donnant une amplitude maximale. Condition : différence de marche δ = k × λ (k entier)." },
+        { t: "Interférences destructives", d: "Superposition de deux ondes en opposition de phase, donnant une amplitude nulle. Condition : δ = (2k+1) × λ/2." },
+        { t: "Effet Doppler", d: "Modification de la fréquence perçue d'une onde due au mouvement relatif de la source et du récepteur. Fréquence augmente à l'approche, diminue à l'éloignement." },
+        { t: "Déphasage", d: "Différence de phase φ entre deux signaux de même fréquence. Lié à la différence de marche : φ = 2πδ/λ." }
+    ],
+    "p-optique-term": [
+        { t: "Lunette astronomique", d: "Instrument optique composé d'un objectif (lentille convergente de grande focale) et d'un oculaire (lentille convergente de petite focale), permettant d'observer des objets éloignés." },
+        { t: "Grossissement (G)", d: "Rapport de l'angle sous lequel on voit l'image à travers la lunette sur l'angle sous lequel on voit l'objet à l'œil nu : G = f'_obj / f'_oc." },
+        { t: "Réglage afocal", d: "Réglage d'une lunette pour lequel les rayons ressortent parallèles (objet à l'infini donne une image à l'infini). Utilisé pour l'observation de l'infini." },
+        { t: "Foyer image (F')", d: "Point où convergent les rayons lumineux parallèles à l'axe optique après avoir traversé la lentille convergente." },
+        { t: "Conjugaison", d: "Relation entre la position d'un objet et la position de son image à travers une lentille, donnée par la relation de conjugaison : 1/OA' - 1/OA = 1/f'." }
+    ],
+    "p-quantique-term": [
+        { t: "Photon", d: "Quantum d'énergie lumineuse. Le photon est une particule de lumière sans masse, d'énergie E = h × f (h = constante de Planck)." },
+        { t: "Constante de Planck (h)", d: "Constante fondamentale de la physique quantique, h ≈ 6,626 × 10⁻³⁴ J·s. Relie l'énergie d'un photon à sa fréquence." },
+        { t: "Dualité onde-corpuscule", d: "Propriété fondamentale de la matière et de la lumière : elles peuvent se comporter comme des ondes ou des corpuscules selon l'expérience réalisée." },
+        { t: "Ionisation", d: "Arrachement d'un électron d'un atome. L'énergie du photon absorbé doit être supérieure ou égale à l'énergie d'ionisation de l'atome." },
+        { t: "Spectre d'émission", d: "Ensemble des rayonnements électromagnétiques émis par un atome lors de transitions d'électrons vers des niveaux d'énergie inférieurs." }
+    ],
+    "p-rc-term": [
+        { t: "Condensateur", d: "Composant électronique capable de stocker de l'énergie sous forme de champ électrique. Constitué de deux armatures conductrices séparées par un isolant." },
+        { t: "Charge d'un condensateur", d: "La tension aux bornes d'un condensateur croît exponentiellement lors de la charge. La durée caractéristique est τ = RC (constante de temps)." },
+        { t: "Constante de temps (τ)", d: "Temps caractéristique du circuit RC, τ = RC. Après 5τ, le condensateur est considéré comme complètement chargé/déchargé." },
+        { t: "Tension aux bornes d'un condensateur", d: "u_C(t) = E(1 − e^(−t/τ)) lors de la charge, et u_C(t) = E·e^(−t/τ) lors de la décharge." },
+        { t: "Énergie stockée dans un condensateur", d: "E_c = ½CU² (en Joules). C est la capacité en Farads, U est la tension en Volts." }
+    ],
+
+    // --- TERMINALE CHIMIE ---
+    "c-acide-term": [
+        { t: "Acide (Brønsted)", d: "Espèce chimique capable de céder un proton H⁺ à une autre espèce. Exemple : HCl, CH₃COOH." },
+        { t: "Base (Brønsted)", d: "Espèce chimique capable de capter un proton H⁺. Exemple : NaOH, NH₃." },
+        { t: "Couple acide-base", d: "Couple formé d'un acide et de la base conjuguée (ou vice-versa), liés par l'échange d'un proton : AH / A⁻." },
+        { t: "pH", d: "Mesure de l'acidité d'une solution. pH = −log([H₃O⁺]). Un pH < 7 est acide, = 7 neutre, > 7 basique." },
+        { t: "pKa", d: "Logarithme de la constante d'acidité Ka d'un couple acide-base : pKa = −log(Ka). Caractérise la force d'un acide." },
+        { t: "Solution tampon", d: "Solution résistant aux variations de pH lors de l'ajout d'acide ou de base, grâce à la présence d'un couple acide/base conjugué en solution." }
+    ],
+    "c-cinetique-term": [
+        { t: "Vitesse de réaction", d: "Variation de la concentration d'un réactif ou d'un produit par unité de temps : v = −d[A]/dt (en mol·L⁻¹·s⁻¹)." },
+        { t: "Réaction d'ordre 1", d: "Réaction dont la vitesse est proportionnelle à la concentration d'un seul réactif : v = k[A]. La concentration décroît exponentiellement." },
+        { t: "Demi-vie (t½)", d: "Temps au bout duquel la concentration d'un réactif a diminué de moitié. Pour une réaction d'ordre 1 : t½ = ln(2)/k." },
+        { t: "Facteurs cinétiques", d: "Paramètres qui influencent la vitesse d'une réaction : température, concentration des réactifs, présence d'un catalyseur, surface de contact." },
+        { t: "Catalyseur", d: "Espèce chimique qui accélère une réaction chimique sans être consommée. Il abaisse l'énergie d'activation de la réaction." }
+    ],
+    "c-equilibre-term": [
+        { t: "Équilibre chimique", d: "État dans lequel les vitesses des réactions directe et inverse sont égales, et où les concentrations des réactifs et produits n'évoluent plus macroscopiquement." },
+        { t: "Quotient de réaction (Qr)", d: "Grandeur calculée à partir des concentrations instantanées des espèces en solution, à la manière de la constante d'équilibre K." },
+        { t: "Constante d'équilibre (K)", d: "Valeur du quotient Qr à l'état d'équilibre. Ne dépend que de la température. Si K >> 1, l'équilibre est déplacé dans le sens direct." },
+        { t: "Loi de modération (Le Chatelier)", d: "Si on perturbe un système à l'équilibre (ajout d'un réactif/produit, variation de pression/température), il évolue dans le sens qui minimise la perturbation." },
+        { t: "Réaction totale", d: "Réaction pour laquelle K est très grand (K >> 1). Les réactifs sont quasi-totalement consommés à l'état final." }
+    ],
+    "c-titrage-term": [
+        { t: "Titrage pH-métrique", d: "Titrage suivi par mesure du pH de la solution en fonction du volume de solution titrante versée. L'équivalence correspond au point d'inflexion de la courbe pH = f(V)." },
+        { t: "Titrage conductimétrique", d: "Titrage suivi par mesure de la conductivité σ de la solution. Le changement de pente de la courbe σ = f(V) indique l'équivalence." },
+        { t: "Point d'équivalence", d: "Moment où les réactifs ont été introduits dans les proportions stœchiométriques. Il se repère sur la courbe de titrage par une rupture de pente ou un point d'inflexion." },
+        { t: "pKa et demi-équivalence", d: "Au demi-équivalence d'un titrage acide-base, pH = pKa du couple. Cela permet de déterminer le pKa expérimentalement." },
+        { t: "Méthode des tangentes", d: "Méthode graphique utilisée pour déterminer précisément le point d'équivalence sur une courbe de titrage pH-métrique." }
+    ],
+    "c-piles-term": [
+        { t: "Pile électrochimique", d: "Dispositif convertissant l'énergie chimique d'une réaction d'oxydoréduction spontanée en énergie électrique." },
+        { t: "Anode", d: "Électrode où a lieu l'oxydation (perte d'électrons). Dans une pile, c'est le pôle négatif (−)." },
+        { t: "Cathode", d: "Électrode où a lieu la réduction (gain d'électrons). Dans une pile, c'est le pôle positif (+)." },
+        { t: "Force électromotrice (f.e.m.)", d: "Différence de potentiel à vide entre les deux électrodes d'une pile. Elle caractérise la capacité de la pile à faire circuler un courant." },
+        { t: "Capacité d'une pile (Q)", d: "Charge totale que peut fournir une pile : Q = n(e⁻) × F (F = constante de Faraday = 96 500 C/mol)." }
+    ],
+    "c-electrolyse-term": [
+        { t: "Électrolyse", d: "Transformation chimique forcée (non spontanée) réalisée grâce à un courant électrique imposé par un générateur externe." },
+        { t: "Électrolyseur", d: "Dispositif dans lequel se déroule l'électrolyse. Il est branché sur un générateur qui impose le courant." },
+        { t: "Anode (électrolyse)", d: "Électrode reliée au pôle positif (+) du générateur. C'est le siège de l'oxydation lors de l'électrolyse." },
+        { t: "Cathode (électrolyse)", d: "Électrode reliée au pôle négatif (−) du générateur. C'est le siège de la réduction lors de l'électrolyse." },
+        { t: "Loi de Faraday", d: "La masse de substance déposée ou dissoute lors d'une électrolyse est proportionnelle à la charge électrique Q transférée : m = M × Q / (n × F)." }
+    ],
+    "c-synthèse-term": [
+        { t: "Substitution nucléophile", d: "Mécanisme réactionnel dans lequel un nucléophile (porteur d'un doublet) attaque un carbone portant un bon groupe partant, le remplaçant." },
+        { t: "Addition électrophile", d: "Mécanisme réactionnel caractéristique des alcènes : un électrophile s'additionne sur la double liaison C=C." },
+        { t: "Groupe partant", d: "Atome ou groupe d'atomes qui quitte la molécule en emportant le doublet de liaison lors d'une réaction de substitution." },
+        { t: "Nucléophile", d: "Espèce chimique riche en électrons (doublet non liant ou charge négative) capable d'attaquer un site électrophile (appauvri en électrons)." },
+        { t: "Rendement de synthèse", d: "Rapport de la masse obtenue expérimentalement sur la masse théorique calculée par la stœchiométrie (en %). Toujours inférieur à 100%." }
+    ],
+    "c-spectro-term": [
+        { t: "Spectroscopie IR (Infra-Rouge)", d: "Technique d'analyse basée sur l'absorption du rayonnement infrarouge par les liaisons d'une molécule. Permet d'identifier les groupes fonctionnels." },
+        { t: "Nombre d'onde (σ)", d: "Grandeur utilisée en IR, exprimée en cm⁻¹. Chaque liaison vibre à une fréquence caractéristique repérable sur le spectre." },
+        { t: "Spectroscopie RMN (¹H)", d: "Technique d'analyse qui repère les protons (H) dans une molécule selon leur environnement chimique. Permet de déterminer la structure de la molécule." },
+        { t: "Déplacement chimique (δ)", d: "Grandeur adimensionnelle (en ppm) qui caractérise la position d'un signal sur un spectre RMN. Dépend de l'environnement électronique du proton." },
+        { t: "Multiplicité (couplage)", d: "En RMN, un signal est multiplié en n+1 pics si le proton a n voisins. Ex : un doublet = 1 voisin, un triplet = 2 voisins." }
     ]
 };
 
@@ -819,6 +967,169 @@ const formulas = [
         formula: `<img src="assets/proto_extraction.png?v=2" style="max-width:100%; border-radius:12px;">`,
         definition: "BUT : Extraire une espèce chimique d'un mélange à l'aide d'un solvant dans lequel elle est plus soluble.\n\n1. On ajoute le solvant B au mélange initial ;\n2. On agite puis on laisse décanter : les deux phases se séparent ;\n3. L’espèce passe dans la phase où elle est plus soluble ;\n4. On récupère la phase contenant l’espèce d’intérêt",
         properties: "On utilise une ampoule à décanter.", units: ""
+    },
+
+    // =============================================
+    // --- TERMINALE PHYSIQUE ---
+    // =============================================
+
+    // Cinématique & Vecteurs
+    { id: "term-vit-inst", chapterId: "p-mouv-term", title: "Vecteur vitesse instantanée",
+      formula: "\\vec{v}(t) = \\frac{d\\vec{OM}}{dt}",
+      definition: "Dérivée du vecteur position par rapport au temps.", properties: "Tangent à la trajectoire, orienté dans le sens du mouvement.",
+      units: "v [Vitesse] (m/s), t [Temps] (s)" },
+    { id: "term-acc", chapterId: "p-mouv-term", title: "Vecteur accélération",
+      formula: "\\vec{a}(t) = \\frac{d\\vec{v}}{dt}",
+      definition: "Dérivée du vecteur vitesse par rapport au temps.", properties: "Pour un MCU, a = v²/R, dirigée vers le centre.",
+      units: "a [Accélération] (m/s²), v [Vitesse] (m/s), t [Temps] (s)" },
+    { id: "term-mcu-a", chapterId: "p-mouv-term", title: "Accélération centripète (MCU)",
+      formula: "a = \\frac{v^2}{R}",
+      definition: "Pour un mouvement circulaire uniforme, l'accélération est centripète.", properties: "Dirigée vers le centre du cercle.",
+      units: "a [Accélération] (m/s²), v [Vitesse] (m/s), R [Rayon] (m)" },
+
+    // Lois de Newton & Projectiles
+    { id: "term-newton2", chapterId: "p-newton-term", title: "2ème loi de Newton",
+      formula: "\\sum \\vec{F}_{ext} = m \\cdot \\vec{a}",
+      definition: "La résultante des forces extérieures est égale au produit de la masse par l'accélération.", properties: "Valable dans un référentiel galiléen.",
+      units: "F [Force] (N), m [Masse] (kg), a [Accélération] (m/s²)" },
+
+    // Kepler & Gravitation
+    { id: "term-kepler3", chapterId: "p-kepler-term", title: "3ème loi de Kepler",
+      formula: "\\frac{T^2}{a^3} = \\text{cste}",
+      definition: "Le rapport T²/a³ est identique pour tous les corps orbitant autour du même astre.", properties: "T = période, a = demi grand-axe.",
+      units: "T [Période] (s), a [Demi grand-axe] (m)" },
+    { id: "term-gravit", chapterId: "p-kepler-term", title: "Loi de gravitation universelle",
+      formula: "F = G \\frac{m_1 m_2}{r^2}",
+      definition: "Force d'attraction gravitationnelle entre deux masses.", properties: "G = 6,674 × 10⁻¹¹ N·m²·kg⁻². Toujours attractive.",
+      units: "F [Force] (N), G [Constante grav.] (N·m²·kg⁻²), m [Masse] (kg), r [Distance] (m)" },
+    { id: "term-sat-vel", chapterId: "p-kepler-term", title: "Vitesse d'un satellite (orbite circulaire)",
+      formula: "v = \\sqrt{\\frac{GM}{r}}",
+      definition: "Vitesse d'un satellite en orbite circulaire à distance r du centre de l'astre.", properties: "Obtenue en égalisant force de gravitation et force centripète.",
+      units: "v [Vitesse] (m/s), G [Cste grav.], M [Masse astre] (kg), r [Rayon orbite] (m)" },
+
+    // Fluides & Bernoulli
+    { id: "term-bernoulli", chapterId: "p-fluide-term", title: "Théorème de Bernoulli",
+      formula: "P + \\frac{1}{2}\\rho v^2 + \\rho g h = \\text{cste}",
+      definition: "Conservation de l'énergie pour un fluide parfait incompressible en écoulement laminaire.", properties: "Quand la section rétrécit, la vitesse augmente et la pression diminue.",
+      units: "P [Pression] (Pa), ρ [Masse vol.] (kg/m³), v [Vitesse] (m/s), h [Altitude] (m)" },
+    { id: "term-debit", chapterId: "p-fluide-term", title: "Débit volumique & Équation de continuité",
+      formula: "Q_V = S_1 v_1 = S_2 v_2",
+      definition: "Le débit volumique est constant pour un fluide incompressible en écoulement laminaire.", properties: "Q_V en m³/s.",
+      units: "Q [Débit] (m³/s), S [Section] (m²), v [Vitesse] (m/s)" },
+    { id: "term-archimede", chapterId: "p-fluide-term", title: "Poussée d'Archimède",
+      formula: "\\Pi = \\rho_{fluide} \\cdot V_{immergé} \\cdot g",
+      definition: "Force verticale ascendante exercée par un fluide sur un corps immergé.", properties: "Π > Poids → flotte ; Π < Poids → coule.",
+      units: "Π [Poussée] (N), ρ [Masse vol.] (kg/m³), V [Volume immergé] (m³), g (m/s²)" },
+
+    // Thermodynamique
+    { id: "term-1er-principe", chapterId: "p-thermo-term", title: "1er principe de la thermodynamique",
+      formula: "\\Delta U = W + Q",
+      definition: "La variation d'énergie interne est égale à la somme du travail et de la chaleur reçus.", properties: "W > 0 si reçu, Q > 0 si chaleur reçue.",
+      units: "ΔU [Énergie interne] (J), W [Travail] (J), Q [Chaleur] (J)" },
+    { id: "term-capa-thermo", chapterId: "p-thermo-term", title: "Capacité thermique massique",
+      formula: "Q = m \\cdot c \\cdot \\Delta T",
+      definition: "Énergie thermique échangée lors d'une variation de température.", properties: "c = capacité thermique massique (J·kg⁻¹·K⁻¹).",
+      units: "Q [Chaleur] (J), m [Masse] (kg), c [Cap. massique] (J·kg⁻¹·K⁻¹), ΔT [Variation T] (K)" },
+
+    // Ondes – Diffraction, Interférences & Doppler
+    { id: "term-diffrac", chapterId: "p-ondes-term", title: "Largeur tache centrale (Diffraction)",
+      formula: "L = \\frac{2\\lambda D}{a}",
+      definition: "Largeur de la tache centrale de diffraction par une fente de largeur a.", properties: "Plus la fente est fine, plus la tache est large.",
+      units: "L [Largeur] (m), λ [Long. d'onde] (m), D [Distance écran] (m), a [Largeur fente] (m)" },
+    { id: "term-interf", chapterId: "p-ondes-term", title: "Interfranges – Double fente de Young",
+      formula: "i = \\frac{\\lambda D}{d}",
+      definition: "Distance entre deux franges consécutives dans l'expérience des fentes de Young.", properties: "d = écart entre les deux fentes.",
+      units: "i [Interfrange] (m), λ [Long. d'onde] (m), D [Distance écran] (m), d [Écart fentes] (m)" },
+    { id: "term-doppler", chapterId: "p-ondes-term", title: "Effet Doppler",
+      formula: "\\frac{\\Delta f}{f_S} \\approx \\frac{v_{source}}{c}",
+      definition: "Décalage en fréquence dû au mouvement relatif de la source et du récepteur.", properties: "Δf > 0 à l'approche, Δf < 0 à l'éloignement.",
+      units: "Δf [Décalage fréq.] (Hz), f_S [Fréq. source] (Hz), v [Vitesse source] (m/s), c [Célérité] (m/s)" },
+
+    // Lunette Astronomique
+    { id: "term-lunette-gross", chapterId: "p-optique-term", title: "Grossissement d'une lunette (réglage afocal)",
+      formula: "G = \\frac{f'_{obj}}{f'_{oc}}",
+      definition: "Rapport de la focale de l'objectif sur la focale de l'oculaire.", properties: "G sans unité. Toujours > 1 pour une lunette astronomique.",
+      units: "G [Grossissement], f'_obj [Focale objectif] (m), f'_oc [Focale oculaire] (m)" },
+
+    // Physique Quantique
+    { id: "term-photon-e", chapterId: "p-quantique-term", title: "Énergie d'un photon",
+      formula: "E = h \\cdot f = \\frac{h \\cdot c}{\\lambda}",
+      definition: "Énergie transportée par un photon, liée à sa fréquence ou longueur d'onde.", properties: "h = 6,626 × 10⁻³⁴ J·s, c = 3 × 10⁸ m/s.",
+      units: "E [Énergie] (J ou eV), h [Planck] (J·s), f [Fréquence] (Hz), λ [Long. d'onde] (m)" },
+
+    // Circuit RC
+    { id: "term-rc-tau", chapterId: "p-rc-term", title: "Constante de temps RC",
+      formula: "\\tau = R \\cdot C",
+      definition: "Temps caractéristique de charge/décharge d'un condensateur dans un circuit RC.", properties: "Après 5τ, régime permanent atteint.",
+      units: "τ [Constante de temps] (s), R [Résistance] (Ω), C [Capacité] (F)" },
+    { id: "term-rc-uc", chapterId: "p-rc-term", title: "Tension condensateur – Charge",
+      formula: "u_C(t) = E \\left(1 - e^{-t/\\tau}\\right)",
+      definition: "Évolution de la tension aux bornes du condensateur lors de la charge.", properties: "u_C → E quand t → ∞.",
+      units: "u_C [Tension] (V), E [Tension alim.] (V), t [Temps] (s), τ (s)" },
+    { id: "term-rc-energie", chapterId: "p-rc-term", title: "Énergie stockée (Condensateur)",
+      formula: "E_c = \\frac{1}{2} C U^2",
+      definition: "Énergie électrostatique stockée par le condensateur chargé à la tension U.", properties: "Exprimée en Joules.",
+      units: "E_c [Énergie] (J), C [Capacité] (F), U [Tension] (V)" },
+
+    // =============================================
+    // --- TERMINALE CHIMIE ---
+    // =============================================
+
+    // Acides-Bases
+    { id: "term-ph", chapterId: "c-acide-term", title: "Calcul du pH",
+      formula: "pH = -\\log([H_3O^+])",
+      definition: "Mesure de l'acidité d'une solution aqueuse.", properties: "pH < 7 acide, = 7 neutre, > 7 basique.",
+      units: "pH [Acidité], [H₃O⁺] [Concentration] (mol/L)" },
+    { id: "term-hh", chapterId: "c-acide-term", title: "Équation de Henderson-Hasselbalch",
+      formula: "pH = pK_a + \\log\\frac{[A^-]}{[AH]}",
+      definition: "Relation entre le pH et la proportion de la forme acide/base d'un couple.", properties: "À demi-équivalence : pH = pKa.",
+      units: "pH [Acidité], pKa [Constante acidité], [AH] et [A⁻] (mol/L)" },
+
+    // Cinétique
+    { id: "term-demi-vie", chapterId: "c-cinetique-term", title: "Demi-vie (ordre 1)",
+      formula: "t_{1/2} = \\frac{\\ln 2}{k}",
+      definition: "Temps au bout duquel la concentration d'un réactif d'ordre 1 est divisée par deux.", properties: "Indépendant de la concentration initiale.",
+      units: "t½ [Demi-vie] (s), k [Constante de vitesse] (s⁻¹)" },
+    { id: "term-conc-ordre1", chapterId: "c-cinetique-term", title: "Concentration – Ordre 1",
+      formula: "[A](t) = [A]_0 \\cdot e^{-kt}",
+      definition: "Loi de décroissance exponentielle de la concentration pour une réaction d'ordre 1.", properties: "Linéarisable en traçant ln[A] = f(t).",
+      units: "[A] (mol/L), [A]₀ (mol/L), k (s⁻¹), t (s)" },
+
+    // Équilibre
+    { id: "term-qr", chapterId: "c-equilibre-term", title: "Quotient de réaction (Qr)",
+      formula: "Q_r = \\frac{[C]^c [D]^d}{[A]^a [B]^b}",
+      definition: "Grandeur calculée à partir des concentrations instantanées. À l'équilibre, Qr = K.", properties: "Si Qr < K : réaction dans le sens direct.",
+      units: "Qr [Quotient], K [Constante d'équilibre], [ ] [Concentrations] (mol/L)" },
+
+    // Titrages
+    { id: "term-titrage-eq", chapterId: "c-titrage-term", title: "Relation à l'équivalence",
+      formula: "C_a V_a = C_b V_{éq}",
+      definition: "À l'équivalence d'un titrage acide-base, les quantités de matière sont en proportion stœchiométrique.", properties: "Valable pour un monoacide et une monobase.",
+      units: "C [Concentration] (mol/L), V [Volume] (L)" },
+
+    // Piles
+    { id: "term-faraday", chapterId: "c-piles-term", title: "Charge transférée (Faraday)",
+      formula: "Q = n(e^-) \\cdot F",
+      definition: "Charge électrique totale transférée lors d'une réaction électrochimique.", properties: "F = 96 500 C/mol (constante de Faraday).",
+      units: "Q [Charge] (C), n(e⁻) [Qté e⁻] (mol), F [Faraday] (C/mol)" },
+
+    // Électrolyse
+    { id: "term-electrolyse-m", chapterId: "c-electrolyse-term", title: "Masse déposée (Électrolyse)",
+      formula: "m = \\frac{M \\cdot I \\cdot \\Delta t}{n \\cdot F}",
+      definition: "Masse de substance déposée ou dissoute lors d'une électrolyse.", properties: "n = nombre d'électrons échangés par ion ou atome.",
+      units: "m [Masse] (g), M [Masse molaire] (g/mol), I [Intensité] (A), Δt [Durée] (s), n [nb e⁻], F [Faraday] (C/mol)" },
+
+    // Spectroscopies
+    { id: "term-ir-sigma", chapterId: "c-spectro-term", title: "Nombre d'onde IR",
+      formula: "\\sigma = \\frac{1}{\\lambda} \\quad (\\text{en cm}^{-1})",
+      definition: "Inverse de la longueur d'onde, utilisé en spectroscopie IR.", properties: "Chaque liaison absorbe à un σ caractéristique (ex: O-H ≈ 3200–3600 cm⁻¹).",
+      units: "σ [Nombre d'onde] (cm⁻¹), λ [Long. d'onde] (cm)" },
+
+    // Protocoles Terminale – Placeholder
+    { id: "proto-term-siren", chapterId: "proto-term", title: "🚨 Protocoles Terminale – À venir",
+      formula: `<div style="text-align:center; padding:2rem; font-size:4rem;">🚨</div>`,
+      definition: "Les protocoles de Terminale seront ajoutés prochainement. Reviens bientôt !",
+      properties: "", units: ""
     }
 ];
 
@@ -957,7 +1268,7 @@ function renderFormulas() {
     }
     filteredFormulas.forEach(f => {
         const card = createCard(f);
-        const wideCards = ['lewis-polar-1', 'ions-list', 'mouv-schema-vecteurs', 'tec-1-v3', 'tem-1-v3', 'travail-poids-em', 'travail-poids-ec', 'fluide-statique', 'elec-energie'];
+        const wideCards = ['lewis-polar-1', 'ions-list', 'mouv-schema-vecteurs', 'tec-1-v3', 'tem-1-v3', 'travail-poids-em', 'travail-poids-ec', 'fluide-statique', 'elec-energie', 'term-bernoulli', 'term-conc-ordre1', 'term-electrolyse-m', 'term-hh'];
         if (wideCards.includes(f.id) || f.id.startsWith('forces-non-conservatives-')) card.style.gridColumn = "span 2";
         grid.appendChild(card);
     });
@@ -1400,9 +1711,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
             t.classList.add('active');
             currentSubject = t.dataset.subject;
-            if (currentSubject === 'protocoles' && currentLevel === '1ere') {
+            if (currentSubject === 'protocoles') {
                 currentView = 'formulas';
-                currentChapterId = 'proto-chimie-1';
+                currentChapterId = currentLevel === 'term' ? 'proto-term' : 'proto-chimie-1';
                 currentNav = 'formulas';
             }
             render();
